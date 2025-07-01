@@ -30,7 +30,7 @@ const fetchData = async () => {
   try {
     setLoading(true);
     const res = await axios.get(
-      `https://car-rental-system-server-beta.vercel.app/
+      `http://localhost:5000/
 
 my-cars?uid=${user.uid}&sort=${sortOrder}&email=${user.email}`,
       {
@@ -58,7 +58,7 @@ my-cars?uid=${user.uid}&sort=${sortOrder}&email=${user.email}`,
     console.log(updatedCar);
 
     await axios
-      .patch(`https://car-rental-system-server-beta.vercel.app/
+      .patch(`http://localhost:5000/
 
 update-car/${selectedCar._id}`, updatedCar)
       .then((res) => {
@@ -105,7 +105,7 @@ if(error){
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = await axios.delete(`https://car-rental-system-server-beta.vercel.app/
+        const res = await axios.delete(`http://localhost:5000/
 
 my-cars/${id}`);
         if (res.data.deletedCount > 0) {

@@ -50,7 +50,7 @@ const CarDetailsPage = () => {
  
     // save data database
 
-    const res = await axios.post(`https://car-rental-system-server-beta.vercel.app/
+    const res = await axios.post(`http://localhost:5000/
 
 booking-car`,bookCar)
     if(res.data){

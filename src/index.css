@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 @import "tailwindcss";
 @plugin "daisyui"{
@@ -10,6 +10,16 @@
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: "#145d84";
-  --color-secondary: "#fd6932";
+  --color-primary: #FF0000;       /* Red */
+  --color-secondary: #FD6932;     /* Orange */
+  --color-background: #0F0F0F;    /* Dark Background */
+  --color-text: #F5F5F5;          /* Light Text */
+  --color-accent: #FFD700;        /* Gold */
+  --color-muted: #AAAAAA; 
 }
+
+body{
+   font-family: "Roboto", sans-serif;
+}
+
+

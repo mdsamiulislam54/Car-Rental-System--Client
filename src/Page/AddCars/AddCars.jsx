@@ -20,7 +20,7 @@ const AddCars = () => {
       data.uid = user.uid;
 
       const res = await axios.post(
-        `https://car-rental-system-server-beta.vercel.app/
+        `http://localhost:5000/
 
 car?email=${user.email}`,
         data,

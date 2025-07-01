@@ -35,11 +35,11 @@ const Faq = () => {
   ];
 
   return (
-    <div>
-      <div className="w-11/12 mx-auto">
+    <div className="my-10">
+      <div className="w-11/12 mx-auto py-10">
         <div>
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-primary mb-3">
+            <h2 className="text-3xl font-bold  mb-3">
               Frequently Asked Questions
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -52,7 +52,7 @@ const Faq = () => {
         <div>
           {faq.map((faq,index) => (
             <div key={index} className="collapse collapse-plus bg-base-100 border border-base-300">
-              <input type="radio" name="my-accordion-3" defaultChecked />
+              <input type="radio" name="my-accordion-3 " className="" defaultChecked />
               <div className="collapse-title font-semibold">{faq.question}</div>
               <div className="collapse-content text-sm">{faq.answer}</div>
             </div>

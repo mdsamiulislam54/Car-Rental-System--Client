@@ -11,10 +11,10 @@ const CarListingCard = ({ car }) => {
         <div className="flex items-center justify-between">
         <h2 className="text-xl font-semibold mb-1">{car.carModel}</h2>
            <span
-            className={`inline-block px-3 py-1 text-sm font-medium rounded-lg ${
+            className={`inline-block px-3 py-1 text-sm font-medium rounded-md ${
               car.availability === "Available"
-                ? "bg-primary text-white"
-                : "bg-red-100 text-red-800"
+                ? "bg-accent text-text tracking-wider"
+                : "bg-accent/20 text-text"
             }`}
           >
             {car.availability}
@@ -22,18 +22,18 @@ const CarListingCard = ({ car }) => {
         </div>
         <p className="text-gray-600 mb-2 flex justify-between items-center">
           <span>
-            <strong>Price:</strong> ৳{car.dailyRentalPrice}/day
+            <strong>Price</strong> ৳{car.dailyRentalPrice}/day
           </span>
 
         <span className="mt-2 text-gray-700 text-sm ">
-            <strong>Booking:</strong> {car.bookingCount}
+            <strong>Booking</strong> ({car.bookingCount})
           </span>
         </p>
 
         <div className="flex items-center justify-between">
          
           <p className="text-gray-600 ">
-            <strong>Posted:</strong> 2 days ago
+            <strong>Posted</strong> 2 days ago
           </p>
         </div>
       </div>

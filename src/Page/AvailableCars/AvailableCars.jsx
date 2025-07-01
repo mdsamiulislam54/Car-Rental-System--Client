@@ -20,7 +20,7 @@ const AvailableCars = () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `https://car-rental-system-server-beta.vercel.app/
+          `http://localhost:5000/
 
 available-cars?search=${search}&sort=${sortOrder}`
         );
