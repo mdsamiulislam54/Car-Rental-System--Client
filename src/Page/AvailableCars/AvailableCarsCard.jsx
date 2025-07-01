@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router";
+import { FaCar } from "react-icons/fa";
 
 const AvailableCarsCard = ({ lineView, car }) => {
   const {
@@ -17,7 +18,7 @@ const AvailableCarsCard = ({ lineView, car }) => {
 
 
   return (
-    <div className="mt-5">
+    <div className="my-10">
       {/*  Grid View */}
       {!lineView ? (
         <div className=" relative rounded-lg shadow hover:shadow-lg transition overflow-hidden h-[570px]">
@@ -29,17 +30,17 @@ const AvailableCarsCard = ({ lineView, car }) => {
           <div className="p-4 border-t border-gray-200">
             <span className="flex items-center justify-between flex-wrap mb-4">
                 <h2 className="text-xl md:text-2xl font-bold">{carModel}</h2>
-                 <p className="text-lg md:text-xl font-semibold text-primary mt-2">
-              ৳{dailyRentalPrice}/day
+                 <p className="text-lg md:text-xl font-semibold  mt-2">
+              ৳ {dailyRentalPrice}/day
             </p>
                 
             </span>
             <p className="text-gray-600 text-sm md:text-sm mb-2">{description}</p>
            <span className="flex items-center justify-between">
-            <p className="text-xl font-bold">Booking : {bookingCount}</p>
+            <p className="text-xl font-bold">Booking  ({bookingCount})</p>
             <p
               className={`font-medium f ${
-                availability ? "text-green-600" : "text-red-600"
+                availability ? "bg-accent/30 text-text tracking-wider px-2 rounded-md" : "text-red-600"
               }`}
             >
               {availability ? "Available" : "Not Available"}
@@ -57,14 +58,15 @@ const AvailableCarsCard = ({ lineView, car }) => {
             <span>
                 <p className=" flex flex-row-reverse justify-between items-center mt-4 font-medium text-md">
                 {location}
-                <p>
-                    <span className="text-primary font-bold tracking-wide">Reg:</span> <span>{registrationNumber}</span>
-                </p>
+                <span>
+                    <span className=" font-bold tracking-wide">Reg.</span> <span>{registrationNumber}</span>
+                </span>
             </p>
             </span>
 
             {/* Book Now Button */}
-            <Link  to={`/car-details/${_id}`} className=" absolute bottom-0 left-0 text-center  mt-4 w-full bg-primary text-white py-2 rounded hover:bg-primary/90 transition text-sm md:text-base">
+            <Link  to={`/car-details/${_id}`} className=" absolute bottom-0 left-0  mt-4   hover:text-white py-2 rounded hover:bg-primary transition text-sm md:text-base w-4/12 m-2 text-black border-2 border-primary p-2 flex items-center gap-3 text-center">
+            <FaCar/>
               Book Now
             </Link>
           </div>
@@ -96,18 +98,18 @@ const AvailableCarsCard = ({ lineView, car }) => {
                 <li>No features</li>
               )}
             </ul>
-            <p className="text-md font-bold">Booking : {bookingCount}</p>
-             <p className=" font-medium text-primary text-md">
+            <p className="text-md font-bold">Booking ({bookingCount})</p>
+             <p className=" font-medium  text-md">
                 {location}
             </p>
              
           </div>
           <div className="text-center sm:text-right space-y-2">
-            <p className="text-lg font-bold text-primary">
-              ৳{dailyRentalPrice}/day
+            <p className="text-lg font-bold ">
+              ৳ {dailyRentalPrice} /day
             </p>
             {/* Book Now Button */}
-            <Link to={`/car-details/${_id}`} className="bg-primary text-white px-4 py-2 rounded hover:bg-primary/90 transition text-sm md:text-base">
+            <Link to={`/car-details/${_id}`} className="Hover:bg-primary hover:text-white border border-primary px-4 py-2 rounded hover:bg-primary/90 transition text-sm md:text-base">
               Book Now
             </Link>
           </div>

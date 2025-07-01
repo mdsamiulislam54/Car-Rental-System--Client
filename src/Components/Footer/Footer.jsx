@@ -84,7 +84,7 @@ const Footer = () => {
                 </span>
               </span>
               <br></br> <br></br>
-              <button className="px-8 bg-primary py-2 text-white text-md font-bold cursor-pointer rounded-md">
+              <button className="px-8 hover:bg-primary py-2 hover:text-white border-2 border-primary text-md font-bold cursor-pointer rounded-md">
                 Subscribe
               </button>
             </form>

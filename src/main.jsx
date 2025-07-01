@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import "./Style/Style.css";
@@ -18,6 +18,7 @@ import AddCars from "./Page/AddCars/AddCars.jsx";
 import MyCars from "./Page/MyCars/MyCars.jsx";
 import CarDetailsPage from "./Page/CarDetailsPage/CarDetailsPage.jsx";
 import MyBooking from "./Page/MyBooking/MyBooking.jsx";
+import Loading from "./Components/Loader/loading.jsx";
 
 
 const router = createBrowserRouter([
@@ -46,7 +47,7 @@ const router = createBrowserRouter([
       {
         path:"car-details/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/
+          fetch(`https://car-rental-system-server-beta.vercel.app/
 
 car-details/${params.id}`),
         element:<CarDetailsPage/>
@@ -70,7 +71,10 @@ car-details/${params.id}`),
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <UserProvider>
+      <Suspense fallback={<Loading/>}>
       <RouterProvider router={router}></RouterProvider>
+      </Suspense>
     </UserProvider>
+    
   </StrictMode>
 );

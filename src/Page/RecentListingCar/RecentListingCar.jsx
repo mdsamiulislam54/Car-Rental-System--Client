@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CarListingCard from "./CarListingCard";
 import { Link } from "react-router";
+import Loader from "../../Components/Loader/Loader";
 
 const RecentListingCar = () => {
   const [cars, setCars] = useState([]);
@@ -12,7 +13,7 @@ const RecentListingCar = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:5000/car");
+        const res = await axios.get("https://car-rental-system-server-beta.vercel.app/car");
        
         const data = res.data;
        
@@ -28,7 +29,7 @@ const RecentListingCar = () => {
     fetchData();
   }, []);
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader/>;
   }
 
   if (error) {

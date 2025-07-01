@@ -16,6 +16,7 @@ import {
 import Swal from "sweetalert2";
 import UserContext from "../../ContextApi/UserContext/UserContext";
 import { Link } from "react-router";
+import Loader from "../../Components/Loader/Loader";
 
 const MyBooking = () => {
   const [booking, setBooking] = useState([]);
@@ -37,7 +38,7 @@ const MyBooking = () => {
     try {
       setLoading(true);
       const res = await axios.get(
-        `http://localhost:5000/
+        `https://car-rental-system-server-beta.vercel.app/
 
 booking-car?uid=${user.uid}&email=${user.email}`,
         {
@@ -61,7 +62,6 @@ booking-car?uid=${user.uid}&email=${user.email}`,
   const handleCancelBooking = (id) => {
     Swal.fire({
       title: "Are you sure you want to cancel this booking?",
-
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
@@ -70,26 +70,30 @@ booking-car?uid=${user.uid}&email=${user.email}`,
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await axios.patch(
-            `http://localhost:5000/
-
-cancel-booking/${id}`
+          const res = await axios.delete(
+            `https://car-rental-system-server-beta.vercel.app/cancel-booking/${id}`
           );
           const data = res.data;
+          console.log(data);
 
-          if (data.modifiedCount > 0) {
+          if (data.acknowledged) {
             Swal.fire({
               title: "Booking cancelled successfully!",
               icon: "success",
             });
+            // Data re-fetch after successful deletion
+            bookingDataFatch();
+          } else {
+            Swal.fire({
+              title: "Failed to cancel booking!",
+              icon: "error",
+            });
           }
         } catch (err) {
           Swal.fire({
-            title: `Failed to cancel booking ${err.message}`,
+            title: `Failed to cancel booking: ${err.message}`,
             icon: "error",
           });
-        } finally {
-          bookingDataFatch();
         }
       }
     });
@@ -106,7 +110,7 @@ cancel-booking/${id}`
     }
     try {
       const res = await axios.patch(
-        `http://localhost:5000/
+        `https://car-rental-system-server-beta.vercel.app/
 
 update-booking/${modifyId}`,
         {
@@ -130,27 +134,40 @@ update-booking/${modifyId}`,
     }
   };
 
+  if (loading) {
+    return <Loader />;
+  }
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 w-11/12 mx-auto">
       {booking.length === 0 ? (
-        <div className="flex justify-center items-center min-h-screen font-bold text-3xl flex-col gap-5">
-          <p>{error} Booking Data Not Found</p>
-          <Link
-            to={"/available-cars"}
-            className="bg-primary p-2 text-white rounded-md"
-          >
-            Booking car
-          </Link>
-        </div>
+       <div className="flex justify-center flex-col gap-8 items-center min-h-screen bg-gray-50 px-4 text-center">
+                <div className="text-7xl text-primary animate-bounce">🚗</div>
+      
+                <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 drop-shadow-lg">
+                  No Booking Cars Found!
+                </h2>
+      
+                <p className="text-gray-500 text-lg max-w-xl leading-relaxed">
+                  Looks like you haven't added any cars yet. Start listing your
+                  beautiful rides and let people rent them today!
+                </p>
+      
+                <Link
+                  to={"/available-cars"}
+                  className="px-6 py-3 bg-primary text-white rounded-lg font-semibold text-lg shadow hover:bg-orange-600 transition duration-300 flex items-center gap-2"
+                >
+                  <span></span> Booking Cars
+                </Link>
+              </div>
       ) : (
-        <div className="w-11/12 mx-auto py-6">
+        <div className="">
           <div className="mb-20">
             {loading ? (
-              <p className="text-center text-lg">Loading chart data...</p>
+              <Loader />
             ) : chartBookingData.length === 0 ? (
               <p className="text-center text-lg">No chart data found</p>
             ) : (
-              <ResponsiveContainer width="100%" height={400}>
+              <ResponsiveContainer width="100%" height={200}>
                 <LineChart
                   width={500}
                   height={300}
@@ -182,7 +199,7 @@ update-booking/${modifyId}`,
           <div className=" ">
             <div className="overflow-x-auto">
               <table className="w-full text-center border-collapse relative ">
-                <thead className="bg-primary text-white">
+                <thead className="bg-gray-200 ">
                   <tr>
                     <th className="p-3 text-sm md:text-base font-bold">
                       Car Image
@@ -205,11 +222,11 @@ update-booking/${modifyId}`,
                   </tr>
                 </thead>
 
-                <tbody className="text-center bg-primary/70 text-white">
+                <tbody className="text-center bg-gray-50 ">
                   {loading ? (
                     <tr>
                       <td colSpan="6" className="p-5 text-lg">
-                        Loading...
+                        <Loader />
                       </td>
                     </tr>
                   ) : booking.length === 0 ? (
@@ -222,7 +239,7 @@ update-booking/${modifyId}`,
                     booking.map((car) => (
                       <tr
                         key={car._id}
-                        className="border-b border-gray-500 hover:bg-primary/80 transition"
+                        className=" hover:bg-gray-200 transition bg-gray-100"
                       >
                         <td className="p-3">
                           <img
@@ -263,15 +280,8 @@ update-booking/${modifyId}`,
                         <td className="  ">
                           <div className="flex justify-center gap-2 items-center ">
                             <button
-                              disabled={
-                                car.bookingStatus === "Canceled" ? true : false
-                              }
                               onClick={() => handleCancelBooking(car._id)}
-                              className={`flex items-center gap-2 bg-red-500 px-3 py-1 rounded text-white text-xs md:text-sm  ${
-                                car.bookingStatus === "Canceled"
-                                  ? "bg-gray-400 cursor-not-allowed "
-                                  : "bg-red-500"
-                              }`}
+                              className={`flex items-center gap-2 bg-red-500 px-3 py-1 rounded text-white text-xs md:text-sm  `}
                             >
                               Cancel <FaTrashAlt />
                             </button>

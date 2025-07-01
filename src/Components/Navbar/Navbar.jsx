@@ -41,10 +41,10 @@ const Navbar = () => {
   return (
     <nav
       className={`py-2 z-100 ${
-        scrollY > 50 ? "fixed-nav bg-white/90 " : ""
-      } ${pathname === "/" ? " mb-2" : "shadow"}`}
+        scrollY > 50 ? "fixed-nav bg-white  " : ""
+      } ${pathname === "/" ? " mb-2" : ""}`}
     >
-      <div className="navbar w-11/12 mx-auto px-4 shadow bg-accent/10">
+      <div className="navbar w-11/12 mx-auto px-4 shadow bg-accent/10 rounded-md">
         {/* Navbar Start */}
         <div className="navbar-start">
           {/* Mobile menu button */}

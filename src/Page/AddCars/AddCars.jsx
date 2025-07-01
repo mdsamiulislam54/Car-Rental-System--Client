@@ -20,7 +20,7 @@ const AddCars = () => {
       data.uid = user.uid;
 
       const res = await axios.post(
-        `http://localhost:5000/
+        `https://car-rental-system-server-beta.vercel.app/
 
 car?email=${user.email}`,
         data,
@@ -190,10 +190,10 @@ car?email=${user.email}`,
           </div>
 
           {/* Submit Button */}
-          <div className="mt-8 flex justify-center">
+          <div className="mt-8 flex justify-end">
             <button
               type="submit"
-              className="btn btn-primary text-white w-full py-3 rounded-lg font-semibold"
+              className="btn btn-primary text-white  py-3 rounded-lg font-semibold hover:bg-primary/50 "
             >
               Add Car
             </button>
