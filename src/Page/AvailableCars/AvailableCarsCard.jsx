@@ -21,7 +21,7 @@ const AvailableCarsCard = ({ lineView, car }) => {
     <div className="my-10">
       {/*  Grid View */}
       {!lineView ? (
-        <div className=" relative rounded-lg shadow hover:shadow-lg transition overflow-hidden h-[570px]">
+        <div className=" relative rounded-lg shadow hover:shadow-lg transition overflow-hidden ">
           <img
             src={imageUrl}
             alt={carModel}
@@ -35,7 +35,7 @@ const AvailableCarsCard = ({ lineView, car }) => {
             </p>
                 
             </span>
-            <p className="text-gray-600 text-sm md:text-sm mb-2">{description}</p>
+            {/* <p className="text-gray-600 text-sm md:text-sm mb-2">{description}</p> */}
            <span className="flex items-center justify-between">
             <p className="text-xl font-bold">Booking  ({bookingCount})</p>
             <p
@@ -47,14 +47,14 @@ const AvailableCarsCard = ({ lineView, car }) => {
             </p>
            </span>
 
-            {/* ✅ features array map */}
+            {/* ✅ features array map
             <ul className="text-sm md:text-base text-gray-500 mt-2 list-disc list-inside space-y-1">
               {features && features.length > 0 ? (
                 features.map((feature, idx) => <li key={idx}>{feature}</li>)
               ) : (
                 <li>No features listed</li>
               )}
-            </ul>
+            </ul> */}
             <span>
                 <p className=" flex flex-row-reverse justify-between items-center mt-4 font-medium text-md">
                 {location}
@@ -65,7 +65,7 @@ const AvailableCarsCard = ({ lineView, car }) => {
             </span>
 
             {/* Book Now Button */}
-            <Link  to={`/car-details/${_id}`} className=" absolute bottom-0 left-0  mt-4   hover:text-white py-2 rounded hover:bg-primary transition text-sm md:text-base w-4/12 m-2 text-black border-2 border-primary p-2 flex items-center gap-3 text-center">
+            <Link  to={`/car-details/${_id}`} className="  hover:text-white py-2 rounded hover:bg-primary transition text-sm md:text-base w-4/12 m-2 text-black border-2 border-primary p-2 flex items-center gap-3 text-center">
             <FaCar/>
               Book Now
             </Link>
@@ -81,7 +81,7 @@ const AvailableCarsCard = ({ lineView, car }) => {
           />
           <div className="flex-1 text-center sm:text-left">
             <h2 className="text-lg md:text-xl font-semibold">{carModel}</h2>
-            <p className="text-gray-500 text-sm md:text-base lg:pr-20">{description}</p>
+            {/* <p className="text-gray-500 text-sm md:text-base lg:pr-20">{description}</p> */}
             <p
               className={`text-sm font-medium ${
                 availability ? "text-green-600" : "text-red-600"
@@ -90,14 +90,14 @@ const AvailableCarsCard = ({ lineView, car }) => {
               {availability ? "Available" : "Not Available"}
             </p>
 
-            {/* ✅ features array map */}
+            {/* ✅ features array map
             <ul className="text-xs md:text-sm text-gray-500 mt-1 list-disc list-inside space-y-1">
               {features && features.length > 0 ? (
                 features.map((feature, idx) => <li key={idx}>{feature}</li>)
               ) : (
                 <li>No features</li>
               )}
-            </ul>
+            </ul> */}
             <p className="text-md font-bold">Booking ({bookingCount})</p>
              <p className=" font-medium  text-md">
                 {location}
