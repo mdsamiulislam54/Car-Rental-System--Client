@@ -7,14 +7,12 @@ import {
   FaSquareGithub,
   FaSquareInstagram,
   FaSquareYoutube,
-  FaAmazonPay,
-  FaApplePay,
+
 } from "react-icons/fa6";
-import { LiaGooglePlay } from "react-icons/lia";
-import { GrPaypal } from "react-icons/gr";
+
 const Footer = () => {
   return (
-    <div className=" bg-base-200 mt-10">
+    <div className=" bg-accent/10 mt-10">
       <div className="w-11/12 mx-auto">
         <footer className="footer lg:footer-horizontal text-base-content py-14">
           <aside>

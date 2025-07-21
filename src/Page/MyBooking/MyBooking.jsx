@@ -188,7 +188,7 @@ update-booking/${modifyId}`,
                   <Line
                     type="monotone"
                     dataKey="price"
-                    stroke="#8884d8"
+                    stroke="#FF0000"
                     activeDot={{ r: 8 }}
                   />
                 </LineChart>

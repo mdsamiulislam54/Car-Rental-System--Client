@@ -157,7 +157,7 @@ my-cars/${id}`);
                 <Line
                   type="monotone"
                   dataKey="price"
-                  stroke="#8884d8"
+                  stroke="#FF0000"
                   activeDot={{ r: 8 }}
                 />
                 <Line type="monotone" dataKey="bookingCount" stroke="#82ca9d" />
