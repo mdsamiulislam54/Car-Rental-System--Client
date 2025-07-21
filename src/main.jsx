@@ -50,7 +50,7 @@ const router = createBrowserRouter([
           fetch(`https://car-rental-system-server-beta.vercel.app/
 
 car-details/${params.id}`),
-        element:<CarDetailsPage/>
+        element:<PrivateRoute><CarDetailsPage /></PrivateRoute>
       },
       {
         path:'my-booking',

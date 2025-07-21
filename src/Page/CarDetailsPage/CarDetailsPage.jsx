@@ -39,7 +39,7 @@ const CarDetailsPage = () => {
       availability: car.availability,
       startDay: startDate,
       endDate: endDate,
-      userUid: user.uid,
+      userUid: user?.uid,
       bookingStatus: "Confirmed",
       carImages: car.imageUrl,
       carId: car._id,
@@ -106,7 +106,7 @@ booking-car`,
               }
             </ul>
           
-            <p className="w-5/12 mx-auto">
+            <p className="lg:w-5/12 mx-auto px-4">
               {car.description}
             </p>
 
