@@ -151,9 +151,9 @@ const Navbar = () => {
           {user ? (
             <button
               onClick={handleLogOut}
-              className="md:px-4 px-2 md:py-2 py-1 font-bold text-md rounded-md cursor-pointer btn btn-outline border-2 border-primary hover:bg-primary hover:text-white transition-all duration-300 flex items-center gap-1"
+              className=""
             >
-              <TbLogout2 size={18} /> Logout
+              <img src={user?.photoURL} alt="user profile images" className="w-10 h-10 object-contain rounded-full" />
             </button>
           ) : (
             <Link
