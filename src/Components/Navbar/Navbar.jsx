@@ -41,35 +41,35 @@ const Navbar = () => {
   const navItem = <>
     <Link
       to="/"
-      className={`text-sm leading-[24px] text-gray-800 font-medium  font-rubik  relative ${pathname === "/" ? "active" : ""
+      className={`text-[15px] leading-[24px] text-gray-800 font-medium  font-rubik  relative ${pathname === "/" ? "active" : ""
         }`}
     >
       Home
     </Link>
     <Link
       to="/available-cars"
-      className={`text-sm leading-[24px] text-gray-800 font-medium  font-rubik    relative ${pathname === "/available-cars" ? "active" : ""
+      className={`text-[15px] leading-[24px] text-gray-800 font-medium  font-rubik    relative ${pathname === "/available-cars" ? "active" : ""
         }`}
     >
       Available Cars
     </Link>
     <Link
       to="/add-cars"
-      className={`text-sm leading-[24px] text-gray-800 font-medium  font-rubik     relative ${pathname === "/add-cars" ? "active" : ""
+      className={`text-[15px] leading-[24px] text-gray-800 font-medium  font-rubik     relative ${pathname === "/add-cars" ? "active" : ""
         }`}
     >
       Add Car
     </Link>
     <Link
       to="/my-cars"
-      className={`text-sm leading-[24px] text-gray-800 font-medium  font-rubik     relative ${pathname === "/my-cars" ? "active" : ""
+      className={`text-[15px] leading-[24px] text-gray-800 font-medium  font-rubik     relative ${pathname === "/my-cars" ? "active" : ""
         }`}
     >
       My Cars
     </Link>
     <Link
       to="/my-booking"
-      className={`text-sm leading-[24px] text-gray-800 font-medium  font-rubik    relative ${pathname === "/my-booking" ? "active" : ""
+      className={`text-[15px] leading-[24px] text-gray-800 font-medium  font-rubik    relative ${pathname === "/my-booking" ? "active" : ""
         }`}
     >
       My Bookings
@@ -78,10 +78,10 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`py-2 z-100 ${scrollY > 50 ? "fixed-nav bg-white  " : ""
-        } ${pathname === "/" ? " mb-2" : ""}`}
+      className={`z-100 ${scrollY > 50 ? "fixed-nav bg-white  relative " : "relative"
+        } ${pathname === "/" ? " mb-0" : ""}`}
     >
-      <div className="navbar w-11/12 mx-auto px-4 shadow  rounded-md">
+      <div className="navbar w-11/12 mx-auto px-4 absolute inset-0  rounded-md">
         {/* Navbar Start */}
         <div className="navbar-start">
           {/* Mobile menu button */}
@@ -114,8 +114,8 @@ const Navbar = () => {
                 >
                   <div className="flex justify-between items-center my-4">
                     <Link className="text-xl font-bold flex items-center gap-1">
-                      <img src={logo} alt="" className="w-6 h-6" />
-                      <span className="text-primary">RentRide</span>
+                      <img src="https://cdn-icons-png.flaticon.com/512/445/445005.png" alt="" className="w-6 h-6" />
+                      <span className="font-rubik font-bold leading-4 tracking-wide text-2xl">RentRide</span>
                     </Link>
                     <button
                       onClick={() => setOpenMenu(false)}
@@ -134,8 +134,8 @@ const Navbar = () => {
 
           {/* Logo */}
           <Link className="text-xl font-bold flex items-center gap-1">
-            <img src={logo} alt="" className="w-6 h-6" />
-            <span>RentRide</span>
+            <img src="https://cdn-icons-png.flaticon.com/512/445/445005.png" alt="" className="w-12 h-12" />
+            <span className="font-rubik font-bold leading-4 tracking-wide text-2xl">RentRide</span>
           </Link>
         </div>
 
