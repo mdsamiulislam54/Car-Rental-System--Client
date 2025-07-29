@@ -1,11 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
 
 @import "tailwindcss";
+@theme {
+  --font-rubik: "Rubik", sans-serif;
+}
 @plugin "daisyui"{
   themes: light --default, dark --prefersdark;
   themes: light --default;
  }
 
+
+ 
 
 @plugin "daisyui/theme" {
   name: "light";
@@ -16,10 +23,11 @@
   --color-text: #F5F5F5;          /* Light Text */
   --color-accent: #FFD700;        /* Gold */
   --color-muted: #AAAAAA; 
+  
 }
 
 body{
-   font-family: "Roboto", sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 
