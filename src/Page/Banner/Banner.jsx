@@ -1,6 +1,7 @@
 import { Link } from "react-router";
-import { FaPlay, FaPause } from "react-icons/fa";
+import { FaPlay, FaPause, FaCheckCircle } from "react-icons/fa";
 import { Typewriter } from "react-simple-typewriter";
+import Button from "../../Components/Button/Button";
 
 const Banner = () => {
   return (
@@ -19,9 +20,9 @@ const Banner = () => {
       <div className="relative z-10 flex items-center justify-between w-11/12 mx-auto min-h-screen my-14">
         {/* Left Content */}
         <div className="w-1/2 space-y-4">
-          <h4 className="text-xl font-semibold font-rubik">Plan your trip today</h4>
-          <h1 className="text-3xl md:text-6xl font-extrabold leading-tight tracking-wider text-[#010103]  ">
-            Enjoy great savings on car rentals
+          <h4 className="text-xl font-semibold font-rubik text-text">Plan your trip today</h4>
+          <h1 className="text-3xl md:text-5xl font-extrabold leading-tight tracking-wider font-rubik text-text  ">
+            Enjoy <span className="text-primary">great</span> savings <br></br> on car rentals
           </h1>
           <p className="text-base font-rubik text-gray-600 max-w-md">
             Join us in driving positive change and reaching our sustainability goals—
@@ -30,9 +31,9 @@ const Banner = () => {
 
           <Link
             to="/available-cars"
-            className="md:px-6 px-4  py-2 inline-block hover:bg-primary btn btn-outline rounded-md border-primary hover:text-white md:text-lg font-semibold transition-all duration-300 text-sm"
+           
           >
-            View Available Cars
+           <Button text="Book Ride Car" icon={FaCheckCircle}/>
           </Link>
         </div>
 

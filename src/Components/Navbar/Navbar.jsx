@@ -41,35 +41,35 @@ const Navbar = () => {
   const navItem = <>
     <Link
       to="/"
-      className={`text-[15px] leading-[24px] text-gray-800 font-medium  font-rubik  relative ${pathname === "/" ? "active" : ""
+      className={`text-[15px] leading-[24px] text-text font-medium  font-rubik  relative ${pathname === "/" ? "active" : ""
         }`}
     >
       Home
     </Link>
     <Link
       to="/available-cars"
-      className={`text-[15px] leading-[24px] text-gray-800 font-medium  font-rubik    relative ${pathname === "/available-cars" ? "active" : ""
+      className={`text-[15px] leading-[24px] text-text font-medium  font-rubik    relative ${pathname === "/available-cars" ? "active" : ""
         }`}
     >
       Available Cars
     </Link>
     <Link
       to="/add-cars"
-      className={`text-[15px] leading-[24px] text-gray-800 font-medium  font-rubik     relative ${pathname === "/add-cars" ? "active" : ""
+      className={`text-[15px] leading-[24px] text-text font-medium  font-rubik     relative ${pathname === "/add-cars" ? "active" : ""
         }`}
     >
       Add Car
     </Link>
     <Link
       to="/my-cars"
-      className={`text-[15px] leading-[24px] text-gray-800 font-medium  font-rubik     relative ${pathname === "/my-cars" ? "active" : ""
+      className={`text-[15px] leading-[24px] text-text font-medium  font-rubik     relative ${pathname === "/my-cars" ? "active" : ""
         }`}
     >
       My Cars
     </Link>
     <Link
       to="/my-booking"
-      className={`text-[15px] leading-[24px] text-gray-800 font-medium  font-rubik    relative ${pathname === "/my-booking" ? "active" : ""
+      className={`text-[15px] leading-[24px] text-text font-medium  font-rubik    relative ${pathname === "/my-booking" ? "active" : ""
         }`}
     >
       My Bookings
@@ -78,10 +78,16 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`z-100 ${scrollY > 50 ? "fixed-nav bg-white  relative " : "relative"
-        } ${pathname === "/" ? " mb-0" : ""}`}
+      className={`z-100  ${pathname === "/"
+        ? scrollY > 50
+          ? "fixed-nav bg-white shadow"
+          : "absolute top-0 left-0 bg-transparent w-full"
+        : scrollY > 50
+          ? "fixed-nav bg-white shadow"
+          : "bg-white shadow"
+        }`}
     >
-      <div className="navbar w-11/12 mx-auto px-4 absolute inset-0  rounded-md">
+      <div className={`navbar w-11/12 mx-auto px-4  rounded-md`}>
         {/* Navbar Start */}
         <div className="navbar-start">
           {/* Mobile menu button */}
