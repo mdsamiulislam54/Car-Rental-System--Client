@@ -38,11 +38,48 @@ const Navbar = () => {
       });
   };
 
+  const navItem = <>
+    <Link
+                      to="/"
+                      className={`text-lg font-bold   relative ${pathname === "/" ? "active" : ""
+                        }`}
+                    >
+                      Home
+                    </Link>
+                    <Link
+                      to="/available-cars"
+                      className={`text-lg font-bold   relative ${pathname === "/available-cars" ? "active" : ""
+                        }`}
+                    >
+                      Available Cars
+                    </Link>
+                    <Link
+                      to="/add-cars"
+                      className={`text-lg font-bold   relative ${pathname === "/add-cars" ? "active" : ""
+                        }`}
+                    >
+                      Add Car
+                    </Link>
+                    <Link
+                      to="/my-cars"
+                      className={`text-lg font-bold   relative ${pathname === "/my-cars" ? "active" : ""
+                        }`}
+                    >
+                      My Cars
+                    </Link>
+                    <Link
+                      to="/my-booking"
+                      className={`text-lg font-bold   relative ${pathname === "/my-booking" ? "active" : ""
+                        }`}
+                    >
+                      My Bookings
+                    </Link>
+  </>
+
   return (
     <nav
-      className={`py-2 z-100 ${
-        scrollY > 50 ? "fixed-nav bg-white  " : ""
-      } ${pathname === "/" ? " mb-2" : ""}`}
+      className={`py-2 z-100 ${scrollY > 50 ? "fixed-nav bg-white  " : ""
+        } ${pathname === "/" ? " mb-2" : ""}`}
     >
       <div className="navbar w-11/12 mx-auto px-4 shadow bg-accent/10 rounded-md">
         {/* Navbar Start */}
@@ -88,50 +125,7 @@ const Navbar = () => {
                     </button>
                   </div>
                   <ul className="menu menu-horizontal px-1 space-y-10 flex flex-col">
-                    <Link
-                      to="/"
-                      className={`text-lg font-bold   relative ${
-                        pathname === "/" ? "active" : ""
-                      }`}
-                    >
-                      Home
-                    </Link>
-                    <Link
-                      to="/available-cars"
-                      className={`text-lg font-bold   relative ${
-                        pathname === "/available-cars" ? "active" : ""
-                      }`}
-                    >
-                      Available Cars
-                    </Link>
-                    {user && (
-                      <>
-                        <Link
-                          to="/add-cars"
-                          className={`text-lg font-bold   relative ${
-                            pathname === "/add-cars" ? "active" : ""
-                          }`}
-                        >
-                          Add Car
-                        </Link>
-                        <Link
-                          to="/my-cars"
-                          className={`text-lg font-bold   relative ${
-                            pathname === "/my-cars" ? "active" : ""
-                          }`}
-                        >
-                          My Cars
-                        </Link>
-                        <Link
-                          to="/my-booking"
-                          className={`text-lg font-bold   relative ${
-                            pathname === "/my-booking" ? "active" : ""
-                          }`}
-                        >
-                          My Bookings
-                        </Link>
-                      </>
-                    )}
+                    {navItem}
                   </ul>
                 </motion.div>
               )}
@@ -148,50 +142,7 @@ const Navbar = () => {
         {/* Navbar Center */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 space-x-10">
-            <Link
-              to="/"
-              className={`text-lg font-bold   relative ${
-                pathname === "/" ? "active" : ""
-              }`}
-            >
-              Home
-            </Link>
-            <Link
-              to="/available-cars"
-              className={`text-lg font-bold   relative ${
-                pathname === "/available-cars" ? "active" : ""
-              }`}
-            >
-              Available Cars
-            </Link>
-            {user && (
-              <>
-                <Link
-                  to="/add-cars"
-                  className={`text-lg font-bold   relative ${
-                    pathname === "/add-cars" ? "active" : ""
-                  }`}
-                >
-                  Add Car
-                </Link>
-                <Link
-                  to="/my-cars"
-                  className={`text-lg font-bold   relative ${
-                    pathname === "/my-cars" ? "active" : ""
-                  }`}
-                >
-                  My Cars
-                </Link>
-                <Link
-                  to="/my-booking"
-                  className={`text-lg font-bold   relative ${
-                    pathname === "/my-booking" ? "active" : ""
-                  }`}
-                >
-                  My Bookings
-                </Link>
-              </>
-            )}
+           {navItem}
           </ul>
         </div>
 
