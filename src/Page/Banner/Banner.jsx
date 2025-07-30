@@ -19,18 +19,19 @@ const Banner = () => {
       {/* Foreground Content */}
       <div className="relative z-10 flex items-center justify-between w-11/12 mx-auto min-h-screen my-14">
         {/* Left Content */}
-        <div className="w-1/2 space-y-4">
+        <div className="lg:w-1/2 space-y-4 max-lg:absolute  max-lg:top-[50%] left-[50%]  max-lg:translate-x-[-50%]  max-lg:translate-y-[-50%]  max-lg:z-90 w-full  max-lg:text-center ">
           <h4 className="text-xl font-semibold font-rubik text-text">Plan your trip today</h4>
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight tracking-wider font-rubik text-text  ">
             Enjoy <span className="text-primary">great</span> savings <br></br> on car rentals
           </h1>
-          <p className="text-base font-rubik text-gray-600 max-w-md">
+          <p className="text-base font-rubik text-gray-600 lg:max-w-md">
             Join us in driving positive change and reaching our sustainability goals—
             together, we can make a difference.
           </p>
 
           <Link
             to="/available-cars"
+            className="w-full max-lg:flex justify-center"
            
           >
            <Button text="Book Ride Car" icon={FaCheckCircle}/>
@@ -43,7 +44,7 @@ const Banner = () => {
             src="https://demo.xpeedstudio.com/carrental/home-v4/wp-content/uploads/sites/5/2020/06/banner_car.png"
             alt="banner car"
             loading="lazy"
-            className=" h-auto max-w-[700px] object-contain absolute -left-30 mt-10 "
+            className=" h-auto md:max-w-[500px] lg:max-w-[600px] xl:max-w-[700px] max-lg:hidden object-contain absolute md:-left-30 mt-10  "
           />
         </div>
       </div>
