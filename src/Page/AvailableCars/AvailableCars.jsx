@@ -6,6 +6,7 @@ import { Link, useLocation } from "react-router";
 import axios from "axios";
 import AvailableCarsCard from "./AvailableCarsCard";
 import Loader from "../../Components/Loader/Loader";
+import { FaSearch } from "react-icons/fa";
 
 const AvailableCars = () => {
   const [lineView, setLineView] = useState(false);
@@ -19,7 +20,7 @@ const AvailableCars = () => {
   const [perPage, setPerPage] = useState(6);
   const pageNumber = Math.ceil(count / perPage) || 0
   const pageArray = [...Array(pageNumber).keys()];
-  const {state} = useLocation();
+  const { state } = useLocation();
   console.log(state)
 
   useEffect(() => {
@@ -27,9 +28,8 @@ const AvailableCars = () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `http://localhost:5000/available-cars?search=${search}&sort=${sortOrder}&limit=${perPage}&page=${
-            currentPage +1
-          }&carModel=${state.carModel}&location=${state.location}`
+          `http://localhost:5000/available-cars?search=${search}&sort=${sortOrder}&limit=${perPage}&page=${currentPage + 1
+          }&carModel=${state?.carModel || ''}&location=${state?.location || ""}`
         );
 
         const data = res.data;
@@ -44,7 +44,7 @@ const AvailableCars = () => {
     };
 
     fetchData();
-  }, [search, sortOrder, perPage, currentPage,state]);
+  }, [search, sortOrder, perPage, currentPage, state]);
   const handleSearch = (e) => {
     e.preventDefault();
     const searchText = e.target.search.value;
@@ -58,8 +58,9 @@ const AvailableCars = () => {
     return <div style={{ color: "red" }}>{error}</div>;
   }
 
+
   return (
-    <div className="min-h-screen w-11/12 mx-auto">
+    <div className="min-h-screen w-11/12 mx-auto text-text font-rubik">
       <div
         className="h-[300px] bg-cover bg-no-repeat relative mb-4 rounded-md"
         style={{ backgroundImage: `url(${bannerImages})` }}
@@ -78,38 +79,44 @@ const AvailableCars = () => {
       <div className="">
         <nav className="md:flex justify-between items-center py-4 shadow px-2">
           <div className="w-full">
-            <form onSubmit={handleSearch} className="flex w-full mb-4 ">
+
+
+            <form onSubmit={handleSearch} className="relative w-full max-w-md mb-4">
               <input
                 type="text"
                 name="search"
-                placeholder="Search car model, brand, or location ..."
-                className=" md:w-6/12 w-full  border-2 border-primary p-2 rounded-tl-md  rounded-bl-md "
+
+                placeholder="Search car model, brand, or location..."
+                className="w-full border-2 border-gray-200 rounded-md py-2 pl-4 pr-12 focus:outline-none text-gray-700"
               />
               <button
                 type="submit"
-                className="px-4 py-2 bg-primary text-white  font-bold cursor-pointer  rounded-tr-md  rounded-br-md"
+
+                className="absolute top-1/2 -translate-y-1/2 right-2 bg-primary text-white p-2 rounded-md hover:bg-primary/90 transition"
               >
-                Search
+                <FaSearch />
               </button>
             </form>
+
           </div>
           <div className="lg:flex items-center justify-between gap-2 flex-1/2">
             <div>
               <select
                 value={sortOrder}
                 onChange={(e) => setSortOrder(e.target.value)}
-                className="border-2 p-3 border-primary rounded-md lg:max-md:w-8/12 w-full mb-4 lg:mb-0 "
+                className="w-full lg:w-64 mb-4 lg:mb-0 px-4 py-2 border-2 border-gray-200 text-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:border-transparent transition duration-200 font-rubik font-bold"
               >
-                <option value="default">Default</option>
-                <option value="asc">Lowest First / Highest First</option>
-                <option value="desc">Highest First / Lowest First</option>
+                <option value="default" className="text-gray-500">Default</option>
+                <option value="asc">⬆️ Lowest Price First</option>
+                <option value="desc">⬇️ Highest Price First</option>
               </select>
+
             </div>
             <div className="flex justify-between items-center gap-4">
               <div>
                 <button
                   onClick={() => setSearch("")}
-                  className="bg-primary p-1.5 text-white font-bold rounded-md cursor-pointer"
+                  className="bg-gray-200 p-1.5 px-2 text-text font-rubik font-bold rounded-md cursor-pointer"
                 >
                   All
                 </button>
@@ -118,14 +125,14 @@ const AvailableCars = () => {
                 {lineView ? (
                   <button
                     onClick={() => setLineView(!lineView)}
-                    className="p-2 bg-primary text-xl text-white rounded-md hover:text-secondary transition-all duration-300 cursor-pointer"
+                    className="p-2 bg-gray-200 text-xl text-text rounded-md hover:text-secondary transition-all duration-300 cursor-pointer"
                   >
                     <IoGrid />
                   </button>
                 ) : (
                   <button
                     onClick={() => setLineView(!lineView)}
-                    className="p-2 bg-primary text-xl text-white rounded-md hover:text-secondary transition-all duration-300 cursor-pointer"
+                    className="p-2 bg-gray-200 text-xl text-text rounded-md hover:text-secondary transition-all duration-300 cursor-pointer"
                   >
                     <LuSquareMenu />
                   </button>
@@ -141,11 +148,10 @@ const AvailableCars = () => {
           </div>
         ) : (
           <div
-            className={`${
-              lineView
+            className={`${lineView
                 ? ""
                 : "grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 "
-            }`}
+              }`}
           >
             {carData?.map((car) => (
               <AvailableCarsCard
@@ -170,12 +176,11 @@ const AvailableCars = () => {
               return (
                 <li
                   key={page}
-                  className={`btn bg-gray-200 ${
-                    currentPage === page ? "bg-primary text-white" : ""
-                  }`}
+                  className={`btn bg-gray-200 ${currentPage === page ? "bg-primary text-white" : ""
+                    }`}
                   onClick={() => setCurrentPage(page)}
                 >
-                  {page+1}
+                  {page + 1}
                 </li>
               );
             })}
