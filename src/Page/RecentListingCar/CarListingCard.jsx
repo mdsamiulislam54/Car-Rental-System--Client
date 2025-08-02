@@ -1,4 +1,7 @@
 import React from "react";
+import { FaCar } from "react-icons/fa";
+import { Link } from "react-router";
+import Button from "../../Components/Button/Button";
 const CarListingCard = ({ car }) => {
   return (
     <div className="bg-white rounded-2xl shadow-md hover:shadow-lg transition duration-300 overflow-hidden">
@@ -8,7 +11,7 @@ const CarListingCard = ({ car }) => {
           alt={car.carModel}
           className="w-70 h-70 object-contain mx-auto hover:scale-125 transition duration-300 hover:cursor-zoom-in"
         />
-        <div className=" w-14 h-14 flex justify-center items-center text-sm font-bold text-primary rounded-full absolute top-2 right-2">
+        <div className=" w-14 h-14 flex justify-center items-center text-sm font-bold text-primary rounded-full absolute top-2 right-2 ">
           ৳ {car.dailyRentalPrice}
         </div>
       </div>
@@ -26,16 +29,12 @@ const CarListingCard = ({ car }) => {
           </span>
         </div>
 
-        <div className="flex items-center justify-between">
-          <p className="text-gray-600 ">
-            <strong>Posted</strong> 2 days ago
-          </p>
-          <p className="text-gray-600 mb-2 flex justify-between items-center">
-            <span className="mt-2 text-gray-700 text-sm ">
-              <strong>Booking</strong> ({car.bookingCount})
-            </span>
-          </p>
-        </div>
+         <div className="flex my-2 ">
+              <Link to={`/car-details/${car._id}`} className="flex items-center gap-2 border-gray-200">
+                
+                <Button text={'Book Now'} icon={FaCar}/>
+              </Link>
+            </div>
       </div>
     </div>
   );

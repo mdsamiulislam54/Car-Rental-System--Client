@@ -3,6 +3,8 @@ import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
 import UserContext from "../../ContextApi/UserContext/UserContext";
 import axios from "axios";
+import Button from "../../Components/Button/Button";
+import { FaCar } from "react-icons/fa";
 
 const CarDetailsPage = () => {
   const car = useLoaderData();
@@ -74,7 +76,7 @@ booking-car`,
   return (
     <div className="">
       <div className="w-11/12 mx-auto py-8 relative border border-gray-200 rounded-2xl">
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center font-rubik">
           {/* Car Image */}
           <div>
             <img
@@ -106,17 +108,15 @@ booking-car`,
               }
             </ul>
           
-            <p className="lg:w-5/12 mx-auto px-4">
+            <p className="lg:w-5/12 mx-auto px-4 text-text text-sm tracking-wide">
               {car.description}
             </p>
 
             {/* Book Now Button */}
-            <button
-              onClick={() => setBookingModal(!bookigModal)}
-              className="hover:bg-primary border border-primary text-black hover:text-white px-6 py-3 rounded-md cursor-pointer transition"
-            >
-              Book Now
-            </button>
+           
+            <div className="flex justify-center ">
+              <Button text={' Book Now'} icon={FaCar} onClick={() => setBookingModal(!bookigModal)}/>
+            </div>
           </div>
 
           {bookigModal && (

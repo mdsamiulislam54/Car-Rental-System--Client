@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import CarListingCard from "./CarListingCard";
 import { Link } from "react-router";
 import Loader from "../../Components/Loader/Loader";
+import Button from "../../Components/Button/Button";
 
 const RecentListingCar = () => {
   const [cars, setCars] = useState([]);
@@ -38,7 +39,7 @@ const RecentListingCar = () => {
   return (
     <div className="my-10">
       <div className="w-11/12 mx-auto py-10">
-        <h1 className="text-4xl my-10 font-bold font-rubik text-text  text-center car-heading relative  ">Recently Listings cars</h1>
+        <h1 className="text-4xl my-10 font-bold font-rubik text-text  text-center car-heading relative  ">Latest Vehicle</h1>
         <div  className=" grid grid-cols-1 s md:grid-cols-2 lg:grid-cols-3 gap-6">
             {
                 cars.map((car)=><CarListingCard key={car._id} car ={car}></CarListingCard>)
@@ -46,7 +47,9 @@ const RecentListingCar = () => {
         </div>
 
         <div className="mt-10 text-center">
-          <Link to={'available-cars'} className="btn btn-outline hover:bg-primary hover:text-white transition-all duration-300 border-primary">See More</Link>
+          <Link to={'available-cars'} className="flex justify-center items-center">
+            <Button text={'See More'}/>
+          </Link>
         </div>
       </div>
     </div>

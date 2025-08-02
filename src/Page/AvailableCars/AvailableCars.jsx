@@ -60,23 +60,23 @@ const AvailableCars = () => {
 
 
   return (
-    <div className="min-h-screen w-11/12 mx-auto text-text font-rubik">
+    <div className="min-h-screen  text-text font-rubik">
       <div
         className="h-[300px] bg-cover bg-no-repeat relative mb-4 rounded-md"
         style={{ backgroundImage: `url(${bannerImages})` }}
       >
         <div className="absolute inset-0 bg-black/60">
           <div className="flex justify-center items-center h-full text-white flex-col">
-            <p className="text-3xl font-bold mb-4">Available Cars</p>
+            <p className="text-3xl font-bold mb-4 font-rubik">Available Cars</p>
             <div className="flex gap-4">
-              <Link className="text-md font-medium hover:underline">Home</Link>
+              <Link to={'/'} className="text-md font-medium hover:underline">Home</Link>
               <span>{">"}</span>
-              <Link className="text-gray-300">Available Cars</Link>
+              <Link className="text-gray-300 font-bold font-rubik">Available Cars</Link>
             </div>
           </div>
         </div>
       </div>
-      <div className="">
+      <div className="w-11/12 mx-auto">
         <nav className="md:flex justify-between items-center py-4 shadow px-2">
           <div className="w-full">
 

@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import UserContext from "../../ContextApi/UserContext/UserContext";
 import { TbLogout, TbLogout2 } from "react-icons/tb";
 import Swal from "sweetalert2";
+import Button from "../Button/Button";
 
 const Navbar = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -164,9 +165,10 @@ const Navbar = () => {
           ) : (
             <Link
               to="/login"
-              className="md:px-4 px-2 md:py-2 py-1 font-bold text-md rounded-md cursor-pointer btn btn-outline border-2 border-primary hover:bg-primary hover:text-white transition-all duration-300 flex items-center gap-1"
+              className=""
             >
-              <TbLogout size={18} /> Login
+           
+              <Button text={'Login'} icon={TbLogout}/>
             </Link>
           )}
         </div>
