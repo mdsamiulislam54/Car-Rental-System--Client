@@ -3,7 +3,8 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import UserContext from "../../ContextApi/UserContext/UserContext";
-
+import Button from "../../Components/Button/Button";
+import { IoMdAddCircle } from "react-icons/io";
 const AddCars = () => {
   const Navigate = useNavigate();
   const { user } = useContext(UserContext);
@@ -47,24 +48,22 @@ car?email=${user.email}`,
   };
   return (
     <div
-      className="bg-base-200 min-h-screen bg-center relative z-0 py-5"
-      style={{
-        backgroundImage: `url("https://i.postimg.cc/Bbsr5vWm/avdjlxno5-ezgif.com-webp-to-jpg-converter-removebg-preview.png")`,
-      }}
+      className=" min-h-screen  "
+      
     >
-      <div className="absolute inset-0 bg-black/50 -z-10"></div>
-      <div className="w-11/12 mx-auto relative z-10 mt-">
-        <form className=" rounded-lg p-6 " onSubmit={handleAddCars}>
-          <h2 className="text-3xl font-bold text-white mb-6 text-center">
-            Add New Car
-          </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="w-11/12 mx-auto relative z-10 ">
+        <form className=" rounded-lg p-6 text-text font-rubik " onSubmit={handleAddCars}>
+          {/* <h2 className="text-3xl font-bold text-text font-rubik mb-6 text-center">
+            Add New Car
+          </h2> */}
+
+          <div className="">
             {/* Left Column */}
-            <div className="space-y-4">
+            <div className="space-y-4 grid grid-cols-2 md:grid-cols-2 gap-6">
               {/* Owner Name */}
               <fieldset>
-                <label className="label text-white mb-2 font-medium">
+                <label className="label  mb-2 font-medium">
                   Car Model:
                 </label>
                 <input
@@ -78,7 +77,7 @@ car?email=${user.email}`,
 
               {/*  Booking count  */}
               <fieldset>
-                <label className="label text-white mb-2 font-medium">
+                <label className="label  mb-2 font-medium">
                   Booking Count:
                 </label>
                 <input
@@ -92,7 +91,7 @@ car?email=${user.email}`,
 
               {/* Daily Rental Price */}
               <fieldset>
-                <label className="label text-white mb-2 font-medium">
+                <label className="label  mb-2 font-medium">
                   Daily Rental Price ($):
                 </label>
                 <input
@@ -106,7 +105,7 @@ car?email=${user.email}`,
 
               {/* Availability */}
               <fieldset>
-                <label className="label text-white mb-2 font-medium">
+                <label className="label  mb-2 font-medium">
                   Availability:
                 </label>
                 <select name="availability" Z className="select w-full">
@@ -116,7 +115,7 @@ car?email=${user.email}`,
               </fieldset>
               {/* Location */}
               <fieldset>
-                <label className="label text-white mb-2 font-medium">
+                <label className="label  mb-2 font-medium">
                   Location:
                 </label>
                 <input
@@ -127,13 +126,9 @@ car?email=${user.email}`,
                   placeholder="New York, USA"
                 />
               </fieldset>
-            </div>
-
-            {/* Right Column */}
-            <div className="space-y-4">
-              {/* Vehicle Registration */}
+                {/* Vehicle Registration */}
               <fieldset>
-                <label className="label text-white mb-2 font-medium">
+                <label className="label  mb-2 font-medium">
                   Registration Number:
                 </label>
                 <input
@@ -147,7 +142,7 @@ car?email=${user.email}`,
 
               {/* Features */}
               <fieldset>
-                <label className="label text-white mb-2 font-medium">
+                <label className="label  mb-2 font-medium">
                   Features:
                 </label>
                 <textarea
@@ -161,7 +156,7 @@ car?email=${user.email}`,
 
               {/* Description */}
               <fieldset>
-                <label className="label text-white mb-2 font-medium">
+                <label className="label  mb-2 font-medium">
                   Description:
                 </label>
                 <textarea
@@ -175,7 +170,7 @@ car?email=${user.email}`,
 
               {/* Image URL */}
               <fieldset>
-                <label className="label text-white mb-2 font-medium">
+                <label className="label  mb-2 font-medium">
                   Image URL:
                 </label>
                 <input
@@ -187,16 +182,14 @@ car?email=${user.email}`,
                 />
               </fieldset>
             </div>
+
+          
           </div>
 
           {/* Submit Button */}
           <div className="mt-8 flex justify-end">
-            <button
-              type="submit"
-              className="btn btn-primary text-white  py-3 rounded-lg font-semibold hover:bg-primary/50 "
-            >
-              Add Car
-            </button>
+       
+            <Button text={'Add Car'} icon={IoMdAddCircle} type="submit"/>
           </div>
         </form>
       </div>

@@ -9,17 +9,20 @@ import {
   FaSquareYoutube,
 
 } from "react-icons/fa6";
+import { BsFillSendCheckFill } from "react-icons/bs";
+import Button from "../Button/Button";
+
 
 const Footer = () => {
   return (
-    <div className=" bg-accent/10 mt-10">
+    <div className=" shadow  border-t border-gray-200 font-rubik">
       <div className="w-11/12 mx-auto">
         <footer className="footer lg:footer-horizontal text-base-content py-14">
           <aside>
-            <Link className="text-xl font-bold flex justify-center items-center gap-1">
-              <img src={logo} alt="" className="w-6 h-6" />
-              <span className="text-">RentRide</span>
-            </Link>
+           <Link className="text-xl font-bold flex items-center gap-1">
+                      <img src="https://cdn-icons-png.flaticon.com/512/445/445005.png" alt="" className="w-6 h-6" />
+                      <span className="font-rubik font-bold leading-4 tracking-wide text-2xl">RentRide</span>
+                    </Link>
             <div>
               <h2 className="text-lg font-semibold mb-4">Contact Info</h2>
               <div className="text-sm space-y-2">
@@ -70,21 +73,22 @@ const Footer = () => {
                 newsLetter
               </p>
             </div>
-            <form>
+            <form className="space-y-2">
               <span className="relative ">
                 <input
                   type="text"
                   placeholder="Enter Email Address"
-                  className="w-full p-3 pl-10 border border-gray-300"
+                  className="w-full p-3 pl-10 border border-gray-300 mb-2"
                 />
                 <span className="absolute -top-1 text-primary left-2">
                   <MdOutgoingMail size={30} />
                 </span>
               </span>
-              <br></br> <br></br>
-              <button className="px-8 hover:bg-primary py-2 hover:text-white border-2 border-primary text-md font-bold cursor-pointer rounded-md">
-                Subscribe
-              </button>
+          
+        
+                
+          
+              <Button icon={BsFillSendCheckFill} text={'Subscribe'}/>
             </form>
           </div>
         </footer>
