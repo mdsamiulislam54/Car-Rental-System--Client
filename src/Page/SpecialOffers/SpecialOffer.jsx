@@ -1,38 +1,56 @@
 import { motion } from "framer-motion";
-import React from "react";
+import { FaCarAlt } from "react-icons/fa";
 import { Link } from "react-router";
+import Button from "../../Components/Button/Button";
 
 const SpecialOffer = () => {
   return (
-    <div className=" my-10 py-14 bg-gray-50">
-      <div className="w-11/12 mx-auto gap-2">
-       
-        <div className="overflow-hidden rounded-2xl ">
-          <div
-           
-            className="w-full h-[500px] bg-cover bg-no-repeat bg-center "
-            style={{
-              backgroundImage: `url(" https://img.freepik.com/premium-photo/modern-car-automobile-background-street-close-up-side-illustration-3d-render_37416-226.jpg?w=1380")`,
-            }}
-          >
-            <div className="w-full flex justify-center items-center h-full flex-col text-white bg-black/60">
-              <div
-                
-                className="text-5xl px-5 text-center font-bold "
-              >
-                <h2 className="text-5xl px-10 text-center font-bold leading-18">
-                  Luxury cars at <span className="text-accent">$99</span>{" "}/day <br></br>
-                  this holiday season!
-                </h2>
-                <Link to={'available-cars'} className="px-6 py-3 mt-4 border-primary hover:text-white hover:bg-primary rounded-md btn btn-outline text-lg font-semibold transition">
-                  Book Now
-                </Link>
-              </div>
-            </div>
+    <section className="bg-gray-50 py-16">
+      <div className="w-11/12 mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-10 px-5">
+        {/* Left Content */}
+        <motion.div
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="md:w-1/2 text-center md:text-left space-y-5"
+        >
+          <h2 className=" md:text-2xl font-rubik font-bold text-gray-800 leading-tight">
+            <span className="">Drive Luxury</span> at Just{" "}
+            <span className="text-primary">৳2000/day</span>
+          </h2>
+          <p className="text-gray-600 text-sm font-rubik">
+            Explore the city in style with our premium cars. Book today and get
+            an exclusive discount this holiday season!
+          </p>
+          <div className="flex items-center justify-center md:justify-start gap-4 mt-4">
+            <FaCarAlt className="text-3xl text-primary" />
+            <p className="text-gray-800 font-medium font-rubik ">
+              Unlimited kilometers and full insurance
+            </p>
           </div>
-        </div>
+          <Link
+            to="/available-cars"
+            className="max-lg:flex justify-center"
+          >
+           <Button text={' Book Nowd'}/>
+          </Link>
+        </motion.div>
+
+        {/* Right Image */}
+        <motion.div
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="md:w-1/2"
+        >
+          <img
+            src="https://img.freepik.com/free-photo/family-with-little-son-autumn-park-sitting-car_1303-11743.jpg?t=st=1754155361~exp=1754158961~hmac=b2c8d97e5d12544d654ae56712d18cb620dd1c136abd0337d246d62a6fc17ce9&w=1380"
+            alt="Special Offer Car"
+            className="rounded-2xl shadow-lg w-full object-cover h-[400px]"
+          />
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 

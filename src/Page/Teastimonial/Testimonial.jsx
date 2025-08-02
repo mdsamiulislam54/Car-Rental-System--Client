@@ -54,8 +54,8 @@ const Testimonial = () => {
     <div className="py-10">
       <div className="w-11/12 mx-auto py-10">
         {/* heading */}
-        <h2 className="text-3xl font-bold text-center mb-10 text-text">
-          What Our Customers Say
+        <h2 className="text-3xl font-bold text-center mb-10 text-text font-rubik">
+          Customers Say
         </h2>
 
         {/* swiperSlider */}
@@ -75,7 +75,7 @@ const Testimonial = () => {
         >
           {testimonials.map((testimonial, index) => (
             <SwiperSlide key={index}>
-              <div className="p-4  bg-accent/10 rounded-xl shadow-md mb-10  flex flex-col items-center text-center h-[300px] hover:shadow-lg transition-all duration-300">
+              <div className="p-4  bg-gray-50 rounded-xl shadow-md mb-10  flex flex-col items-center text-center h-[300px] hover:shadow-lg transition-all duration-300">
                 <img
                   src={testimonial.image}
                   alt={testimonial.name}

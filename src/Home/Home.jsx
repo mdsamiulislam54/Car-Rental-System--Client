@@ -6,6 +6,8 @@ import RecentListingCar from "../Page/RecentListingCar/RecentListingCar";
 import SpecialOffer from "../Page/SpecialOffers/SpecialOffer";
 import Faq from "../Page/Faq/Faq";
 import Testimonial from "../Page/Teastimonial/Testimonial";
+import HowToWork from '../Page/HowToWork/HowToWork'
+import AboutUs from "../Page/AboutUs/AboutUs";
 
 
 const Home = () => {
@@ -20,6 +22,12 @@ const Home = () => {
       </section>
      <section>
        <RecentListingCar/>
+     </section>
+     <section>
+      <HowToWork/>
+     </section>
+     <section>
+      <AboutUs/>
      </section>
     <section>
       <SpecialOffer/>

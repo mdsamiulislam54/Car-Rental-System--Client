@@ -62,8 +62,8 @@ const AvailableCars = () => {
   return (
     <div className="min-h-screen  text-text font-rubik">
       <div
-        className="h-[300px] bg-cover bg-no-repeat relative mb-4 rounded-md"
-        style={{ backgroundImage: `url(${bannerImages})` }}
+        className="h-[600px] bg-cover bg-no-repeat relative mb-4 rounded-md"
+        style={{ backgroundImage: `url(${'https://img.freepik.com/free-photo/full-shot-family-traveling-together_23-2149272092.jpg?t=st=1754152847~exp=1754156447~hmac=3df34ac7e7e7b815b3e00ce79759d8da4a2ba2673c82651fef24f8d2540e8cf0&w=1380'})` }}
       >
         <div className="absolute inset-0 bg-black/60">
           <div className="flex justify-center items-center h-full text-white flex-col">

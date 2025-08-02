@@ -30,7 +30,7 @@ const features = [
 const WhyChoose = () => {
   return (
     <div className="relative my-10">
-      <div className="w-11/12 mx-auto py-10 px-4">
+      <div className="w-11/12 mx-auto py-2 px-4">
         {/* Booking Form */}
         <div className="w-11/12 mx-auto bg-white rounded-md shadow z-10 absolute -top-40 left-1/2 -translate-x-1/2 p-5">
           <BookingCar />
@@ -38,9 +38,7 @@ const WhyChoose = () => {
 
         {/* Why Choose Section */}
         <div className="mt-40">
-          <h2 className="text-4xl text-text font-rubik font-bold text-center mb-10">
-            Why Choose Us?
-          </h2>
+        
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 font-rubik">
             {features.map((feature, index) => (
