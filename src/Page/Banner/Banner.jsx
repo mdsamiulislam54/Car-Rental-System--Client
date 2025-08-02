@@ -2,12 +2,13 @@ import { Link } from "react-router";
 import { FaPlay, FaPause, FaCheckCircle } from "react-icons/fa";
 import { Typewriter } from "react-simple-typewriter";
 import Button from "../../Components/Button/Button";
+import BookingCar from "../BookingCar/BookingCar";
 
 const Banner = () => {
   return (
     <div className="relative min-h-screen bg-white overflow-hidden rounded-2xl">
       {/* Background Image - behind everything */}
-      <div className="absolute right-0 z-0">
+      <div className="absolute right-0 z-2">
         <img
           src="https://demo.xpeedstudio.com/carrental/home-v4/wp-content/uploads/sites/5/2020/06/banner_image.png"
           alt="banner bg"
@@ -48,6 +49,8 @@ const Banner = () => {
           />
         </div>
       </div>
+
+     
     </div>
   );
 };

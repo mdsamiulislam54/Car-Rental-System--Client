@@ -3,11 +3,15 @@ import money from "../../assets/icons/money.png";
 import booking from "../../assets/icons/calendar.png";
 import phone from "../../assets/icons/telephone.png";
 import UserContext from "../../ContextApi/UserContext/UserContext";
+import BookingCar from "../BookingCar/BookingCar";
 const WhyChoose = () => {
   return (
-    <div className=" my-10">
-      <div className="w-11/12 mx-auto py-10 px-4 bg-gray-50 ">
-        <div className="">
+    <div className="relative my-10">
+      <div className="w-11/12 mx-auto py-10 px-4  ">
+       <div className="w-11/12 mx-auto bg-white  rounded-md shadow z-10 absolute -top-40 left-[50%] translate-x-[-50%] h-auto p-5">
+        <BookingCar/>
+      </div>
+        <div className="mt-40">
         
 
           <h2 className="text-4xl font-bold text-center mb-10">

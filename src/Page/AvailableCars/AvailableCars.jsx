@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { LuSquareMenu } from "react-icons/lu";
 import { IoGrid } from "react-icons/io5";
 import bannerImages from "../../assets/stylish-elegant-couple-car-salon.jpg";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import axios from "axios";
 import AvailableCarsCard from "./AvailableCarsCard";
 import Loader from "../../Components/Loader/Loader";
@@ -19,15 +19,17 @@ const AvailableCars = () => {
   const [perPage, setPerPage] = useState(6);
   const pageNumber = Math.ceil(count / perPage) || 0
   const pageArray = [...Array(pageNumber).keys()];
+  const {state} = useLocation();
+  console.log(state)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `https://car-rental-system-server-beta.vercel.app/available-cars?search=${search}&sort=${sortOrder}&limit=${perPage}&page=${
+          `http://localhost:5000/available-cars?search=${search}&sort=${sortOrder}&limit=${perPage}&page=${
             currentPage +1
-          }`
+          }&carModel=${state.carModel}&location=${state.location}`
         );
 
         const data = res.data;
@@ -42,7 +44,7 @@ const AvailableCars = () => {
     };
 
     fetchData();
-  }, [search, sortOrder, perPage, currentPage]);
+  }, [search, sortOrder, perPage, currentPage,state]);
   const handleSearch = (e) => {
     e.preventDefault();
     const searchText = e.target.search.value;

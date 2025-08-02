@@ -47,7 +47,7 @@ const router = createBrowserRouter([
       {
         path:"car-details/:id",
         loader: ({ params }) =>
-          fetch(`https://car-rental-system-server-beta.vercel.app/
+          fetch(`http://localhost:5000/
 
 car-details/${params.id}`),
         element:<PrivateRoute><CarDetailsPage /></PrivateRoute>
