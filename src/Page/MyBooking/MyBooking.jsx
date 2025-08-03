@@ -38,7 +38,7 @@ const MyBooking = () => {
     try {
       setLoading(true);
       const res = await axios.get(
-        `http://localhost:5000/
+        `https://car-rental-system-server-beta.vercel.app/
 
 booking-car?uid=${user.uid}&email=${user.email}`,
         {
@@ -71,7 +71,7 @@ booking-car?uid=${user.uid}&email=${user.email}`,
       if (result.isConfirmed) {
         try {
           const res = await axios.delete(
-            `http://localhost:5000/cancel-booking/${id}`
+            `https://car-rental-system-server-beta.vercel.app/cancel-booking/${id}`
           );
           const data = res.data;
           console.log(data);
@@ -110,7 +110,7 @@ booking-car?uid=${user.uid}&email=${user.email}`,
     }
     try {
       const res = await axios.patch(
-        `http://localhost:5000/
+        `https://car-rental-system-server-beta.vercel.app/
 
 update-booking/${modifyId}`,
         {

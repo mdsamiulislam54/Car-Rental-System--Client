@@ -5,13 +5,10 @@ import { Link, useLocation, useNavigate } from "react-router";
 import UserContext from "../../ContextApi/UserContext/UserContext";
 import Swal from "sweetalert2";
 import { IoIosArrowRoundBack } from "react-icons/io";
-import { FaRegEyeSlash } from "react-icons/fa";
-import { FaRegEye } from "react-icons/fa6";
-
+import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 
 const Login = () => {
-  const { loginWithEmailAndPassword, googleLogin, user } =
-    useContext(UserContext);
+  const { loginWithEmailAndPassword, googleLogin, user } = useContext(UserContext);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -26,19 +23,12 @@ const Login = () => {
       const currentUser = userCredential.user;
 
       if (currentUser) {
-        Swal.fire({
-          icon: "success",
-          title: "Login Successful!",
-        });
-
+        Swal.fire({ icon: "success", title: "Login Successful!" });
         navigate(state?.pathname || "/");
       }
     } catch (error) {
       console.error(error);
-      Swal.fire({
-        icon: "error",
-        title: "Login Failed!",
-      });
+      Swal.fire({ icon: "error", title: "Login Failed!" });
     }
   };
 
@@ -49,160 +39,90 @@ const Login = () => {
         const currentUser = userCredential.user;
 
         if (currentUser) {
-          Swal.fire({
-            icon: "success",
-            title: "Login Successful!",
-          });
-
+          Swal.fire({ icon: "success", title: "Login Successful!" });
           navigate(state?.pathname || "/");
         }
       } catch (error) {
         console.error(error);
-        Swal.fire({
-          title: "Login Failed!",
-          icon: "error",
-        });
+        Swal.fire({ title: "Login Failed!", icon: "error" });
       }
     }
   };
 
   return (
-    <div className="overflow-hidden relative ">
-      <div className="w-11/12 min-h-screen  mx-auto flex justify-center items-center ">
-        <motion.img
-          initial={{ x: -400 }}
-          animate={{ x: 1500 }}
-          transition={{
-            duration: 10,
-            delay: 2,
-            repeat: Infinity,
-            ease: "easeIn",
-          }}
-          src="https://i.postimg.cc/gJqvs3jC/200-removebg-preview.png"
-          alt=""
-          className="rotate-360
-            absolute top-0 left-0 w-90 h-90
-            
-            
-            "
-        />
-        <motion.img
-          initial={{ x: -400 }}
-          animate={{ x: 1500 }}
-          transition={{
-            duration: 10,
-            delay: 5,
-            repeat: Infinity,
-            ease: "easeIn",
-          }}
-          src="https://i.postimg.cc/gJqvs3jC/200-removebg-preview.png"
-          alt=""
-          className="rotate-360
-            absolute top-5 left-0 w-90 h-90
-            
-            
-            "
-        />
-        <motion.img
-          initial={{ x: 400 }}
-          animate={{ x: -1500 }}
-          transition={{
-            duration: 10,
-            delay: 2,
-            repeat: Infinity,
-            ease: "easeIn",
-          }}
-          src="https://i.postimg.cc/X7TmT0Qn/demolition-derby-car-illustration-74218-167-removebg-preview.png"
-          alt=""
-          className="rotate-3 *:
-            absolute top-50 right-0  w-90 h-90 
-            
-            "
-        />
-        <motion.img
-          initial={{ x: 400 }}
-          animate={{ x: -1500 }}
-          transition={{
-            duration: 10,
-            delay: 5,
-            repeat: Infinity,
-            ease: "easeIn",
-          }}
-          src="https://i.postimg.cc/X7TmT0Qn/demolition-derby-car-illustration-74218-167-removebg-preview.png"
-          alt=""
-          className="rotate-3 *:
-            absolute top-60 right-0  w-90 h-90 
-            
-            "
-        />
+    <div className="min-h-screen flex items-center justify-center px-4 py-10 bg-gray-100">
+      <div className="w-full max-w-6xl bg-white rounded-lg shadow-lg overflow-hidden relative p-6 md:p-10">
+        <Link to="/" className="absolute top-5 left-5 text-gray-700">
+          <IoIosArrowRoundBack size={30} />
+        </Link>
 
-        <div className=" relative lg:w-8/12 w-full mx-auto bg-white/70 p-10 rounded-md shadow-lg z-50">
-          <Link
-            to={"/"}
-            className="rounded-full shadow p-1 cursor-pointer absolute top-0"
-          >
-            <IoIosArrowRoundBack size={30} />
-          </Link>
-          <h2 className="text-3xl font-bold text-center mb-6">Login</h2>
+        <div className="grid md:grid-cols-2 gap-8 items-center">
+          {/* Image section */}
+          <div className="hidden md:block">
+            <img
+              src="https://img.freepik.com/free-photo/joyful-people-taking-selfie-near-red-car_23-2148039034.jpg?t=st=1754205370~exp=1754208970~hmac=b4e9484a01c785eeb2d9b25c391d5c211b4c71ebbc0d6f03622c4fe09c9c30ab"
+              alt="login visual"
+              className="rounded-lg w-full h-auto"
+            />
+          </div>
 
-          <form className="space-y-5" onSubmit={handleLogin}>
-            <div>
-              <label className="block mb-1 font-medium">Email</label>
-              <input
-                type="email"
-                name="email"
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-primary"
-              />
-            </div>
+          {/* Form section */}
+          <div>
+            <h2 className="text-3xl font-bold text-center mb-6">Login</h2>
+            <form className="space-y-5 text-text font-rubik" onSubmit={handleLogin}>
+              <div>
+                <label className="block mb-1 font-medium">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-primary"
+                />
+              </div>
 
-            <div className="relative">
-              <label className="block mb-1 font-medium">Password</label>
-              <input
-                type={showPassword ? "text" : "password"}
-                name="password"
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-primary"
-              />
-              <span className="absolute right-3 top-12 transform -translate-y-1/2">
-                {showPassword ? (
-                  <FaRegEye
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
-                    onClick={() => setShowPassword(!showPassword)}
-                  />
-                ) : (
-                  <FaRegEyeSlash
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
-                    onClick={() => setShowPassword(!showPassword)}
-                  />
-                )}
-              </span>
-            </div>
+              <div className="relative">
+                <label className="block mb-1 font-medium">Password</label>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-primary"
+                />
+                <span className="absolute right-3 top-10 cursor-pointer">
+                  {showPassword ? (
+                    <FaRegEye onClick={() => setShowPassword(!showPassword)} />
+                  ) : (
+                    <FaRegEyeSlash onClick={() => setShowPassword(!showPassword)} />
+                  )}
+                </span>
+              </div>
 
-            <button
-              type="submit"
-              className="w-full bg-primary text-white py-2 rounded-md font-semibold cursor-pointer"
-            >
-              Login
-            </button>
-          </form>
+              <button
+                type="submit"
+                className="w-full bg-primary text-white py-2 rounded-md font-semibold cursor-pointer hover:bg-primary/80 "
+              >
+                Login
+              </button>
 
-          <div className="text-center my-4">OR</div>
+              <div className="text-center my-3 text-gray-500">OR</div>
 
-          <button
-            onClick={handleGoogle}
-            className="w-full flex justify-center items-center gap-2 border border-gray-300 py-2 rounded-md cursor-pointer"
-          >
-            <FcGoogle size={22} />
-            Continue with Google
-          </button>
+              <button
+                onClick={handleGoogle}
+                type="button"
+                className="w-full flex justify-center items-center gap-2 border border-gray-300 py-2 rounded-md cursor-pointer hover:bg-gray-100 transition-all duration-300"
+              >
+                <FcGoogle size={22} />
+                Continue with Google
+              </button>
 
-          <p className="mt-5 text-center text-sm">
-            Don't have an account?{" "}
-            <Link to="/register" className="text-primary font-medium">
-              Register Now
-            </Link>
-          </p>
+              <p className="mt-4 text-center text-sm text-gray-600">
+                Don’t have an account?{" "}
+                <Link to="/register" className="text-primary font-semibold">
+                  Register Now
+                </Link>
+              </p>
+            </form>
+          </div>
         </div>
       </div>
     </div>

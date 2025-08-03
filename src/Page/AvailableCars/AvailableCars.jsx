@@ -28,7 +28,7 @@ const AvailableCars = () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `http://localhost:5000/available-cars?search=${search}&sort=${sortOrder}&limit=${perPage}&page=${currentPage + 1
+          `https://car-rental-system-server-beta.vercel.app/available-cars?search=${search}&sort=${sortOrder}&limit=${perPage}&page=${currentPage + 1
           }&carModel=${state?.carModel || ''}&location=${state?.location || ""}`
         );
 
@@ -60,7 +60,7 @@ const AvailableCars = () => {
 
 
   return (
-    <div className="min-h-screen  text-text font-rubik">
+    <div className="min-h-screen  text-text font-rubik pb-5">
       <div
         className="h-[600px] bg-cover bg-no-repeat relative mb-4 rounded-md"
         style={{ backgroundImage: `url(${'https://img.freepik.com/free-photo/full-shot-family-traveling-together_23-2149272092.jpg?t=st=1754152847~exp=1754156447~hmac=3df34ac7e7e7b815b3e00ce79759d8da4a2ba2673c82651fef24f8d2540e8cf0&w=1380'})` }}

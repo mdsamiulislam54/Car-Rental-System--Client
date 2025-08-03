@@ -59,7 +59,7 @@ const Registration = () => {
         const currentUser = userCredential.user;
 
         await axios.post(
-          `http://localhost:5000/
+          `https://car-rental-system-server-beta.vercel.app/
 
 jwt?email=${currentUser.email}`,
           {},
@@ -85,93 +85,39 @@ jwt?email=${currentUser.email}`,
   };
   return (
     <div className="overflow-hidden relative ">
-      <div className="w-11/12 min-h-screen  mx-auto flex justify-center items-center ">
-        <motion.img
-          initial={{ x: -400 }}
-          animate={{ x: 1500 }}
-          transition={{
-            duration: 10,
-            delay: 2,
-            repeat: Infinity,
-            ease: "easeIn",
-          }}
-          src="https://i.postimg.cc/gJqvs3jC/200-removebg-preview.png"
-          alt=""
-          className="rotate-360
-            absolute top-0 left-0 w-90 h-90
-            
-            
-            "
-        />
-        <motion.img
-          initial={{ x: -400 }}
-          animate={{ x: 1500 }}
-          transition={{
-            duration: 10,
-            delay: 5,
-            repeat: Infinity,
-            ease: "easeIn",
-          }}
-          src="https://i.postimg.cc/gJqvs3jC/200-removebg-preview.png"
-          alt=""
-          className="rotate-360
-            absolute top-5 left-0 w-90 h-90
-            
-            
-            "
-        />
-        <motion.img
-          initial={{ x: 400 }}
-          animate={{ x: -1500 }}
-          transition={{
-            duration: 10,
-            delay: 2,
-            repeat: Infinity,
-            ease: "easeIn",
-          }}
-          src="https://i.postimg.cc/X7TmT0Qn/demolition-derby-car-illustration-74218-167-removebg-preview.png"
-          alt=""
-          className="rotate-3 *:
-            absolute top-50 right-0  w-90 h-90 
-            
-            "
-        />
-        <motion.img
-          initial={{ x: 400 }}
-          animate={{ x: -1500 }}
-          transition={{
-            duration: 10,
-            delay: 5,
-            repeat: Infinity,
-            ease: "easeIn",
-          }}
-          src="https://i.postimg.cc/X7TmT0Qn/demolition-derby-car-illustration-74218-167-removebg-preview.png"
-          alt=""
-          className="rotate-3 *:
-            absolute top-60 right-0  w-90 h-90 
-            
-            "
-        />
+      <div className="min-h-screen flex items-center justify-center px-4 py-10 ">
+      
 
-        <div className=" relative lg:w-8/12 w-full mx-auto bg-white/80 p-10 rounded-md shadow-lg z-50 mt-4">
+        <div className="rounded-md shadow-lg z-50 ">
           <Link
             to={"/"}
-            className="rounded-full shadow p-1 cursor-pointer absolute top-0"
+            className="rounded-full shadow p-1 cursor-pointer absolute top-0 m-4"
           >
             <IoIosArrowRoundBack size={30} />
           </Link>
+          <div className="grid md:grid-cols-2 gap-8 items-center p-5 font-rubik">
+             {/* Image section */}
+          <div className="hidden md:block">
+            <img
+              src="https://img.freepik.com/free-photo/people-looking-road-map-near-red-car_23-2148039040.jpg?t=st=1754206905~exp=1754210505~hmac=ce7ec95a9bf9832e0d43127d810904d7768115a5d6da6e6ff5bb9a028dcff80f&w=1380"
+              alt="login visual"
+              className="rounded-lg w-full h-auto"
+            />
+          </div>
+          
+          <div>
           <h2 className="text-3xl font-bold text-center mb-6">
             Registration Now
           </h2>
 
           <form className="space-y-5" onSubmit={handleReg}>
             <div>
-              <label className="block mb-1 font-medium">Name</label>
+              <label className="block mb-1 font-medium ">Name</label>
               <input
                 type="name"
                 name="name"
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-primary"
+                className="input w-full"
               />
             </div>
             <div>
@@ -180,7 +126,7 @@ jwt?email=${currentUser.email}`,
                 type="text"
                 name="photo"
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-primary"
+                className="w-full input"
               />
             </div>
             <div>
@@ -189,7 +135,7 @@ jwt?email=${currentUser.email}`,
                 type="email"
                 name="email"
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-primary"
+                className="w-full input"
               />
             </div>
 
@@ -199,7 +145,7 @@ jwt?email=${currentUser.email}`,
                 type={showPassword ? "text" : "password"}
                 name="password"
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-primary"
+                className="w-full input"
               />
               <span className="absolute right-3 top-12 transform -translate-y-1/2">
                 {showPassword ? (
@@ -218,7 +164,7 @@ jwt?email=${currentUser.email}`,
 
             <button
               type="submit"
-              className="w-full bg-primary text-white py-2 rounded-md font-semibold"
+              className="w-full bg-primary cursor-pointer hover:bg-primary/80 text-white py-2 rounded-md font-semibold"
             >
               Registration
             </button>
@@ -226,7 +172,7 @@ jwt?email=${currentUser.email}`,
 
           <div className="text-center my-4">OR</div>
 
-          <button onClick={handleGoogle} className="w-full flex justify-center items-center gap-2 border border-gray-300 py-2 rounded-md">
+          <button onClick={handleGoogle} className="w-full flex justify-center items-center gap-2 border border-gray-300 py-2 rounded-md hover:bg-gray-100 transition-all duration-300 cursor-pointer">
             <FcGoogle size={22} />
             Continue with Google
           </button>
@@ -237,6 +183,8 @@ jwt?email=${currentUser.email}`,
               Login Now
             </Link>
           </p>
+          </div>
+          </div>
         </div>
       </div>
     </div>
