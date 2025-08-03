@@ -140,25 +140,25 @@ update-booking/${modifyId}`,
   return (
     <div className="min-h-screen bg-gray-50 w-11/12 mx-auto">
       {booking.length === 0 ? (
-       <div className="flex justify-center flex-col gap-8 items-center min-h-screen bg-gray-50 px-4 text-center">
-                <div className="text-7xl text-primary animate-bounce">🚗</div>
-      
-                <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 drop-shadow-lg">
-                  No Booking Cars Found!
-                </h2>
-      
-                <p className="text-gray-500 text-lg max-w-xl leading-relaxed">
-                  Looks like you haven't added any cars yet. Start listing your
-                  beautiful rides and let people rent them today!
-                </p>
-      
-                <Link
-                  to={"/available-cars"}
-                  className="px-6 py-3 bg-primary text-white rounded-lg font-semibold text-lg shadow hover:bg-orange-600 transition duration-300 flex items-center gap-2"
-                >
-                  <span></span> Booking Cars
-                </Link>
-              </div>
+        <div className="flex justify-center flex-col gap-8 items-center min-h-screen  px-4 text-center">
+        
+
+          <h2 className="text-2xl md:text-3xl font-extrabold text-gray-800 font-rubik">
+            No booking cars found!
+          </h2>
+
+          <p className="text-gray-600 text-sm max-w-xl leading-relaxed">
+            Looks like you haven't added any cars yet. Start listing your
+            beautiful rides and let people rent them today!
+          </p>
+
+          <Link
+            to={"/available-cars"}
+            className="px-6 py-2 bg-primary text-white rounded-lg font-semibold text-lg shadow hover:bg-orange-600 transition duration-300 flex items-center gap-2 font-rubik"
+          >
+            <span></span> Booking Cars
+          </Link>
+        </div>
       ) : (
         <div className="">
           <div className="mb-20">
@@ -266,11 +266,10 @@ update-booking/${modifyId}`,
                           className={`p-2 md:p-3 font-semibold  text-sm md:text-base`}
                         >
                           <p
-                            className={`${
-                              car.bookingStatus === "Canceled"
+                            className={`${car.bookingStatus === "Canceled"
                                 ? "text-red-300 line-through  "
                                 : "text-green-300"
-                            }`}
+                              }`}
                           >
                             {" "}
                             {car.bookingStatus}

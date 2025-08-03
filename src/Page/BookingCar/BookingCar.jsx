@@ -38,9 +38,10 @@ function BookingCar() {
                 }
 
 
-
-                setCarType(res.data.carTypes);
-                setLocation(res.data.location)
+                // console.log(res.data.carTypes)
+                // console.log(res.data.location)
+                setCarType(res.data.carTypes) || []
+                setLocation(res.data.location) || []
 
             } catch (error) {
                 console.error("Error fetching car types:", error.message);
@@ -49,6 +50,10 @@ function BookingCar() {
 
         fetchCarTypes();
     }, [])
+
+    const pickupLocation = location.flatMap(item => item.pickupPoints);
+    const unickPicupLocation = [...new Set(pickupLocation)];
+
 
     return (
         <div className=''>
@@ -64,7 +69,7 @@ function BookingCar() {
                         <select {...register("carModel", { required: true })} className='w-full input px-3 py-2 rounded text-gray-400'>
                             <option value="">-- Choose Car Type --</option>
                             {
-                                carType.map(type => <option key={type}>{type}</option>)
+                                carType?.map(type => <option key={type}>{type}</option>)
                             }
                         </select>
                         {errors.carModel && <span className='text-red-500 text-sm'>Car type is required</span>}
@@ -72,8 +77,8 @@ function BookingCar() {
                     <div>
                         <label className='block mb-2 font-medium font-rubik text-text'>📍 Pick-Up Location</label>
                         <select {...register("pickupLocation", { required: true })} className='w-full input px-3 py-2 rounded text-gray-400'>
-                            {
-                                location.map(dis => <option key={dis}>{dis}</option>)
+                          {
+                                unickPicupLocation?.map(type => <option key={type}>{type}</option>)
                             }
                         </select>
                         {errors.pickupLocation && <span className='text-red-500 text-sm'>Pick-up location is required</span>}
@@ -84,7 +89,7 @@ function BookingCar() {
                         <select {...register("dropLocation", { required: true })} className='w-full input px-3 py-2 rounded text-gray-400'>
                             <option value="">-- Choose Drop-Up --</option>
                             {
-                                location.map(dis => <option key={dis}>{dis}</option>)
+                                unickPicupLocation?.map(type => <option key={type}>{type}</option>)
                             }
                         </select>
                         {errors.dropLocation && <span className='text-red-500 text-sm'>Drop-up location is required</span>}
