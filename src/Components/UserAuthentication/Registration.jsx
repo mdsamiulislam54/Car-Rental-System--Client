@@ -59,7 +59,7 @@ const Registration = () => {
         const currentUser = userCredential.user;
 
         await axios.post(
-          `https://car-rental-system-server-beta.vercel.app/
+          `http://localhost:5000/
 
 jwt?email=${currentUser.email}`,
           {},

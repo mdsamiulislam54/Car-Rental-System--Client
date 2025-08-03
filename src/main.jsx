@@ -45,16 +45,14 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path:"car-details/:id",
+        path: "car-details/:id",
         loader: ({ params }) =>
-          fetch(`https://car-rental-system-server-beta.vercel.app/
-
-car-details/${params.id}`),
-        element:<PrivateRoute><CarDetailsPage /></PrivateRoute>
+          fetch(`http://localhost:5000/car-details/${params.id}`),
+        element: <PrivateRoute><CarDetailsPage /></PrivateRoute>
       },
       {
-        path:'my-booking',
-        element:<PrivateRoute><MyBooking/></PrivateRoute>
+        path: 'my-booking',
+        element: <PrivateRoute><MyBooking /></PrivateRoute>
       }
     ],
   },
@@ -71,10 +69,10 @@ car-details/${params.id}`),
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <UserProvider>
-      <Suspense fallback={<Loading/>}>
-      <RouterProvider router={router}></RouterProvider>
+      <Suspense fallback={<Loading />}>
+        <RouterProvider router={router}></RouterProvider>
       </Suspense>
     </UserProvider>
-    
+
   </StrictMode>
 );

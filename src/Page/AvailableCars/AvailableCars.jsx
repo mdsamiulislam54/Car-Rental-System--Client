@@ -21,14 +21,14 @@ const AvailableCars = () => {
   const pageNumber = Math.ceil(count / perPage) || 0
   const pageArray = [...Array(pageNumber).keys()];
   const { state } = useLocation();
-  console.log(state)
+  console.log('state',state)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `https://car-rental-system-server-beta.vercel.app/available-cars?search=${search}&sort=${sortOrder}&limit=${perPage}&page=${currentPage + 1
+          `http://localhost:5000/available-cars?search=${search}&sort=${sortOrder}&limit=${perPage}&page=${currentPage + 1
           }&carModel=${state?.carModel || ''}&location=${state?.location || ""}`
         );
 

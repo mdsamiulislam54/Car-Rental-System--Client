@@ -25,7 +25,7 @@ const MyCars = () => {
   const [selectedCar, setSelectedCar] = useState(null);
   const [sortOrder, setSortOrder] = useState("Default");
 
-  console.log(user.accessToken);
+  
   useEffect(() => {
     fetchData();
   }, [sortOrder]);
@@ -33,9 +33,7 @@ const MyCars = () => {
     try {
       setLoading(true);
       const res = await axios.get(
-        `https://car-rental-system-server-beta.vercel.app/
-
-my-cars?uid=${user.uid}&sort=${sortOrder}&email=${user.email}`,
+        `http://localhost:5000/my-cars?uid=${user.uid}&sort=${sortOrder}&email=${user.email}`,
         {
           headers: {
             Authorization: `Bearer ${user.accessToken}`,
@@ -43,6 +41,7 @@ my-cars?uid=${user.uid}&sort=${sortOrder}&email=${user.email}`,
         }
       );
       const data = res.data;
+      console.log('my car', data)
       setCarData(data);
     } catch (err) {
       setError(err);
@@ -60,7 +59,7 @@ my-cars?uid=${user.uid}&sort=${sortOrder}&email=${user.email}`,
 
     await axios
       .patch(
-        `https://car-rental-system-server-beta.vercel.app/
+        `http://localhost:5000/
 
 update-car/${selectedCar._id}`,
         updatedCar
@@ -107,7 +106,7 @@ update-car/${selectedCar._id}`,
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = await axios.delete(`https://car-rental-system-server-beta.vercel.app/
+        const res = await axios.delete(`http://localhost:5000/
 
 my-cars/${id}`);
         if (res.data.deletedCount > 0) {
@@ -120,9 +119,9 @@ my-cars/${id}`);
 
   return (
     <div className=" w-11/12 mx-auto min-h-screen bg-center relative z-0 py-5 text-white">
-      {carData.length === 0 ? (
+      {carData?.length === 0 ? (
         <div className="flex justify-center flex-col gap-8 items-center min-h-screen px-4 text-center">
-        
+
 
           <h2 className="text-2xl md:text-3xl font-extrabold text-gray-800 font-rubik">
             No Cars Found!
@@ -168,7 +167,7 @@ my-cars/${id}`);
           <div className="overflow-x-auto">
             <div className=" flex justify-end text-black ">
               <div className="mb-5  flex items-center gap-4">
-                
+
                 <select
                   onChange={(e) => setSortOrder(e.target.value)}
                   defaultValue="Default"
