@@ -88,7 +88,7 @@ const Navbar = () => {
           : "bg-white shadow"
         }`}
     >
-      <div className={`navbar w-11/12 mx-auto px-4  rounded-md`}>
+      <div className={`navbar w-11/12 mx-auto px-4  rounded-md `}>
         {/* Navbar Start */}
         <div className="navbar-start">
           {/* Mobile menu button */}
@@ -155,22 +155,38 @@ const Navbar = () => {
 
         {/* Navbar End */}
         <div className="navbar-end">
-          {user ? (
-            <button
-              onClick={handleLogOut}
-              className=""
-            >
-              <img src={user?.photoURL} alt="user profile images" className="w-10 h-10 object-contain rounded-full" />
-            </button>
-          ) : (
-            <Link
-              to="/login"
-              className=""
-            >
-           
-              <Button text={'Login'} icon={TbLogout}/>
-            </Link>
-          )}
+        <div className="dropdown dropdown-end ">
+          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full cursor-pointer">
+              <img
+                alt="Profile img"
+                src={user?.photoURL} />
+            </div>
+          </div>
+          <ul
+            tabIndex={0}
+            className="menu menu-md dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow space-y-2 font-rubik">
+            <li>
+              <Link className="justify-between">
+                Profile
+                
+              </Link>
+            </li>
+            <li className=""><Link>Dashboard</Link></li>
+            <li>
+
+            {
+              user ? (
+                <Button text={'Logout'} onClick={handleLogOut} />
+               
+              ) : (
+                 <Link to={'/login'}><Button text={'Login'} icon={TbLogout} /></Link>
+              )
+            }
+            </li>
+
+          </ul>
+        </div>
         </div>
       </div>
     </nav>

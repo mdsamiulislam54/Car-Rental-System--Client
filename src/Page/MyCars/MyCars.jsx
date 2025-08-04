@@ -25,7 +25,7 @@ const MyCars = () => {
   const [selectedCar, setSelectedCar] = useState(null);
   const [sortOrder, setSortOrder] = useState("Default");
 
-  
+
   useEffect(() => {
     fetchData();
   }, [sortOrder]);
