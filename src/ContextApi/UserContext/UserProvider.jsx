@@ -9,10 +9,12 @@ import {
   signOut,
 } from "firebase/auth";
 import auth from "../../firebase.config";
+import axios from "axios";
 
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState();
+  const [role, setRole] = useState('user')
   const [loading, setLoading] = useState(true);
 
   const createUser = (email, password) => {
@@ -32,30 +34,42 @@ const UserProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      if (currentUser) {
-       
+useEffect(() => {
+  const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
+    if (currentUser) {
+      try {
+        const res = await axios.get(`http://localhost:5000/user?email=${currentUser?.email}`);
+        
 
-        setUser(currentUser);
-      } else {
-        setUser(null);
+        
+        if (res?.data) {
+          setUser({ ...currentUser, role: res.data.role });
+        } else {
+          setUser({ ...currentUser, role: "user" });
+        }
+      } catch (error) {
+        console.error("Error fetching user:", error);
       }
+    } else {
+      setUser(null);
+    }
 
-      setLoading(false);
-    });
+    setLoading(false);
+  });
 
-    return () => {
-      unSubscribe();
-    };
-  }, []);
+  return () => {
+    unSubscribe();
+  };
+}, []);
 
+console.log(user.role)
   const userInfo = {
     user,
     loading,
     createUser,
     googleLogin,
     logOut,
+    role,
     loginWithEmailAndPassword,
   };
   return (

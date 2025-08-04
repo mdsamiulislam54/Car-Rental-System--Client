@@ -43,7 +43,7 @@ const MyCars = () => {
         }
       );
       const data = res.data;
-      console.log('my car', data)
+   
       setCarData(data);
     } catch (err) {
       setError(err);

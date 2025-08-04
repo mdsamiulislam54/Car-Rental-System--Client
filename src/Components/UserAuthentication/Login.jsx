@@ -6,6 +6,7 @@ import UserContext from "../../ContextApi/UserContext/UserContext";
 import Swal from "sweetalert2";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
+import axios from "axios";
 
 const Login = () => {
   const { loginWithEmailAndPassword, googleLogin, user } = useContext(UserContext);
@@ -39,8 +40,15 @@ const Login = () => {
         const currentUser = userCredential.user;
 
         if (currentUser) {
+          // ✅ Backend user insert
           Swal.fire({ icon: "success", title: "Login Successful!" });
-          navigate(state?.pathname || "/");
+             navigate(state?.pathname || "/");
+          await axios.post("http://localhost:5000/user", {
+            userName: currentUser.displayName,
+            userEmail: currentUser.email,
+          });
+
+       
         }
       } catch (error) {
         console.error(error);

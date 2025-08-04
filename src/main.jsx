@@ -21,6 +21,7 @@ import MyBooking from "./Page/MyBooking/MyBooking.jsx";
 import Loading from "./Components/Loader/loading.jsx";
 import DashBoardLayout from "./Route/DashbordLayout/DashBoardLayout.jsx";
 import MyCarsTable from "./Page/DashbordPage/MyCars/MyCars.jsx";
+import DashboardHomePage from "./Page/DashbordPage/DashbordHomePage/DashboardHomePage.jsx";
 
 
 const router = createBrowserRouter([
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      
+
       {
         path: "car-details/:id",
         loader: ({ params }) =>
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-   
+
     Component: PlainLayOut,
     children: [
       { path: "/*", element: <PageNotFound /> },
@@ -61,11 +62,19 @@ const router = createBrowserRouter([
     ],
   },
   {
-     path:'/dashbord',
-    Component:DashBoardLayout,
-    children:[
-    {
-        path: "my-cars",
+    path: '/dashboard',
+    Component: DashBoardLayout,
+
+    children: [
+      {
+        index: true,
+        element: <PrivateRoute>
+          <DashboardHomePage />
+        </PrivateRoute>
+      },
+
+      {
+        path: "/dashboard/my-cars",
         element: (
           <PrivateRoute>
             <MyCarsTable />

@@ -61,13 +61,7 @@ const Navbar = () => {
     >
       Add Car
     </Link>
-    <Link
-      to="/my-cars"
-      className={`text-[15px] leading-[24px] text-text font-medium  font-rubik     relative ${pathname === "/my-cars" ? "active" : ""
-        }`}
-    >
-      My Cars
-    </Link>
+  
     <Link
       to="/my-booking"
       className={`text-[15px] leading-[24px] text-text font-medium  font-rubik    relative ${pathname === "/my-booking" ? "active" : ""
@@ -172,8 +166,8 @@ const Navbar = () => {
                 
               </Link>
             </li>
-            <li className=""><Link to={'/dashbord'}>Dashboard</Link></li>
-            <li>
+            <li className=""><Link to={'/dashboard'}>Dashboard</Link></li>
+            <span className="ml-3"> 
 
             {
               user ? (
@@ -183,7 +177,7 @@ const Navbar = () => {
                  <Link to={'/login'}><Button text={'Login'} icon={TbLogout} /></Link>
               )
             }
-            </li>
+            </span>
 
           </ul>
         </div>

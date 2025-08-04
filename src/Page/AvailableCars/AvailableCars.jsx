@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { LuSquareMenu } from "react-icons/lu";
 import { IoGrid } from "react-icons/io5";
-import bannerImages from "../../assets/stylish-elegant-couple-car-salon.jpg";
+
 import { Link, useLocation } from "react-router";
 import axios from "axios";
 import AvailableCarsCard from "./AvailableCarsCard";
@@ -34,9 +34,10 @@ const AvailableCars = () => {
         );
 
         const data = res.data;
-        console.log(data)
+       
         setCarData(data.cars);
         setCount(data.count);
+        console.log(data.count)
       } catch (err) {
         setError(err.message);
       } finally {
