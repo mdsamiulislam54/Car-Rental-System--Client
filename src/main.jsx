@@ -15,10 +15,12 @@ import AvailableCars from "./Page/AvailableCars/AvailableCars.jsx";
 
 import PrivateRoute from "./Page/PrivateRoute/PrivateRoute.jsx";
 import AddCars from "./Page/AddCars/AddCars.jsx";
-import MyCars from "./Page/MyCars/MyCars.jsx";
+
 import CarDetailsPage from "./Page/CarDetailsPage/CarDetailsPage.jsx";
 import MyBooking from "./Page/MyBooking/MyBooking.jsx";
 import Loading from "./Components/Loader/loading.jsx";
+import DashBoardLayout from "./Route/DashbordLayout/DashBoardLayout.jsx";
+import MyCarsTable from "./Page/DashbordPage/MyCars/MyCars.jsx";
 
 
 const router = createBrowserRouter([
@@ -36,14 +38,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: "my-cars",
-        element: (
-          <PrivateRoute>
-            <MyCars />
-          </PrivateRoute>
-        ),
-      },
+      
       {
         path: "car-details/:id",
         loader: ({ params }) =>
@@ -57,6 +52,7 @@ const router = createBrowserRouter([
     ],
   },
   {
+   
     Component: PlainLayOut,
     children: [
       { path: "/*", element: <PageNotFound /> },
@@ -64,6 +60,20 @@ const router = createBrowserRouter([
       { path: "/register", element: <Registration /> },
     ],
   },
+  {
+     path:'/dashbord',
+    Component:DashBoardLayout,
+    children:[
+    {
+        path: "my-cars",
+        element: (
+          <PrivateRoute>
+            <MyCarsTable />
+          </PrivateRoute>
+        ),
+      },
+    ]
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(

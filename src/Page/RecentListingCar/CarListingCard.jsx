@@ -12,9 +12,7 @@ const CarListingCard = ({ car }) => {
           alt={car.carModel}
           className="w-full h-56 object-contain mx-auto hover:scale-110 transition duration-300 hover:cursor-zoom-in"
         />
-        <div className="absolute top-3 right-3 bg-primary text-white text-sm px-3 py-1 rounded-full shadow-md">
-          ৳ {car.dailyRentalPrice}/day
-        </div>
+
       </div>
 
       <div className="p-4 border-t border-gray-200">
@@ -22,9 +20,8 @@ const CarListingCard = ({ car }) => {
         <div className="flex items-center justify-between mb-2">
           <h2 className="text-lg sm:text-xl font-semibold text-text">{car.carModel}</h2>
           <span
-            className={`text-sm px-3 py-1 rounded-md ${
-              car.availability ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"
-            }`}
+            className={`text-sm px-3 py-1 rounded-md ${car.availability ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"
+              }`}
           >
             {car.availability ? "Available" : "Unavailable"}
           </span>
@@ -32,7 +29,12 @@ const CarListingCard = ({ car }) => {
 
         {/* Brand, Price/hour */}
         <div className="text-sm text-gray-500 mb-2">
-          <p><span className="font-semibold text-text">Brand:</span> {car.brand}</p>
+          <div className="flex justify-between items-center">
+            <p><span className="font-semibold text-text">Brand:</span> {car.brand}</p>
+            <div className="">
+              ৳ {car.dailyRentalPrice}/day
+            </div>
+          </div>
           <p><span className="font-semibold text-text">Hourly:</span> ৳ {car.hourlyRentalPrice}/hr</p>
         </div>
 

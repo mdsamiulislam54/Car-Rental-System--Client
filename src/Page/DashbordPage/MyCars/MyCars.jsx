@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import UserContext from "../../ContextApi/UserContext/UserContext";
+
 import {
   LineChart,
   Line,
@@ -13,9 +13,11 @@ import {
 } from "recharts";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
-import Loader from "../../Components/Loader/Loader";
+
 import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
+import UserContext from "../../../ContextApi/UserContext/UserContext";
+import Loader from "../../../Components/Loader/Loader";
 
 const MyCars = () => {
   const [carData, setCarData] = useState([]);
