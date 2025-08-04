@@ -7,6 +7,7 @@ import axios from "axios";
 import AvailableCarsCard from "./AvailableCarsCard";
 import Loader from "../../Components/Loader/Loader";
 import { FaSearch } from "react-icons/fa";
+import Button from "../../Components/Button/Button";
 
 const AvailableCars = () => {
   const [lineView, setLineView] = useState(false);
@@ -33,7 +34,7 @@ const AvailableCars = () => {
         );
 
         const data = res.data;
-
+        console.log(data)
         setCarData(data.cars);
         setCount(data.count);
       } catch (err) {
@@ -143,8 +144,11 @@ const AvailableCars = () => {
         </nav>
 
         {carData?.length === 0 ? (
-          <div>
-            <p className="text-4xl text-center ">Data not Found</p>
+          <div className="min-h-screen flex justify-center items-center flex-col gap-4">
+            <p className="text-3xl text-center font-rubik font-bold">Car Not Found</p>
+            <Link>
+              <Button text={'Try Now'}/>
+            </Link>
           </div>
         ) : (
           <div
