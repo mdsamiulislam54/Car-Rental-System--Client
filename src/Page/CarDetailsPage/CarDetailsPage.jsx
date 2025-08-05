@@ -42,9 +42,10 @@ const CarDetailsPage = () => {
       startDay: startDate,
       endDate: endDate,
       userUid: user?.uid,
-      bookingStatus: "Confirmed",
+      bookingStatus: "pending",
       carImages: car.imageUrl,
       carId: car._id,
+      paymentStatus: 'paid'
     };
     console.log(bookCar);
 

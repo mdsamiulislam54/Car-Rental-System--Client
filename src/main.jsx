@@ -22,6 +22,7 @@ import Loading from "./Components/Loader/loading.jsx";
 import DashBoardLayout from "./Route/DashbordLayout/DashBoardLayout.jsx";
 import MyCarsTable from "./Page/DashbordPage/MyCars/MyCars.jsx";
 import DashboardHomePage from "./Page/DashbordPage/DashbordHomePage/DashboardHomePage.jsx";
+import ManageBookingCar from "./Page/DashbordPage/DashbordHomePage/ManageBookingCar/ManageBookingCar.jsx";
 
 
 const router = createBrowserRouter([
@@ -82,6 +83,14 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path:"/dashboard/manage-booking",
+        element:(
+          <PrivateRoute>
+            <ManageBookingCar/>
+          </PrivateRoute>
+        )
+      }
     ]
   }
 ]);

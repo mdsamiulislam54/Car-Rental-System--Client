@@ -20,4 +20,24 @@ export const totalUser = async ()=>{
         console.error(error)
     }
 }
+export const totalBookinCar = async ()=>{
+
+    try {
+        const res= await axios.get("http://localhost:5000/dashboard/total/booking/car")
+        const data = res?.data;
+        return data
+    } catch (error) {
+        console.error(error)
+    }
+}
+export const totalBookinCarPending = async ()=>{
+
+    try {
+        const res= await axios.get("http://localhost:5000/dashboard/total/booking/car/pending")
+        const data = res?.data;
+        return data
+    } catch (error) {
+        console.error(error)
+    }
+}
 

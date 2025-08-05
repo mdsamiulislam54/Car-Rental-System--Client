@@ -91,6 +91,15 @@ const SidebarContent = ({ user, isAdmin, onClose }) => {
               </li>
               <li>
                 <Link
+                  to="/dashboard/manage-booking"
+                  onClick={onClose}
+                  className="block py-2 px-4 hover:bg-gray-200 rounded"
+                >
+                  Manage Booking Car
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/dashboard/add-car"
                   onClick={onClose}
                   className="block py-2 px-4 hover:bg-gray-200 rounded"

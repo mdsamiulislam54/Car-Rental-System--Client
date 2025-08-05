@@ -1,18 +1,29 @@
 import React, { useContext, useEffect, useState } from 'react'
 import UserContext from '../../../ContextApi/UserContext/UserContext'
 import UseAuth from '../../../Hook/useAuth/useAuth'
-import { totalCar, totalUser } from '../../../Hook/dashboardApi/dashbordApi'
+import { totalBookinCar, totalBookinCarPending, totalCar, totalUser } from '../../../Hook/dashboardApi/dashbordApi'
 
 const DashboardHomePage = () => {
     const { user } = UseAuth()
     const [totalCars, setTotalCar] = useState(0);
     const [totalUsers, setTotalUser] = useState(0);
+    const [bookingCar, setBookingCar] = useState([]);
+    const [pending, setBookingPending] = useState([]);
     useEffect(() => {
         const fetchTotal = async () => {
              
-            const [total,totalUsers] = await Promise.all([totalCar(),totalUser()])
+            const [total,totalUsers,totalBookinCars,pendings] = await Promise.all([
+                totalCar(),
+                totalUser(),
+                totalBookinCar(),
+                totalBookinCarPending()
+
+            ])
             setTotalCar(total);
-            setTotalUser(totalUsers)
+            setTotalUser(totalUsers);
+            setBookingCar(totalBookinCars)
+            setBookingPending(pendings)
+
         };
         fetchTotal();
     }, []);
@@ -39,6 +50,26 @@ const DashboardHomePage = () => {
                         </div>
                         <div className="stat-title">Total User</div>
                         <div className="stat-value text-primary">{totalUsers }</div>
+
+                    </div>)
+                }
+                {
+                    user.role == 'admin' && (<div className="stat">
+                        <div className="stat-figure text-primary">
+
+                        </div>
+                        <div className="stat-title">Total Booking Car</div>
+                        <div className="stat-value text-primary">{bookingCar.length }</div>
+
+                    </div>)
+                }
+                {
+                    user.role == 'admin' && (<div className="stat">
+                        <div className="stat-figure text-primary">
+
+                        </div>
+                        <div className="stat-title">Total Pending Booking</div>
+                        <div className="stat-value text-primary">{pending.length }</div>
 
                     </div>)
                 }
