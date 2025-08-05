@@ -17,13 +17,12 @@ import PrivateRoute from "./Page/PrivateRoute/PrivateRoute.jsx";
 import AddCars from "./Page/DashbordPage/DashbordHomePage/AddCars/AddCars.jsx";
 
 import CarDetailsPage from "./Page/CarDetailsPage/CarDetailsPage.jsx";
-import MyBooking from "./Page/MyBooking/MyBooking.jsx";
 import Loading from "./Components/Loader/loading.jsx";
 import DashBoardLayout from "./Route/DashbordLayout/DashBoardLayout.jsx";
 import MyCarsTable from "./Page/DashbordPage/MyCars/MyCars.jsx";
 import DashboardHomePage from "./Page/DashbordPage/DashbordHomePage/DashboardHomePage.jsx";
 import ManageBookingCar from "./Page/DashbordPage/DashbordHomePage/ManageBookingCar/ManageBookingCar.jsx";
-
+import MyBooking from './Page/DashbordPage/MyBooking/MyBooking.jsx'
 
 const router = createBrowserRouter([
   {
@@ -40,10 +39,7 @@ const router = createBrowserRouter([
           fetch(`http://localhost:5000/car-details/${params.id}`),
         element: <PrivateRoute><CarDetailsPage /></PrivateRoute>
       },
-      {
-        path: 'my-booking',
-        element: <PrivateRoute><MyBooking /></PrivateRoute>
-      }
+     
     ],
   },
   {
@@ -90,7 +86,13 @@ const router = createBrowserRouter([
             <ManageBookingCar/>
           </PrivateRoute>
         )
+      },
+       {
+        path: '/dashboard/my-booking-cars',
+        element: <PrivateRoute><MyBooking/></PrivateRoute>
       }
+
+
     ]
   }
 ]);

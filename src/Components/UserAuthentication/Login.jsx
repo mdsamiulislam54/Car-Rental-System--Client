@@ -33,29 +33,32 @@ const Login = () => {
     }
   };
 
-  const handleGoogle = async () => {
-    if (!user) {
-      try {
-        const userCredential = await googleLogin();
-        const currentUser = userCredential.user;
+ const handleGoogle = async () => {
+  if (!user) {
+    try {
+      const userCredential = await googleLogin();
+      const currentUser = userCredential.user;
 
-        if (currentUser) {
-          // ✅ Backend user insert
+      if (currentUser) {
+        const res = await axios.post("http://localhost:5000/user-create", {
+          userName: currentUser.displayName,
+          userEmail: currentUser.email,
+        });
+
+        // Always show success for both 200 and 201
+        if (res.status === 200 || res.status === 201) {
           Swal.fire({ icon: "success", title: "Login Successful!" });
-             navigate(state?.pathname || "/");
-          await axios.post("http://localhost:5000/user", {
-            userName: currentUser.displayName,
-            userEmail: currentUser.email,
-          });
-
-       
+          navigate(state?.pathname || "/");
         }
-      } catch (error) {
-        console.error(error);
-        Swal.fire({ title: "Login Failed!", icon: "error" });
       }
+
+    } catch (error) {
+      console.error(error);
+      Swal.fire({ title: "Login Failed!", icon: "error" });
     }
-  };
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-10 bg-gray-100">

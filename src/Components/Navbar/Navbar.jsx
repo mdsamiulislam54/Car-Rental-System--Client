@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import logo from "../../assets/icons/logo.png";
 import { Link, useLocation } from "react-router";
 import { RiCloseLine } from "react-icons/ri";
 import { AnimatePresence, motion } from "framer-motion";
@@ -57,11 +56,11 @@ const Navbar = () => {
  
   
     <Link
-      to="/my-booking"
+      to="/blog"
       className={`text-[15px] leading-[24px] text-text font-medium  font-rubik    relative ${pathname === "/my-booking" ? "active" : ""
         }`}
     >
-      My Bookings
+      Blog
     </Link>
   </>
 

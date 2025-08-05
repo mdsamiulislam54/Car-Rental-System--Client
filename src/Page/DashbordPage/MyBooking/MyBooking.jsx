@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { formatDateTime } from "../../Hook/DateFormate";
+
 import { FaTrashAlt } from "react-icons/fa";
 import { SlCalender } from "react-icons/sl";
 import {
@@ -14,9 +14,12 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import Swal from "sweetalert2";
-import UserContext from "../../ContextApi/UserContext/UserContext";
+
 import { Link } from "react-router";
-import Loader from "../../Components/Loader/Loader";
+
+import { formatDate } from "../../../Hook/DateFormate";
+import UserContext from "../../../ContextApi/UserContext/UserContext";
+import Loader from "../../../Components/Loader/Loader";
 
 const MyBooking = () => {
   const [booking, setBooking] = useState([]);
@@ -26,7 +29,7 @@ const MyBooking = () => {
   const [error, setError] = useState("");
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndtDate] = useState(null);
-  const { user } = useContext(UserContext);
+  const { user } = useContext(UserContext)
 
   useEffect(() => {
     if (user?.uid) {
@@ -74,7 +77,7 @@ booking-car?uid=${user.uid}&email=${user.email}`,
             `http://localhost:5000/cancel-booking/${id}`
           );
           const data = res.data;
-         
+
 
           if (data.acknowledged) {
             Swal.fire({
@@ -141,7 +144,7 @@ update-booking/${modifyId}`,
     <div className="min-h-screen bg-gray-50 w-11/12 mx-auto">
       {booking.length === 0 ? (
         <div className="flex justify-center flex-col gap-8 items-center min-h-screen  px-4 text-center">
-        
+
 
           <h2 className="text-2xl md:text-3xl font-extrabold text-gray-800 font-rubik">
             No booking cars found!
@@ -199,7 +202,7 @@ update-booking/${modifyId}`,
           <div className=" ">
             <div className="overflow-x-auto">
               <table className="w-full text-center border-collapse relative ">
-                <thead className="bg-gray-200 ">
+                <thead className="bg-gray-100 ">
                   <tr>
                     <th className="p-3 text-sm md:text-base font-bold">
                       Car Image
@@ -253,9 +256,9 @@ update-booking/${modifyId}`,
                         </td>
 
                         <td className="p-3 flex flex-col gap-1 items-center text-xs sm:text-sm md:text-base">
-                          <span>{formatDateTime(car.startDay)}</span>
+                          <span>{formatDate(car.startDay)}</span>
                           <br />
-                          <span>{formatDateTime(car.endDate)}</span>
+                          <span>{formatDate(car.endDate)}</span>
                         </td>
 
                         <td className="p-2 md:p-3 text-sm md:text-base">
@@ -266,14 +269,18 @@ update-booking/${modifyId}`,
                           className={`p-2 md:p-3 font-semibold  text-sm md:text-base`}
                         >
                           <p
-                            className={`${car.bookingStatus === "Canceled"
-                                ? "text-red-300 line-through  "
-                                : "text-green-300"
-                              }`}
+                            className={`badge
+                               ${car.bookingStatus === "pending"
+                                ? "badge-warning"
+                                : car.bookingStatus === "canceled"
+                                  ? "badge-warning"
+                                  : "badge-success"
+                              }
+  `}
                           >
-                            {" "}
                             {car.bookingStatus}
                           </p>
+
                         </td>
 
                         <td className="  ">

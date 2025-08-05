@@ -31,6 +31,16 @@ const CarDetailsPage = () => {
   };
 
   const handleBookNow = async (totalPrice) => {
+
+
+    if (user.role === 'admin') {
+      return Swal.fire({
+        title: 'Access Denied!',
+        text: 'Admin is not allowed to perform this action.',
+        icon: 'warning',
+        confirmButtonText: 'Okay'
+      });
+    }
     if (!startDate || !endDate) {
       setError("Please select both start and end date");
       return;
@@ -42,6 +52,8 @@ const CarDetailsPage = () => {
       startDay: startDate,
       endDate: endDate,
       userUid: user?.uid,
+      userEmail: user?.email,
+      userName: user?.displayName,
       bookingStatus: "pending",
       carImages: car.imageUrl,
       carId: car._id,
@@ -101,22 +113,22 @@ booking-car`,
             <ul className=" flex space-x-3 justify-center items-center">
               <p className="text-lg font-bold">Features :</p>
               {
-                car.features.map((feature,ind)=>{
-                  return(
+                car.features.map((feature, ind) => {
+                  return (
                     <li className="bg-accent/30 p-2 font-bold text-sm" key={ind}>{feature}</li>
                   )
                 })
               }
             </ul>
-          
+
             <p className="lg:w-5/12 mx-auto px-4 text-text text-sm tracking-wide">
               {car.description}
             </p>
 
             {/* Book Now Button */}
-           
+
             <div className="flex justify-center ">
-              <Button text={' Book Now'} icon={FaCar} onClick={() => setBookingModal(!bookigModal)}/>
+              <Button text={' Book Now'} icon={FaCar} onClick={() => setBookingModal(!bookigModal)} />
             </div>
           </div>
 

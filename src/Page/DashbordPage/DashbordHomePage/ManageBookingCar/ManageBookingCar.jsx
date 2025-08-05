@@ -1,92 +1,155 @@
 import React, { useEffect, useState } from 'react';
 import { totalBookinCarPending } from '../../../../Hook/dashboardApi/dashbordApi';
+
+import Swal from 'sweetalert2';
+import axios from 'axios';
 import { formatDate } from '../../../../Hook/DateFormate';
 
 
 
 const ManageBookingCar = () => {
-  const [bookingCar, setBookingCar] = useState([]);
-  const [loading, setLoading] = useState(true);
+    const [bookingCar, setBookingCar] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+
     const fetchData = async () => {
-      try {
+    try {
         const data = await totalBookinCarPending();
         setBookingCar(data || []);
-      } catch (error) {
+    } catch (error) {
         console.error("Error fetching booking cars:", error);
-      } finally {
+    } finally {
         setLoading(false);
-      }
+    }
+};
+    useEffect(() => {
+
+
+        fetchData();
+    }, []);
+
+    const handleConfirm = async (id) => {
+        try {
+            const res = await axios.patch(`http://localhost:5000/admin/booking/confirm/${id}`);
+
+            if (res.data) {
+                Swal.fire({
+                    title: "Success!",
+                    text: "Booking confirmed successfully",
+                    icon: "success",
+                    confirmButtonText: "OK"
+                });
+            }
+            fetchData()
+        } catch (error) {
+            console.error("Confirm error:", error);
+            Swal.fire({
+                title: "Error!",
+                text: "Failed to confirm booking",
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+        }
     };
 
-    fetchData();
-  }, []);
+  const handleCancelBooking = async (id) => {
+  try {
+    // Confirm action
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want to cancel this booking!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, cancel it!'
+    });
 
-  return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Manage Booking Cars</h2>
+    if (result.isConfirmed) {
+      // Call the cancel booking API
+      const res = await axios.patch(`http://localhost:5000/admin/booking/cencel/${id}`);
 
-      {loading ? (
-        <p className="text-blue-500 text-lg">Loading...</p>
-      ) : bookingCar.length === 0 ? (
-        <p className="text-red-500 text-lg">No bookings found.</p>
-      ) : (
-        <div className="ooverflow-x-auto rounded-box border border-base-content/5 bg-base-100">
-          <table className="table ">
-            {/* Table Head */}
-            <thead className="bg-gray-100 text-gray-700">
-              <tr>
-                <th>Image</th>
-                <th>Car Model</th>
-                <th>Total Price</th>
-                <th>Booking Status</th>
-                <th>Payment Status</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Action</th>
-              </tr>
-            </thead>
+      if (res.data?.message === 'Booking canceled successfully') {
+        Swal.fire(
+          'Cancelled!',
+          'The booking has been canceled.',
+          'success'
+        );
+        fetchData()
+      }
+    }
+  } catch (error) {
+    Swal.fire('Error!', 'Failed to cancel the booking.', 'error');
+    console.error("Cancel error:", error);
+  }
+};
 
-            {/* Table Body */}
-            <tbody>
-              {bookingCar.map((car, index) => (
-                <tr key={index} className="hover">
-                  <td>
-                    <img
-                      src={car?.carImages || 'https://via.placeholder.com/100'}
-                      alt="car"
-                      className="w-30 object-cover rounded"
-                    />
-                  </td>
-                  <td>{car?.carModel || "N/A"}</td>
-                  <td>${car?.totalPrice || 0}</td>
-                  <td>
-                    <span className={`badge ${car.bookingStatus === 'pending' ? 'badge-warning' : 'badge-success'}`}>
-                      {car.bookingStatus}
-                    </span>
-                  </td>
-                  <td>
-                    <span className={`badge ${car.paymentStatus === 'unpaid' ? 'badge-error' : 'badge-success'}`}>
-                      {car.paymentStatus}
-                    </span>
-                  </td>
-                  <td>{formatDate(car?.startDay)}</td>
-                  <td>{formatDate(car?.endDate)}</td>
-                  <td>
-                    <div className="flex gap-2">
-                      <button className="btn btn-sm btn-success">Confirm</button>
-                      <button className="btn btn-sm btn-error">Cancel</button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+    return (
+        <div className="p-4">
+            
+
+            {loading ? (
+                <p className="text-blue-500 text-lg">Loading...</p>
+            ) : bookingCar.length === 0 ? (
+                <div className="text-red-500 text-lg flex justify-center items-center min-h-screen">
+                    <p>No Pending Booking Car</p>
+                </div>
+            ) : (
+                <div className="ooverflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+                    <table className="table ">
+                        {/* Table Head */}
+                        <thead className="bg-gray-100 text-gray-700">
+                            <tr>
+                                <th>Image</th>
+                                <th>Car Model</th>
+                                <th>Total Price</th>
+                                <th>Booking Status</th>
+                                <th>Payment Status</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        {/* Table Body */}
+                        <tbody>
+                            {bookingCar.map((car, index) => (
+                                <tr key={index} className="hover">
+                                    <td>
+                                        <img
+                                            src={car?.carImages || 'https://via.placeholder.com/100'}
+                                            alt="car"
+                                            className="w-30 object-cover rounded"
+                                        />
+                                    </td>
+                                    <td>{car?.carModel || "N/A"}</td>
+                                    <td>${car?.totalPrice || 0}</td>
+                                    <td>
+                                        <span className={`badge ${car.bookingStatus === 'pending' ? 'badge-warning' : 'badge-success'}`}>
+                                            {car.bookingStatus}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span className={`badge ${car.paymentStatus === 'unpaid' ? 'badge-error' : 'badge-success'}`}>
+                                            {car.paymentStatus}
+                                        </span>
+                                    </td>
+                                    <td>{formatDate(car?.startDay)}</td>
+                                    <td>{formatDate(car?.endDate)}</td>
+                                    <td>
+                                        <div className="flex gap-2">
+                                            <button className="btn btn-sm btn-success" onClick={() => handleConfirm(car._id)}>Confirm</button>
+                                            <button onClick={()=>handleCancelBooking(car._id)} className="btn btn-sm btn-error">Cancel</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
         </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default ManageBookingCar;
