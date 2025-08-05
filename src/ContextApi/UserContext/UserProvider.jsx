@@ -62,7 +62,7 @@ useEffect(() => {
   };
 }, []);
 
-console.log(user.role)
+
   const userInfo = {
     user,
     loading,

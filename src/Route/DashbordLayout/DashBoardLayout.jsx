@@ -2,13 +2,15 @@ import React, { useContext, useState } from 'react';
 import { Link, Outlet } from 'react-router';
 import { Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
-import UserContext from '../../ContextApi/UserContext/UserContext';
+
+import UseAuth from '../../Hook/useAuth/useAuth';
 
 const DashBoardLayout = () => {
-  const { user } = useContext(UserContext);
+  const { user } = UseAuth()
   const [isOpen, setIsOpen] = useState(false);
 
   const isAdmin = user?.role === 'admin';
+
 
   const sidebarVariants = {
     hidden: { x: '-100%' },
@@ -75,15 +77,7 @@ const SidebarContent = ({ user, isAdmin, onClose }) => {
               Dashboard Home
             </Link>
           </li>
-          <li>
-            <Link
-              to="/dashboard/my-cars"
-              onClick={onClose}
-              className="block py-2 px-4 hover:bg-gray-200 rounded"
-            >
-              My Cars
-            </Link>
-          </li>
+         
           {isAdmin && (
             <>
               <li>
@@ -106,6 +100,20 @@ const SidebarContent = ({ user, isAdmin, onClose }) => {
               </li>
             </>
           )}
+
+          {
+            !isAdmin &&(
+                 <li>
+            <Link
+              to="/dashboard/my-cars"
+              onClick={onClose}
+              className="block py-2 px-4 hover:bg-gray-200 rounded"
+            >
+              My Cars
+            </Link>
+          </li>
+            )
+          }
           <li>
             <Link
               to="/"

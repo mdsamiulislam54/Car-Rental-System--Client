@@ -54,13 +54,7 @@ const Navbar = () => {
     >
       Available Cars
     </Link>
-    <Link
-      to="/add-cars"
-      className={`text-[15px] leading-[24px] text-text font-medium  font-rubik     relative ${pathname === "/add-cars" ? "active" : ""
-        }`}
-    >
-      Add Car
-    </Link>
+ 
   
     <Link
       to="/my-booking"

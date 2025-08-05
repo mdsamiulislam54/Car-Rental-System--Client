@@ -14,7 +14,7 @@ import PlainLayOut from "./Route/PlainLayout/PlainLayOut.jsx";
 import AvailableCars from "./Page/AvailableCars/AvailableCars.jsx";
 
 import PrivateRoute from "./Page/PrivateRoute/PrivateRoute.jsx";
-import AddCars from "./Page/AddCars/AddCars.jsx";
+import AddCars from "./Page/DashbordPage/DashbordHomePage/AddCars/AddCars.jsx";
 
 import CarDetailsPage from "./Page/CarDetailsPage/CarDetailsPage.jsx";
 import MyBooking from "./Page/MyBooking/MyBooking.jsx";
@@ -31,14 +31,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, Component: Home },
       { path: "available-cars", element: <AvailableCars /> },
-      {
-        path: "add-cars",
-        element: (
-          <PrivateRoute>
-            <AddCars />
-          </PrivateRoute>
-        ),
-      },
+     
 
       {
         path: "car-details/:id",
@@ -78,6 +71,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyCarsTable />
+          </PrivateRoute>
+        ),
+      },
+       {
+        path: "/dashboard/add-car",
+        element: (
+          <PrivateRoute>
+            <AddCars />
           </PrivateRoute>
         ),
       },
