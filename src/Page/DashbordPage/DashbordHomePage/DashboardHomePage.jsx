@@ -1,115 +1,153 @@
-import React, { useContext, useEffect, useState } from 'react'
-import UserContext from '../../../ContextApi/UserContext/UserContext'
-import UseAuth from '../../../Hook/useAuth/useAuth'
-import { totalBookinCar, totalBookinCarPending, totalCar, totalUser } from '../../../Hook/dashboardApi/dashbordApi'
+import React, { useContext, useEffect, useState } from "react";
+import UseAuth from "../../../Hook/useAuth/useAuth";
+import {
+    totalBookinCar,
+    totalBookinCarPending,
+    totalCar,
+    totalUser,
+} from "../../../Hook/dashboardApi/dashbordApi";
+import {
+    CarFront,
+    Users,
+    ClipboardList,
+    Clock3,
+    
+} from "lucide-react";
+import {
+
+
+  CheckCircle,
+  XCircle,
+} from "lucide-react";
+import BookingContext from "../../../ContextApi/myBookingContext/BookingContext";
 
 const DashboardHomePage = () => {
-    const { user } = UseAuth()
+          const [bookingData, setBookingData] = useState(null);
+    const { user } = UseAuth();
     const [totalCars, setTotalCar] = useState(0);
     const [totalUsers, setTotalUser] = useState(0);
     const [bookingCar, setBookingCar] = useState([]);
     const [pending, setBookingPending] = useState([]);
+    const {booking,pendingBooking,confirmedBooking,cancelledBooking} = useContext(BookingContext)
+
     useEffect(() => {
         const fetchTotal = async () => {
-             
-            const [total,totalUsers,totalBookinCars,pendings] = await Promise.all([
+            const [car, users, bookings, pendings] = await Promise.all([
                 totalCar(),
                 totalUser(),
                 totalBookinCar(),
-                totalBookinCarPending()
-
-            ])
-            setTotalCar(total);
-            setTotalUser(totalUsers);
-            setBookingCar(totalBookinCars)
-            setBookingPending(pendings)
-
+                totalBookinCarPending(),
+            ]);
+            setTotalCar(car);
+            setTotalUser(users);
+            setBookingCar(bookings);
+            setBookingPending(pendings);
         };
         fetchTotal();
     }, []);
 
+
+  const handleBookingInfo = (dataFromChild) => {
+    setBookingData(dataFromChild);
+    console.log("Child থেকে আসা ডেটা:", dataFromChild);
+  };
+
     return (
-        <div>
-            <div className="stats shadow">
+        <div className="p-6">
+            <h2 className="text-2xl font-semibold mb-6 text-center text-gray-800">
+                {user?.role==='admin' ? "Admin":"User"} Dashboard Overview
+            </h2>
 
-                {
-                    user.role == 'admin' && (<div className="stat">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {/* Total Cars */}
+                {user?.role === "admin" && (
+                    <div className="stat bg-white shadow-md rounded-lg p-4 ">
                         <div className="stat-figure text-primary">
-
+                            <CarFront size={32} />
                         </div>
                         <div className="stat-title">Total Cars</div>
-                        <div className="stat-value text-primary">{totalCars }</div>
-
-                    </div>)
-                }
-                
-                {
-                    user.role == 'admin' && (<div className="stat">
-                        <div className="stat-figure text-primary">
-
-                        </div>
-                        <div className="stat-title">Total User</div>
-                        <div className="stat-value text-primary">{totalUsers }</div>
-
-                    </div>)
-                }
-                {
-                    user.role == 'admin' && (<div className="stat">
-                        <div className="stat-figure text-primary">
-
-                        </div>
-                        <div className="stat-title">Total Booking Car</div>
-                        <div className="stat-value text-primary">{bookingCar.length }</div>
-
-                    </div>)
-                }
-                {
-                    user.role == 'admin' && (<div className="stat">
-                        <div className="stat-figure text-primary">
-
-                        </div>
-                        <div className="stat-title">Total Pending Booking</div>
-                        <div className="stat-value text-primary">{pending.length }</div>
-
-                    </div>)
-                }
-
-                <div className="stat">
-                    <div className="stat-figure text-secondary">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            className="inline-block h-8 w-8 stroke-current"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M13 10V3L4 14h7v7l9-11h-7z"
-                            ></path>
-                        </svg>
+                        <div className="stat-value text-primary">{totalCars}</div>
                     </div>
-                    <div className="stat-title">Page Views</div>
-                    <div className="stat-value text-secondary">2.6M</div>
-                    <div className="stat-desc">21% more than last month</div>
-                </div>
+                )}
 
-                <div className="stat">
-                    <div className="stat-figure text-secondary">
-                        <div className="avatar avatar-online">
-                            <div className="w-16 rounded-full">
-                                <img src="https://img.daisyui.com/images/profile/demo/anakeen@192.webp" />
+                {/* Total Users */}
+                {user?.role === "admin" && (
+                    <div className="stat bg-white shadow-md rounded-lg p-4 ">
+                        <div className="stat-figure text-secondary">
+                            <Users size={32} />
+                        </div>
+                        <div className="stat-title">Total Users</div>
+                        <div className="stat-value text-secondary">{totalUsers}</div>
+                    </div>
+                )}
+
+                {/* Total Booking Cars */}
+                {user?.role === "admin" && (
+                    <div className="stat bg-white shadow-md rounded-lg p-4 ">
+                        <div className="stat-figure text-accent">
+                            <ClipboardList size={32} />
+                        </div>
+                        <div className="stat-title">Total Booking Cars</div>
+                        <div className="stat-value text-accent">{bookingCar.length}</div>
+                    </div>
+                )}
+
+                {/* Pending Bookings */}
+                {user?.role === "admin" && (
+                    <div className="stat bg-white shadow-md rounded-lg p-4 ">
+                        <div className="stat-figure text-warning">
+                            <Clock3 size={32} />
+                        </div>
+                        <div className="stat-title">Pending Bookings</div>
+                        <div className="stat-value text-warning">{pending.length}</div>
+                    </div>
+                )}
+
+              
+            </div>
+            <div>
+                  {
+                    user?.role === 'user' && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div className="stat bg-white shadow-md rounded-lg p-4 ">
+                                <div className="stat-figure text-primary">
+                                    <ClipboardList size={32} />
+                                </div>
+                                <div className="stat-title">My Bookings</div>
+                                <div className="stat-value text-primary">{booking.length}</div>
+                            </div>
+
+                            <div className="stat bg-white shadow-md rounded-lg p-4 ">
+                                <div className="stat-figure text-warning">
+                                    <Clock3 size={32} />
+                                </div>
+                                <div className="stat-title">Pending</div>
+                                <div className="stat-value text-warning">{pendingBooking.length}</div>
+                            </div>
+
+                            <div className="stat bg-white shadow-md rounded-lg p-4 ">
+                                <div className="stat-figure text-success">
+                                    <CheckCircle size={32} />
+                                </div>
+                                <div className="stat-title">Confirm</div>
+                                <div className="stat-value text-success">{confirmedBooking.length}</div>
+                            </div>
+
+                            <div className="stat bg-white shadow-md rounded-lg p-4 ">
+                                <div className="stat-figure text-error">
+                                    <XCircle size={32} />
+                                </div>
+                                <div className="stat-title">Canceled</div>
+                                <div className="stat-value text-error">{cancelledBooking.length}</div>
                             </div>
                         </div>
-                    </div>
-                    <div className="stat-value">86%</div>
-                    <div className="stat-title">Tasks done</div>
-                    <div className="stat-desc text-secondary">31 tasks remaining</div>
-                </div>
+
+
+                    )
+                }
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default DashboardHomePage
+export default DashboardHomePage;

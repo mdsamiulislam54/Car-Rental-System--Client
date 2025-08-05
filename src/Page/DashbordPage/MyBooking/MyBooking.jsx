@@ -20,9 +20,10 @@ import { Link } from "react-router";
 import { formatDate } from "../../../Hook/DateFormate";
 import UserContext from "../../../ContextApi/UserContext/UserContext";
 import Loader from "../../../Components/Loader/Loader";
+import BookingContext from "../../../ContextApi/myBookingContext/BookingContext";
 
 const MyBooking = () => {
-  const [booking, setBooking] = useState([]);
+
   const [loading, setLoading] = useState(false);
   const [modifyDate, setModifyDate] = useState(false);
   const [modifyId, setModifyId] = useState("");
@@ -30,33 +31,10 @@ const MyBooking = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndtDate] = useState(null);
   const { user } = useContext(UserContext)
+  const {  booking } = useContext(BookingContext);
+  console.log('booking b', booking)
 
-  useEffect(() => {
-    if (user?.uid) {
-      bookingDataFatch();
-    }
-  }, [user]);
-
-  const bookingDataFatch = async () => {
-    try {
-      setLoading(true);
-      const res = await axios.get(
-        `http://localhost:5000/
-
-booking-car?uid=${user.uid}&email=${user.email}`,
-        {
-          headers: {
-            Authorization: `Bearer ${user.accessToken}`,
-          },
-        }
-      );
-      setBooking(res.data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  
   const chartBookingData = booking.map((car) => ({
     name: car.carModel,
     price: Number(car.totalPrice) || 0,

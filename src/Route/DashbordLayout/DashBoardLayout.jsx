@@ -4,6 +4,16 @@ import { Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 import UseAuth from '../../Hook/useAuth/useAuth';
+import {
+    LayoutDashboard,
+    Users,
+    CalendarClock,
+    Car,
+    CarFront,
+    ClipboardList,
+    Home
+} from "lucide-react";
+
 
 const DashBoardLayout = () => {
     const { user } = UseAuth()
@@ -72,8 +82,9 @@ const SidebarContent = ({ user, isAdmin, onClose }) => {
                         <Link
                             to="/dashboard"
                             onClick={onClose}
-                            className="block py-2 px-4 hover:bg-gray-200 rounded"
+                            className="flex items-center gap-2 py-2 px-4 hover:bg-gray-200 rounded"
                         >
+                            <LayoutDashboard size={18} />
                             Dashboard Home
                         </Link>
                     </li>
@@ -84,8 +95,9 @@ const SidebarContent = ({ user, isAdmin, onClose }) => {
                                 <Link
                                     to="/dashboard/manage-users"
                                     onClick={onClose}
-                                    className="block py-2 px-4 hover:bg-gray-200 rounded"
+                                    className="flex items-center gap-2 py-2 px-4 hover:bg-gray-200 rounded"
                                 >
+                                    <Users size={18} />
                                     Manage Users
                                 </Link>
                             </li>
@@ -93,59 +105,64 @@ const SidebarContent = ({ user, isAdmin, onClose }) => {
                                 <Link
                                     to="/dashboard/manage-booking"
                                     onClick={onClose}
-                                    className="block py-2 px-4 hover:bg-gray-200 rounded"
+                                    className="flex items-center gap-2 py-2 px-4 hover:bg-gray-200 rounded"
                                 >
+                                    <CalendarClock size={18} />
                                     Manage Booking Car
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to="/dashboard/my-cars"
+                                    onClick={onClose}
+                                    className="flex items-center gap-2 py-2 px-4 hover:bg-gray-200 rounded"
+                                >
+                                    <CarFront size={18} />
+                                    Manage All Cars
                                 </Link>
                             </li>
                             <li>
                                 <Link
                                     to="/dashboard/add-car"
                                     onClick={onClose}
-                                    className="block py-2 px-4 hover:bg-gray-200 rounded"
+                                    className="flex items-center gap-2 py-2 px-4 hover:bg-gray-200 rounded"
                                 >
+                                    <Car size={18} />
                                     Add Car
                                 </Link>
                             </li>
                         </>
                     )}
 
-                    {
-                        !isAdmin && (
-                            <>
-                                <li>
-                                    <Link
-                                        to="/dashboard/my-cars"
-                                        onClick={onClose}
-                                        className="block py-2 px-4 hover:bg-gray-200 rounded"
-                                    >
-                                        My Cars
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        to="/dashboard/my-booking-cars"
-                                        onClick={onClose}
-                                        className="block py-2 px-4 hover:bg-gray-200 rounded"
-                                    >
-                                        My Booking Cars
-                                    </Link>
-                                </li>
-                            </>
+                    {!isAdmin && (
+                        <>
 
-                        )
-                    }
+                            <li>
+                                <Link
+                                    to="/dashboard/my-booking-cars"
+                                    onClick={onClose}
+                                    className="flex items-center gap-2 py-2 px-4 hover:bg-gray-200 rounded"
+                                >
+                                    <ClipboardList size={18} />
+                                    My Booking Cars
+                                </Link>
+                            </li>
+                        </>
+                    )}
+
                     <li>
                         <Link
                             to="/"
                             onClick={onClose}
-                            className="block py-2 px-4 hover:bg-gray-200 rounded"
+                            className="flex items-center gap-2 py-2 px-4 hover:bg-gray-200 rounded"
                         >
+                            <Home size={18} />
                             Back to Home
                         </Link>
                     </li>
                 </ul>
             </nav>
+
         </>
     );
 };

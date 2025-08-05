@@ -23,6 +23,7 @@ import MyCarsTable from "./Page/DashbordPage/MyCars/MyCars.jsx";
 import DashboardHomePage from "./Page/DashbordPage/DashbordHomePage/DashboardHomePage.jsx";
 import ManageBookingCar from "./Page/DashbordPage/DashbordHomePage/ManageBookingCar/ManageBookingCar.jsx";
 import MyBooking from './Page/DashbordPage/MyBooking/MyBooking.jsx'
+import BookingProvider from "./ContextApi/myBookingContext/BookingProvider.jsx";
 
 const router = createBrowserRouter([
   {
@@ -100,9 +101,11 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <UserProvider>
+      <BookingProvider>
       <Suspense fallback={<Loading />}>
         <RouterProvider router={router}></RouterProvider>
       </Suspense>
+      </BookingProvider>
     </UserProvider>
 
   </StrictMode>

@@ -147,7 +147,7 @@ const Navbar = () => {
             <div className="w-10 rounded-full cursor-pointer">
               <img
                 alt="Profile img"
-                src={user?.photoURL} />
+                src={user?.photoURL || 'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp'} />
             </div>
           </div>
           <ul

@@ -1,0 +1,50 @@
+import React, { useEffect } from 'react'
+import BookingContext from './BookingContext'
+import UseAuth from '../../Hook/useAuth/useAuth';
+import axios from 'axios';
+
+const BookingProvider = ({ children }) => {
+    const [booking, setBookingData] = React.useState([]);
+    const [loading, setLoading] = React.useState(true);
+    const [error, setError] = React.useState(null);
+
+    const { user } = UseAuth()
+
+   const bookingDataFatch = async () => {
+    try {
+        setLoading(true);
+        const res = await axios.get(
+            `http://localhost:5000/booking-car?uid=${user.uid}&email=${user.email}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${user.accessToken}`,
+                },
+            }
+        );
+        setBookingData(res.data);
+    } catch (err) {
+        setError(err.message);
+    } finally {
+        setLoading(false);
+    }
+};
+
+    useEffect(() => {
+    if (user) {
+        bookingDataFatch();
+    }
+}, [user]);
+
+const pendingBooking = booking.filter((item) => item.bookingStatus === "pending");
+const confirmedBooking = booking.filter((item) => item.bookingStatus === "confirmed");
+const cancelledBooking = booking.filter((item) => item.bookingStatus === "canceled");
+  
+    return (
+        <BookingContext.Provider value={{ bookingDataFatch, booking, setBookingData, loading, error ,pendingBooking,confirmedBooking,cancelledBooking}}>
+            {children}
+        </BookingContext.Provider>
+
+    )
+}
+
+export default BookingProvider

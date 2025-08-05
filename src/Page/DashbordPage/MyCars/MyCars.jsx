@@ -18,6 +18,7 @@ import { FaEdit } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import UserContext from "../../../ContextApi/UserContext/UserContext";
 import Loader from "../../../Components/Loader/Loader";
+import { formatDate } from "../../../Hook/DateFormate";
 
 const MyCars = () => {
   const [carData, setCarData] = useState([]);
@@ -26,25 +27,33 @@ const MyCars = () => {
   const { user } = useContext(UserContext);
   const [selectedCar, setSelectedCar] = useState(null);
   const [sortOrder, setSortOrder] = useState("Default");
+  const [count, setCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [perPage, setPerPage] = useState(6);
+  const pageNumber = Math.ceil(count / perPage) || 0
+  const pageArray = [...Array(pageNumber).keys()];
 
 
   useEffect(() => {
     fetchData();
-  }, [sortOrder]);
+  }, [sortOrder,currentPage, perPage, user]);
   const fetchData = async () => {
     try {
       setLoading(true);
       const res = await axios.get(
-        `http://localhost:5000/my-cars?uid=${user.uid}&sort=${sortOrder}&email=${user.email}`,
+        `http://localhost:5000/my-cars?uid=${user.uid}&sort=${sortOrder}&email=${user.email}&limit=${perPage}&page=${currentPage + 1
+          }`,
         {
           headers: {
             Authorization: `Bearer ${user.accessToken}`,
           },
         }
       );
+
       const data = res.data;
-   
-      setCarData(data);
+      console.log(data.cars);
+      setCarData(data.cars || []);
+      setCount(data.totalCars || 0);
     } catch (err) {
       setError(err);
     } finally {
@@ -189,7 +198,7 @@ my-cars/${id}`);
                   <th className="p-3">Price</th>
                   <th className="p-3">Booking</th>
                   <th className="p-3">Availability</th>
-                  <th className="p-3">Date Added</th>
+                  <th className="p-3">Added Date </th>
                   <th className="p-3">Actions</th>
                 </tr>
               </thead>
@@ -209,9 +218,9 @@ my-cars/${id}`);
                     <td className="p-2">{car.carModel}</td>
                     <td className="p-2">{car.dailyRentalPrice}</td>
                     <td className="p-2">{car.bookingCount}</td>
-                    <td className="p-2 ">{car.availability}</td>
+                    <td className="p-2 ">{car.availability === true ? 'available':"not available"}</td>
                     <td className="p-2">
-                      {new Date(car.createdAt).toLocaleDateString()}
+                      {new Date(car.updatedAt || car.createdAt).toLocaleDateString()}
                     </td>
                     <td className="p-2 flex items-center justify-center gap-4  ">
                       <button onClick={() => setSelectedCar(car)} className=" ">
@@ -317,6 +326,37 @@ my-cars/${id}`);
           </div>
         </div>
       )}
+
+          <div className="flex justify-center items-center mt-10">
+          <button
+            className="btn mx-4"
+            disabled={currentPage === 0}
+            onClick={() => setCurrentPage((prev) => prev - 1)}
+          >
+            Prev
+          </button>
+          <ul className="flex gap-4">
+            {pageArray?.map((page) => {
+              return (
+                <li
+                  key={page}
+                  className={`btn bg-gray-200 ${currentPage === page ? "bg-primary text-white" : ""
+                    }`}
+                  onClick={() => setCurrentPage(page)}
+                >
+                  {page + 1}
+                </li>
+              );
+            })}
+            <button
+              className="btn mx-4"
+              disabled={pageArray?.length - 1 === currentPage ? true : false}
+              onClick={() => setCurrentPage((prev) => prev + 1)}
+            >
+              Next
+            </button>
+          </ul>
+        </div>
     </div>
   );
 };
