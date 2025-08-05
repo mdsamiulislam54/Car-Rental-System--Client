@@ -22,7 +22,7 @@ const AvailableCars = () => {
   const pageNumber = Math.ceil(count / perPage) || 0
   const pageArray = [...Array(pageNumber).keys()];
   const { state } = useLocation();
-  console.log('state',state)
+
 
   useEffect(() => {
     const fetchData = async () => {

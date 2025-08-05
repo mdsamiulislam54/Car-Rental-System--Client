@@ -41,7 +41,7 @@ const MyCars = () => {
     try {
       setLoading(true);
       const res = await axios.get(
-        `http://localhost:5000/my-cars?uid=${user.uid}&sort=${sortOrder}&email=${user.email}&limit=${perPage}&page=${currentPage + 1
+        `http://localhost:5000/my-cars?sort=${sortOrder}&email=${user.email}&limit=${perPage}&page=${currentPage + 1
           }`,
         {
           headers: {

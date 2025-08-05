@@ -24,6 +24,7 @@ import DashboardHomePage from "./Page/DashbordPage/DashbordHomePage/DashboardHom
 import ManageBookingCar from "./Page/DashbordPage/DashbordHomePage/ManageBookingCar/ManageBookingCar.jsx";
 import MyBooking from './Page/DashbordPage/MyBooking/MyBooking.jsx'
 import BookingProvider from "./ContextApi/myBookingContext/BookingProvider.jsx";
+import ManageUser from "./Page/DashbordPage/DashbordHomePage/ManageUser/ManageUser.jsx";
 
 const router = createBrowserRouter([
   {
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
        {
         path: '/dashboard/my-booking-cars',
         element: <PrivateRoute><MyBooking/></PrivateRoute>
+      },
+      {
+        path:'/dashboard/manage/user',
+        element:<ManageUser/>
       }
 
 

@@ -20,6 +20,7 @@ import {
   XCircle,
 } from "lucide-react";
 import BookingContext from "../../../ContextApi/myBookingContext/BookingContext";
+import { MdMoney } from "react-icons/md";
 
 const DashboardHomePage = () => {
           const [bookingData, setBookingData] = useState(null);
@@ -28,6 +29,7 @@ const DashboardHomePage = () => {
     const [totalUsers, setTotalUser] = useState(0);
     const [bookingCar, setBookingCar] = useState([]);
     const [pending, setBookingPending] = useState([]);
+    const [totalPaid, setTotalledPaid] = useState([])
     const {booking,pendingBooking,confirmedBooking,cancelledBooking} = useContext(BookingContext)
 
     useEffect(() => {
@@ -38,7 +40,8 @@ const DashboardHomePage = () => {
                 totalBookinCar(),
                 totalBookinCarPending(),
             ]);
-            setTotalCar(car);
+            setTotalCar(car.total);
+            setTotalledPaid(car.paid)
             setTotalUser(users);
             setBookingCar(bookings);
             setBookingPending(pendings);
@@ -47,10 +50,7 @@ const DashboardHomePage = () => {
     }, []);
 
 
-  const handleBookingInfo = (dataFromChild) => {
-    setBookingData(dataFromChild);
-    console.log("Child থেকে আসা ডেটা:", dataFromChild);
-  };
+
 
     return (
         <div className="p-6">
@@ -59,6 +59,15 @@ const DashboardHomePage = () => {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {user?.role === "admin" && (
+                    <div className="stat bg-white shadow-md rounded-lg p-4 ">
+                        <div className="stat-figure text-primary">
+                            <MdMoney size={32} />
+                        </div>
+                        <div className="stat-title">Total Revenue</div>
+                        <div className="stat-value text-primary">৳{totalPaid}</div>
+                    </div>
+                )}
                 {/* Total Cars */}
                 {user?.role === "admin" && (
                     <div className="stat bg-white shadow-md rounded-lg p-4 ">

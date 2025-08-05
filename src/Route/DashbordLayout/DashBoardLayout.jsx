@@ -93,7 +93,7 @@ const SidebarContent = ({ user, isAdmin, onClose }) => {
                         <>
                             <li>
                                 <Link
-                                    to="/dashboard/manage-users"
+                                    to="/dashboard/manage/user"
                                     onClick={onClose}
                                     className="flex items-center gap-2 py-2 px-4 hover:bg-gray-200 rounded"
                                 >
