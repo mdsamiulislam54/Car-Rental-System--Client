@@ -5,7 +5,7 @@ import Button from "../../Components/Button/Button";
 
 const SpecialOffer = () => {
   return (
-    <section className="bg-gray-100 py-5">
+    <section className="bg-gray-100 ">
       <div className="w-11/12 mx-auto flex flex-col-reverse md:flex-row items-center gap-12 px-6 md:px-0">
         {/* Left Content */}
         <motion.div

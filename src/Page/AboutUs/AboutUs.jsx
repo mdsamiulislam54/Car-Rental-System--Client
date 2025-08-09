@@ -7,8 +7,11 @@ import Button from "../../Components/Button/Button";
 
 const AboutUs = () => {
   return (
-    <div className="py-16 bg-gray-50">
-      <div className="w-11/12  mx-auto px-4 font-rubik">
+    <div className="py-16 bg-gray-50 relative">
+     
+      <div className="w-11/12  mx-auto px-4 font-rubik relative z-100">
+
+      
         {/* About Section Header */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -19,7 +22,7 @@ const AboutUs = () => {
           <h2 className="text-3xl font-extrabold text-gray-800 mb-4 font-rubik">
             About Us
           </h2>
-          <p className="text-sm font-rubik text-gray-600 max-w-3xl mx-auto">
+          <p className="text-sm font-rubik text-gray-700 max-w-3xl mx-auto">
             We are a team of passionate professionals who are dedicated to providing
             the best customer experience with our luxury car rentals. Explore the city
             in style with our well-maintained fleet.
