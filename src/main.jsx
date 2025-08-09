@@ -26,6 +26,7 @@ import MyBooking from './Page/DashbordPage/MyBooking/MyBooking.jsx'
 import BookingProvider from "./ContextApi/myBookingContext/BookingProvider.jsx";
 import ManageUser from "./Page/DashbordPage/DashbordHomePage/ManageUser/ManageUser.jsx";
 import AboutUs from "./Page/AboutUs/AboutUs.jsx";
+import COntactUs from "./Page/ContactUs/ContactUs.jsx";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
      {
       path:"/about-us",
       Component:AboutUs
+     },
+     {
+      path:"/contact-us",
+      Component:COntactUs
      }
     ],
   },

@@ -69,6 +69,13 @@ const Navbar = () => {
     >
       Blog
     </Link>
+    <Link
+      to="/contact-us"
+      className={`text-[15px] leading-[24px] text-text font-medium  font-rubik    relative ${pathname === "/contact-us" ? "active" : ""
+        }`}
+    >
+      Contact Us
+    </Link>
   </>
 
   return (
