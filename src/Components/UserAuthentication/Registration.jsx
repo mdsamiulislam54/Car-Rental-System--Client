@@ -33,7 +33,7 @@ const Registration = () => {
       }).then(async () => {
 
         // ✅ Backend user insert
-        await axios.post(`http://localhost:5000/user?email=${email}`, {
+        await axios.post(` http://localhost:5000/user?email=${email}`, {
           userName: name,
           userEmail: email,
         });
@@ -66,7 +66,7 @@ const Registration = () => {
 
       // optional: JWT token set with credentials
       await axios.post(
-        `http://localhost:5000/jwt?email=${currentUser.email}`,
+        ` http://localhost:5000/jwt?email=${currentUser.email}`,
         {},
         { withCredentials: true }
       );

@@ -14,7 +14,7 @@ const BookingProvider = ({ children }) => {
     try {
         setLoading(true);
         const res = await axios.get(
-            `http://localhost:5000/booking-car?uid=${user.uid}&email=${user.email}`,
+            ` http://localhost:5000/booking-car?uid=${user.uid}&email=${user.email}`,
             {
                 headers: {
                     Authorization: `Bearer ${user.accessToken}`,

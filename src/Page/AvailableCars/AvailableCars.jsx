@@ -8,7 +8,8 @@ import AvailableCarsCard from "./AvailableCarsCard";
 import Loader from "../../Components/Loader/Loader";
 import { FaSearch } from "react-icons/fa";
 import Button from "../../Components/Button/Button";
-
+import { FaHome as HomeIcon, FaCar as CarIcon } from 'react-icons/fa';
+import { HiChevronRight as ChevronRightIcon } from 'react-icons/hi';
 const AvailableCars = () => {
   const [lineView, setLineView] = useState(false);
   const [carData, setCarData] = useState([]);
@@ -29,12 +30,12 @@ const AvailableCars = () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `http://localhost:5000/available-cars?search=${search}&sort=${sortOrder}&limit=${perPage}&page=${currentPage + 1
+          ` http://localhost:5000/available-cars?search=${search}&sort=${sortOrder}&limit=${perPage}&page=${currentPage + 1
           }&carModel=${state?.carModel || ''}&location=${state?.location || ""}`
         );
 
         const data = res.data;
-       
+
         setCarData(data.cars);
         setCount(data.count);
         console.log(data.count)
@@ -64,16 +65,28 @@ const AvailableCars = () => {
   return (
     <div className="min-h-screen  text-text font-rubik pb-5">
       <div
-        className="h-[600px] bg-cover bg-no-repeat relative mb-4 rounded-md"
-        style={{ backgroundImage: `url(${'https://img.freepik.com/free-photo/full-shot-family-traveling-together_23-2149272092.jpg?t=st=1754152847~exp=1754156447~hmac=3df34ac7e7e7b815b3e00ce79759d8da4a2ba2673c82651fef24f8d2540e8cf0&w=1380'})` }}
+        className="h-[50vh] bg-center bg-no-repeat relative mb-4 rounded-md"
+        style={{ backgroundImage: `url(${'https://img.freepik.com/free-photo/route-discussion-rainy-drive-driver-girl_169016-67932.jpg?t=st=1754718950~exp=1754722550~hmac=e83c22a9c9461787642de3586636702c7cea1285324bd7f8dcefb527da06fadd&w=1480'})` }}
       >
         <div className="absolute inset-0 bg-black/60">
-          <div className="flex justify-center items-center h-full text-white flex-col">
-            <p className="text-3xl font-bold mb-4 font-rubik">Available Cars</p>
-            <div className="flex gap-4">
-              <Link to={'/'} className="text-md font-medium hover:underline">Home</Link>
-              <span>{">"}</span>
-              <Link className="text-gray-300 font-bold font-rubik">Available Cars</Link>
+          <div className="flex justify-center items-center h-full text-white flex-col space-y-4">
+            <div className="flex items-center">
+              <CarIcon className="w-8 h-8 mr-3 " /> {/* Replace with your actual car icon component */}
+              <p className="text-3xl font-bold font-rubik ">
+                Available Cars
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2 text-sm">
+              <Link to={'/'} className="flex items-center hover:text-red-300 transition-colors">
+                <HomeIcon className="w-4 h-4 mr-1" /> {/* Replace with your home icon */}
+                Home
+              </Link>
+              <ChevronRightIcon className="w-4 h-4 text-gray-400" /> {/* Right arrow icon */}
+              <span className="flex items-center text-gray-300 font-semibold">
+                <CarIcon className="w-4 h-4 mr-1 text-gray-400" /> {/* Small car icon */}
+                Available Cars
+              </span>
             </div>
           </div>
         </div>
@@ -148,14 +161,14 @@ const AvailableCars = () => {
           <div className="min-h-screen flex justify-center items-center flex-col gap-4">
             <p className="text-3xl text-center font-rubik font-bold">Car Not Found</p>
             <Link>
-              <Button text={'Try Now'}/>
+              <Button text={'Try Now'} />
             </Link>
           </div>
         ) : (
           <div
             className={`${lineView
-                ? ""
-                : "grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 "
+              ? ""
+              : "grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 "
               }`}
           >
             {carData?.map((car) => (

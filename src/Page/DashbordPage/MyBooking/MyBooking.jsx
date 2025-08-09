@@ -52,7 +52,7 @@ const MyBooking = () => {
       if (result.isConfirmed) {
         try {
           const res = await axios.delete(
-            `http://localhost:5000/cancel-booking/${id}`
+            ` http://localhost:5000/cancel-booking/${id}`
           );
           const data = res.data;
 
@@ -91,7 +91,7 @@ const MyBooking = () => {
     }
     try {
       const res = await axios.patch(
-        `http://localhost:5000/
+        ` http://localhost:5000/
 
 update-booking/${modifyId}`,
         {

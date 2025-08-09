@@ -38,7 +38,7 @@ useEffect(() => {
   const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
     if (currentUser) {
       try {
-        const res = await axios.get(`http://localhost:5000/user?email=${currentUser?.email}`);
+        const res = await axios.get(` http://localhost:5000/user?email=${currentUser?.email}`);
         
 
         
