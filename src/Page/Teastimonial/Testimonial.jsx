@@ -52,7 +52,7 @@ const Testimonial = () => {
 
   return (
     <div className="py-10">
-      <div className="w-11/12 mx-auto py-10">
+      <div className="w-11/12 mx-auto ">
         {/* heading */}
         <h2 className="text-3xl font-bold text-center mb-10 text-text font-rubik">
           Customers Say
@@ -75,7 +75,7 @@ const Testimonial = () => {
         >
           {testimonials.map((testimonial, index) => (
             <SwiperSlide key={index}>
-              <div className="p-4  bg-gray-50 rounded-xl shadow-md mb-10  flex flex-col items-center text-center h-[300px] hover:shadow-lg transition-all duration-300">
+              <div className="p-4  bg-white rounded-xl shadow-md mb-10  flex flex-col items-center text-center h-[270px] hover:shadow-lg transition-all duration-300 font-rubik">
                 <img
                   src={testimonial.image}
                   alt={testimonial.name}

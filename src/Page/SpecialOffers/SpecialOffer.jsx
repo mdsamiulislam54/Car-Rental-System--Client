@@ -1,53 +1,48 @@
 import { motion } from "framer-motion";
-import { FaCarAlt } from "react-icons/fa";
+import { FaCarAlt, FaMapMarkerAlt, FaShieldAlt } from "react-icons/fa";
 import { Link } from "react-router";
 import Button from "../../Components/Button/Button";
 
 const SpecialOffer = () => {
   return (
-    <section className="bg-gray-50 py-16">
-      <div className="w-11/12 mx-auto flex flex-col-reverse md:flex-row items-center justify-between gap-10 px-5">
+    <section className="bg-gray-100 py-5">
+      <div className="w-11/12 mx-auto flex flex-col-reverse md:flex-row items-center gap-12 px-6 md:px-0">
         {/* Left Content */}
         <motion.div
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="md:w-1/2 text-center md:text-left space-y-5"
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="md:w-1/2 space-y-6"
         >
-          <h2 className=" md:text-2xl font-rubik font-bold text-gray-800 leading-tight">
-            <span className="">Drive Luxury</span> at Just{" "}
+          <h3 className="text-primary font-semibold text-lg uppercase tracking-wider">
+            Special Offer
+          </h3>
+          <h2 className="text-4xl font-bold font-rubik text-gray-900 leading-tight">
+           Unlock <span className="text-text">Premium Luxury</span> for Just{" "}
             <span className="text-primary">৳2000/day</span>
           </h2>
-          <p className="text-gray-600 text-sm font-rubik">
-            Explore the city in style with our premium cars. Book today and get
-            an exclusive discount this holiday season!
-          </p>
-          <div className="flex items-center justify-center md:justify-start gap-4 mt-4">
-            <FaCarAlt className="text-3xl text-primary" />
-            <p className="text-gray-800 font-medium font-rubik ">
-              Unlimited kilometers and full insurance
-            </p>
-          </div>
-          <Link
-            to="/available-cars"
-            className="max-lg:flex justify-center"
-          >
-           <Button text={' Book Nowd'}/>
+          
+          
+          <Link to="/available-cars">
+            <Button text="Book Now" />
           </Link>
         </motion.div>
 
-        {/* Right Image */}
+        {/* Right Image & Avatar */}
         <motion.div
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="md:w-1/2"
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="md:w-1/2 relative"
         >
+          {/* Car Image */}
           <img
-            src="https://img.freepik.com/free-photo/family-with-little-son-autumn-park-sitting-car_1303-11743.jpg?t=st=1754155361~exp=1754158961~hmac=b2c8d97e5d12544d654ae56712d18cb620dd1c136abd0337d246d62a6fc17ce9&w=1380"
-            alt="Special Offer Car"
-            className="rounded-2xl shadow-lg w-full object-cover h-[400px]"
+            src="https://acko-cms.ackoassets.com/Safest_Luxury_Cars_In_India_34ce7d2db0.png"
+            alt="Luxury Car"
+            className=" object-contain w-full h-[420px]"
           />
+
+       
         </motion.div>
       </div>
     </section>

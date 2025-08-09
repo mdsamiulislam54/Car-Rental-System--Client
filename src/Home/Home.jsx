@@ -8,6 +8,9 @@ import Faq from "../Page/Faq/Faq";
 import Testimonial from "../Page/Teastimonial/Testimonial";
 import HowToWork from '../Page/HowToWork/HowToWork'
 import AboutUs from "../Page/AboutUs/AboutUs";
+import AppInstall from "../Page/AppInstall/AppInstall";
+
+
 
 
 const Home = () => {
@@ -32,12 +35,16 @@ const Home = () => {
     <section>
       <SpecialOffer/>
     </section>
+     <section>
+      <AppInstall/>
+    </section>
     <section>
       <Faq/>
     </section>
     <section>
      <Testimonial/>
     </section>
+   
    
     </div>
   );
