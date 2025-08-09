@@ -175,7 +175,7 @@ const AvailableCars = () => {
             </div>
           ) : (
             loading ? (<Loader />) : (
-              <div className={lineView ? "space-y-4" : "grid lg:grid-cols-2 xl:grid-cols-3 gap-6 min-h-screen"}>
+              <div className={lineView ? "space-y-4" : "grid md:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-4 gap-6 min-h-screen"}>
                 {carData?.map((car) => (
                   <AvailableCarsCard
                     key={car._id}

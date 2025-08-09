@@ -171,7 +171,7 @@ const Navbar = () => {
 
             {
               user ? (
-                <Button text={'Logout'} onClick={handleLogOut} />
+                <Button text={'Logout'} onClick={handleLogOut} icon={TbLogout} />
                
               ) : (
                  <Link to={'/login'}><Button text={'Login'} icon={TbLogout} /></Link>

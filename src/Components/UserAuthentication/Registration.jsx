@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import axios from "axios";
+import LoginAvatar from '../../assets/login-avater.png'
 
 const Registration = () => {
   const { createUser, user, googleLogin } = useContext(UserContext);
@@ -94,7 +95,7 @@ const Registration = () => {
         initial={{ opacity: 0, y: 80 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="bg-white rounded-md shadow-lg p-6 w-full max-w-5xl relative"
+        className="bg-white rounded-md shadow-lg p-6 w-8/12 relative"
       >
         <Link
           to={"/"}
@@ -107,7 +108,7 @@ const Registration = () => {
           {/* Image section */}
           <div className="hidden md:block">
             <img
-              src="https://img.freepik.com/free-photo/people-looking-road-map-near-red-car_23-2148039040.jpg?w=1380"
+              src={LoginAvatar}
               alt="login visual"
               className="rounded-lg w-full h-auto"
             />
@@ -120,42 +121,46 @@ const Registration = () => {
 
             <form className="space-y-5" onSubmit={handleReg}>
               <div>
-                <label className="block mb-1 font-medium">Name</label>
+               
                 <input
                   type="text"
                   name="name"
+                  placeholder="Enter Your Name..."
                   required
                   className="input w-full"
                 />
               </div>
               <div>
-                <label className="block mb-1 font-medium">Photo URL</label>
+                
                 <input
                   type="text"
                   name="photo"
                   required
+                   placeholder="Enter Your Photo Url..."
                   className="w-full input"
                 />
               </div>
               <div>
-                <label className="block mb-1 font-medium">Email</label>
+              
                 <input
                   type="email"
                   name="email"
                   required
+                   placeholder="Enter Your Email..."
                   className="w-full input"
                 />
               </div>
 
               <div className="relative">
-                <label className="block mb-1 font-medium">Password</label>
+              
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
                   required
+                   placeholder="Enter Your Password..."
                   className="w-full input"
                 />
-                <span className="absolute right-3 top-12 transform -translate-y-1/2">
+                <span className="absolute right-3 top-5 transform -translate-y-1/2">
                   {showPassword ? (
                     <FaRegEye
                       className="cursor-pointer"

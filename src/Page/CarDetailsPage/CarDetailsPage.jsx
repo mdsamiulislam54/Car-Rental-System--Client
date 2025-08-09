@@ -44,14 +44,14 @@ const CarDetailsPage = () => {
   };
 
   const handleBookNow = async (totalPrice) => {
-    if (user.role === "admin") {
-      return Swal.fire({
-        title: "Access Denied!",
-        text: "Admin is not allowed to perform this action.",
-        icon: "warning",
-        confirmButtonText: "Okay",
-      });
-    }
+    // if (user.role === "admin") {
+    //   return Swal.fire({
+    //     title: "Access Denied!",
+    //     text: "Admin is not allowed to perform this action.",
+    //     icon: "warning",
+    //     confirmButtonText: "Okay",
+    //   });
+    // }
     if (!startDate || !endDate) {
       setError("Please select both start and end date");
       return;
@@ -172,21 +172,11 @@ const CarDetailsPage = () => {
 
       {/* Booking Modal */}
       {bookigModal && (
-        <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-40 z-50">
+        <div className="fixed inset-0 flex justify-center items-center bg-black/40 z-50">
           <div className="bg-white w-full max-w-md rounded-lg shadow-lg p-6">
             <h2 className="text-xl font-bold mb-4">Booking Confirmation</h2>
-            <p className="mb-2">
-              You are booking: <strong>{car.carModel}</strong>
-            </p>
-            <p className="mb-2">Price Per Day: <strong>৳ {car.dailyRentalPrice}</strong></p>
-            <p className="mb-2">Price Per Hourly: <strong>৳ {car.hourlyRentalPrice}</strong></p>
-
-            <p className="mb-2">
-              Availability:{" "}
-              <strong className="bg-accent/30 px-2 py-1 rounded">
-                {car.availability ? "Available" : "Not Available"}
-              </strong>
-            </p>
+          
+          
 
             <label className="block mb-1">Booking Type:</label>
             <select
@@ -198,7 +188,8 @@ const CarDetailsPage = () => {
               <option value="hour">Per Hour</option>
             </select>
 
-            <label className="block mb-1">Start Date & Time:</label>
+      
+                 <label className="block mb-1">Start Date & Time:</label>
             <input
               type="datetime-local"
               className="w-full border p-2 rounded mb-2"
@@ -211,6 +202,7 @@ const CarDetailsPage = () => {
               className="w-full border p-2 rounded mb-4"
               onChange={(e) => setEndtDate(e.target.value)}
             />
+     
 
 
             {error && <p className="text-red-500 text-sm">{error}</p>}
