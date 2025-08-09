@@ -53,9 +53,7 @@ const AvailableCars = () => {
     const searchText = e.target.search.value;
     setSearch(searchText);
   };
-  if (loading) {
-    return <Loader />;
-  }
+
 
   if (error) {
     return <div style={{ color: "red" }}>{error}</div>;
@@ -63,12 +61,12 @@ const AvailableCars = () => {
 
 
   return (
-    <div className="min-h-screen  text-text font-rubik pb-5">
+    <div className="min-h-screen  text-text font-rubik pb-5 bg-gray-50">
       <div
         className="h-[50vh] bg-center bg-no-repeat relative mb-4 rounded-md"
-        style={{ backgroundImage: `url(${'https://img.freepik.com/free-photo/route-discussion-rainy-drive-driver-girl_169016-67932.jpg?t=st=1754718950~exp=1754722550~hmac=e83c22a9c9461787642de3586636702c7cea1285324bd7f8dcefb527da06fadd&w=1480'})` }}
+        style={{ backgroundImage: `url(${'https://img.freepik.com/free-vector/modern-cars-automobiles-vehicles-set_107791-9139.jpg?t=st=1754721674~exp=1754725274~hmac=e70d18981345a8c1fc937c661eaa254a998c85e3f382d02c72ca08ce1ea1b49a&w=1480'})` }}
       >
-        <div className="absolute inset-0 bg-black/60">
+        <div className="absolute inset-0 bg-black/40">
           <div className="flex justify-center items-center h-full text-white flex-col space-y-4">
             <div className="flex items-center">
               <CarIcon className="w-8 h-8 mr-3 " /> {/* Replace with your actual car icon component */}
@@ -91,125 +89,158 @@ const AvailableCars = () => {
           </div>
         </div>
       </div>
-      <div className="w-11/12 mx-auto">
-        <nav className="md:flex justify-between items-center py-4 shadow px-2">
-          <div className="w-full">
-
-
-            <form onSubmit={handleSearch} className="relative w-full max-w-md mb-4">
+      <div className="w-11/12 mx-auto flex flex-col md:flex-row gap-6">
+        {/* Left Side - Filters */}
+        <div className="w-full md:w-1/4 lg:w-1/5 space-y-6">
+          {/* Search Box */}
+          <div className="bg-white p-4 rounded-lg shadow">
+            <h3 className="font-rubik font-bold text-lg mb-4 text-gray-800">Search Cars</h3>
+            <form onSubmit={handleSearch} className="relative">
               <input
                 type="text"
                 name="search"
-
-                placeholder="Search car model, brand, or location..."
-                className="w-full border-2 border-gray-200 rounded-md py-2 pl-4 pr-12 focus:outline-none text-gray-700"
+                placeholder="Model, brand, location..."
+                className="w-full border border-gray-300 rounded-md py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-700"
               />
               <button
                 type="submit"
-
-                className="absolute top-1/2 -translate-y-1/2 right-2 bg-primary text-white p-2 rounded-md hover:bg-primary/90 transition"
+                className="absolute top-1/2 -translate-y-1/2 right-2 text-gray-500 hover:text-red-500"
               >
                 <FaSearch />
               </button>
             </form>
-
           </div>
-          <div className="lg:flex items-center justify-between gap-2 flex-1/2">
-            <div>
-              <select
-                value={sortOrder}
-                onChange={(e) => setSortOrder(e.target.value)}
-                className="w-full lg:w-64 mb-4 lg:mb-0 px-4 py-2 border-2 border-gray-200 text-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:border-transparent transition duration-200 font-rubik font-bold"
-              >
-                <option value="default" className="text-gray-500">Default</option>
-                <option value="asc">⬆️ Lowest Price First</option>
-                <option value="desc">⬇️ Highest Price First</option>
-              </select>
 
-            </div>
-            <div className="flex justify-between items-center gap-4">
+          {/* Filters */}
+          <div className="bg-white p-4 rounded-lg shadow">
+            <h3 className="font-rubik font-bold text-lg mb-4 text-gray-800">Filters</h3>
+
+            <div className="space-y-4">
               <div>
-                <button
-                  onClick={() => setSearch("")}
-                  className="bg-gray-200 p-1.5 px-2 text-text font-rubik font-bold rounded-md cursor-pointer"
+                <label className="block text-sm font-medium text-gray-700 mb-1">Sort By</label>
+                <select
+                  value={sortOrder}
+                  onChange={(e) => setSortOrder(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500"
                 >
-                  All
-                </button>
+                  <option value="default">Default</option>
+                  <option value="asc">Lowest Price First</option>
+                  <option value="desc">Highest Price First</option>
+                </select>
               </div>
+
               <div>
-                {lineView ? (
-                  <button
-                    onClick={() => setLineView(!lineView)}
-                    className="p-2 bg-gray-200 text-xl text-text rounded-md hover:text-secondary transition-all duration-300 cursor-pointer"
-                  >
-                    <IoGrid />
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => setLineView(!lineView)}
-                    className="p-2 bg-gray-200 text-xl text-text rounded-md hover:text-secondary transition-all duration-300 cursor-pointer"
-                  >
-                    <LuSquareMenu />
-                  </button>
-                )}
+                <label className="block text-sm font-medium text-gray-700 mb-1">Price Range</label>
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="number"
+                    placeholder="Min"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  />
+                  <span>-</span>
+                  <input
+                    type="number"
+                    placeholder="Max"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  />
+                </div>
               </div>
+
+             
+              <Button  text={"Reset Filters"}  onClick={()=>setSearch('')}/>
             </div>
           </div>
-        </nav>
+        </div>
 
-        {carData?.length === 0 ? (
-          <div className="min-h-screen flex justify-center items-center flex-col gap-4">
-            <p className="text-3xl text-center font-rubik font-bold">Car Not Found</p>
-            <Link>
-              <Button text={'Try Now'} />
-            </Link>
-          </div>
-        ) : (
-          <div
-            className={`${lineView
-              ? ""
-              : "grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 "
-              }`}
-          >
-            {carData?.map((car) => (
-              <AvailableCarsCard
-                key={car._id}
-                car={car}
-                lineView={lineView}
-              ></AvailableCarsCard>
-            ))}
-          </div>
-        )}
-
-        <div className="flex justify-center items-center">
-          <button
-            className="btn mx-4"
-            disabled={currentPage === 0}
-            onClick={() => setCurrentPage((prev) => prev - 1)}
-          >
-            Prev
-          </button>
-          <ul className="flex gap-4">
-            {pageArray?.map((page) => {
-              return (
-                <li
-                  key={page}
-                  className={`btn bg-gray-200 ${currentPage === page ? "bg-primary text-white" : ""
-                    }`}
-                  onClick={() => setCurrentPage(page)}
-                >
-                  {page + 1}
-                </li>
-              );
-            })}
+        {/* Right Side - Car Listings */}
+        <div className="w-full md:w-3/4 lg:w-4/5">
+          {/* View Toggle and Results Count */}
+          <div className="flex justify-between items-center mb-6">
+            <p className="text-gray-600">{carData?.length} cars available</p>
             <button
-              className="btn mx-4"
-              disabled={pageArray?.length - 1 === currentPage ? true : false}
-              onClick={() => setCurrentPage((prev) => prev + 1)}
+              onClick={() => setLineView(!lineView)}
+              className="p-2 bg-gray-100 rounded-md hover:bg-gray-200 transition"
             >
-              Next
+              {lineView ? <IoGrid size={20} /> : <LuSquareMenu size={20} />}
             </button>
-          </ul>
+          </div>
+
+          {/* Car Listings */}
+          {carData?.length === 0 ? (
+            <div className="min-h-[50vh] flex justify-center items-center flex-col gap-4 bg-white rounded-lg shadow p-8">
+              <p className="text-2xl text-center font-rubik font-bold text-gray-700">No cars found</p>
+              <Link>
+                <Button text={'Try Again'}/>
+              </Link>
+            </div>
+          ) : (
+            loading ? (<Loader />) : (
+              <div className={lineView ? "space-y-4" : "grid lg:grid-cols-2 xl:grid-cols-3 gap-6 min-h-screen"}>
+                {carData?.map((car) => (
+                  <AvailableCarsCard
+                    key={car._id}
+                    car={car}
+                    lineView={lineView}
+                  />
+                ))}
+              </div>
+            )
+
+          )}
+
+          {/* Pagination */}
+          <div className="flex justify-center mt-8">
+            <nav className="flex items-center gap-1 sm:gap-2">
+              {/* Previous Button */}
+              <button
+                className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base"
+                disabled={currentPage === 0}
+                onClick={() => setCurrentPage((prev) => prev - 1)}
+              >
+                <span className="hidden sm:inline">Previous</span>
+                <span className="sm:hidden">←</span>
+              </button>
+
+              {/* Page Numbers */}
+              <div className="flex items-center gap-1">
+                {pageArray?.map((page) => {
+                  // Show only first, last, and nearby pages on mobile
+                  if (window.innerWidth < 640 &&
+                    page !== 0 &&
+                    page !== pageArray.length - 1 &&
+                    Math.abs(page - currentPage) > 1) {
+                    if (Math.abs(page - currentPage) === 2) {
+                      return <span key={page} className="px-2">...</span>;
+                    }
+                    return null;
+                  }
+
+                  return (
+                    <button
+                      key={page}
+                      className={`w-8 h-8 sm:w-10 sm:h-10 rounded-md text-sm sm:text-base ${currentPage === page
+                          ? "bg-primary text-white"
+                          : "border border-gray-300 hover:bg-gray-100"
+                        }`}
+                      onClick={() => setCurrentPage(page)}
+                    >
+                      {page + 1}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Next Button */}
+              <button
+                className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base"
+                disabled={pageArray?.length - 1 === currentPage}
+                onClick={() => setCurrentPage((prev) => prev + 1)}
+              >
+                <span className="hidden sm:inline">Next</span>
+                <span className="sm:hidden">→</span>
+              </button>
+            </nav>
+          </div>
         </div>
       </div>
     </div>

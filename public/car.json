@@ -1,0 +1,240 @@
+[
+    [
+  {
+    "carModel": "Hyundai Santa Fe 2021",
+    "brand": "Hyundai",
+    "category": "SUV",
+    "fuelType": "Petrol",
+    "transmission": "Automatic",
+    "seatingCapacity": 7,
+    "dailyRentalPrice": 7700,
+    "hourlyRentalPrice": 850,
+    "availability": true,
+    "registrationNumber": "SYL-556677",
+    "features": [
+      "10.25-inch Touchscreen with Navigation",
+      "Hyundai SmartSense Safety Package",
+      "Three-Zone Automatic Climate Control",
+      "Panoramic Sunroof",
+      "Wireless Phone Charger",
+      "360-Degree Around View Monitor",
+      "Ventilated Front Seats",
+      "Smart Power Tailgate",
+      "19-inch Alloy Wheels",
+      "LED Projector Headlights"
+    ],
+    "color": "White",
+    "year": 2021,
+    "mileage": "14 km/l",
+    "description": "The Hyundai Santa Fe 2021 redefines the midsize SUV segment with its sophisticated design and advanced technology. Built on Hyundai's latest platform, this 7-seater measures 4,780mm in length with a 2,765mm wheelbase, offering exceptional interior space. The 2.5L turbocharged GDi engine delivers 277 horsepower and 311 lb-ft of torque, paired with an 8-speed wet dual-clutch transmission for smooth power delivery. The HTRAC all-wheel-drive system automatically distributes torque between axles based on road conditions. Inside, the cabin features premium Nappa leather seats with 12-way power adjustment for the driver, a 12.3-inch digital instrument cluster, and a 10.25-inch touchscreen with over-the-air updates. The second row offers captain's chairs with one-touch sliding, while the third row accommodates adults comfortably. With 45.8 cubic feet of cargo space behind the second row (expandable to 130.3 cu.ft), the Santa Fe excels in practicality. Safety features include Forward Collision-Avoidance Assist with Pedestrian Detection, Lane Keeping Assist, Highway Drive Assist, and Remote Smart Parking Assist. The exterior showcases Hyundai's Parametric Jewel grille design, T-shaped LED daytime running lights, and muscular body lines. With its combination of premium materials, cutting-edge tech, and family-friendly versatility, the Santa Fe 2021 sets new standards in its class.",
+    "whyChoose": [
+      "5-year/unlimited km warranty for peace of mind",
+      "Most advanced safety features in class",
+      "Spacious third-row seating for adults",
+      "Premium interior with luxury car features",
+      "Excellent fuel efficiency for its size"
+    ],
+    "bookingCount": 0,
+    "imageUrl": "https://i.ibb.co/4W2yL3J/hyundai-santa-fe-2021.jpg",
+    "location": {
+      "city": "Sylhet",
+      "pickupPoints": [
+        "Ambarkhana",
+        "Subhanighat"
+      ]
+    },
+    "rating": 4.7,
+    "ownerId": "NmMhgTmZfpRZWHsaacFeWmpwffp1"
+  },
+  {
+    "carModel": "Hyundai Tucson Red",
+    "brand": "Hyundai",
+    "category": "SUV",
+    "fuelType": "Petrol",
+    "transmission": "Automatic",
+    "seatingCapacity": 5,
+    "dailyRentalPrice": 7000,
+    "hourlyRentalPrice": 800,
+    "availability": true,
+    "registrationNumber": "SYL-9090",
+    "features": [
+      "10.25-inch Touchscreen with Navigation",
+      "Hyundai SmartSense Safety Suite",
+      "Panoramic Sunroof",
+      "Bose Premium Audio System",
+      "Wireless Charging Pad",
+      "LED Headlights with DRLs",
+      "Heated and Ventilated Front Seats",
+      "Blind-Spot View Monitor",
+      "19-inch Alloy Wheels",
+      "Smart Power Tailgate"
+    ],
+    "color": "Red",
+    "year": 2021,
+    "mileage": "14 km/l",
+    "description": "The Hyundai Tucson 2021 in Radiant Red represents a bold evolution in compact SUV design. Built on Hyundai's innovative N3 platform, this 4,630mm long crossover features a striking Parametric Jewel grille and hidden LED daytime running lights that create a unique light signature. The 2.5L GDi four-cylinder engine produces 187 horsepower, paired with an 8-speed automatic transmission featuring Shift-by-Wire technology. The interior boasts a futuristic design with a 10.25-inch digital instrument cluster, 10.25-inch touchscreen navigation, and ambient lighting with 64 color options. The cabin offers best-in-class front headroom (1,020mm) and legroom (1,085mm), with premium soft-touch materials throughout. The Tucson's cargo area provides 1,096 liters of space with seats folded, featuring a smart power tailgate with hands-free opening. Advanced safety technologies include Forward Collision-Avoidance Assist with Pedestrian/Cyclist Detection, Lane Following Assist, and Remote Smart Parking Assist. The multi-air mode ventilation system offers eight different airflow combinations, while the available Bose premium audio system delivers concert-like sound quality. With its combination of head-turning design, innovative technology, and practical versatility, the Tucson Red stands out in the competitive compact SUV segment.",
+    "whyChoose": [
+      "Award-winning design with premium finishes",
+      "Industry-leading 10-year powertrain warranty",
+      "Most tech-forward interior in its class",
+      "Excellent fuel efficiency for city driving",
+      "Superior resale value compared to competitors"
+    ],
+    "bookingCount": 3,
+    "imageUrl": "https://i.ibb.co/0jqXZJN/hyundai-tucson-red.jpg",
+    "location": {
+      "city": "Sylhet",
+      "pickupPoints": [
+        "Zindabazar",
+        "Upashahar"
+      ]
+    },
+    "rating": 4.5,
+    "ownerId": "NmMhgTmZfpRZWHsaacFeWmpwffp1",
+    "updatedAt": {
+      "$date": "2025-08-05T06:50:55.974Z"
+    }
+  },
+  {
+    "carModel": "Toyota Noah 2015",
+    "brand": "Toyota",
+    "category": "MPV",
+    "fuelType": "Petrol",
+    "transmission": "Automatic",
+    "seatingCapacity": 7,
+    "dailyRentalPrice": 4000,
+    "hourlyRentalPrice": 450,
+    "availability": true,
+    "registrationNumber": "KHL-918273",
+    "features": [
+      "Dual Power Sliding Doors",
+      "Super CVT-i Transmission",
+      "Tri-Zone Automatic Climate Control",
+      "360-Degree Panoramic Monitor",
+      "Collision Avoidance Assist",
+      "Power Ottoman Seats",
+      "Rear Seat Entertainment System",
+      "Knee Airbags for All Rows",
+      "17-inch Alloy Wheels",
+      "Auto Parking Assist"
+    ],
+    "color": "Silver",
+    "year": 2015,
+    "mileage": "14 km/l",
+    "description": "The Toyota Noah 2015 is a versatile family MPV that redefines space efficiency with its innovative packaging. Measuring 4,695mm in length with a 2,850mm wheelbase, this 7/8-seater offers unparalleled interior flexibility. The 2.0L 3ZR-FAE engine delivers 152PS while achieving excellent fuel economy, paired with a smooth Super CVT-i transmission. The interior features theater-style seating with a 455mm low floor height for easy entry/exit, and second-row seats that slide 815mm for optimal legroom. Notable features include dual power sliding doors with kick sensors, tri-zone automatic climate control, and a 7-inch touchscreen with navigation. The Noah's boxy design maximizes interior volume, offering 1,530 liters of cargo space with all seats folded. Safety features include Pre-Collision System, Lane Departure Alert, and seven airbags including curtain shields for all three rows. The panoramic view monitor provides a 360-degree view for tight parking situations, while the auto parking assist can handle both parallel and perpendicular spaces. With its combination of Toyota's legendary reliability, family-friendly features, and practical design, the Noah remains one of the most popular MPVs in Asian markets.",
+    "whyChoose": [
+      "Most versatile seating configurations in class",
+      "Toyota's renowned reliability and durability",
+      "Excellent fuel efficiency for an MPV",
+      "Low maintenance costs with easy serviceability",
+      "Spacious interior despite compact exterior dimensions"
+    ],
+    "bookingCount": 1,
+    "imageUrl": "https://i.ibb.co/0mYqX0L/toyota-noah-2015.jpg",
+    "location": {
+      "city": "Khulna",
+      "pickupPoints": [
+        "Boyra",
+        "Khalishpur"
+      ]
+    },
+    "rating": 4.2,
+    "ownerId": "NmMhgTmZfpRZWHsaacFeWmpwffp1",
+    "updatedAt": {
+      "$date": "2025-08-05T07:42:51.249Z"
+    }
+  },
+  {
+    "carModel": "Suzuki Swift 2020",
+    "brand": "Suzuki",
+    "category": "Hatchback",
+    "fuelType": "Petrol",
+    "transmission": "Automatic",
+    "seatingCapacity": 5,
+    "dailyRentalPrice": 3100,
+    "hourlyRentalPrice": 350,
+    "availability": true,
+    "registrationNumber": "CTG-778899",
+    "features": [
+      "7-inch Touchscreen Infotainment",
+      "Apple CarPlay/Android Auto",
+      "Automatic Climate Control",
+      "LED Projector Headlights",
+      "Keyless Push Button Start",
+      "Rear Parking Sensors with Camera",
+      "Tilt/Telescopic Steering",
+      "ABS with EBD and Brake Assist",
+      "15-inch Alloy Wheels",
+      "Dual Front Airbags"
+    ],
+    "color": "Blue",
+    "year": 2020,
+    "mileage": "20 km/l",
+    "description": "The Suzuki Swift 2020 is a benchmark in the compact hatchback segment, combining sporty design with exceptional efficiency. The 1.2L K12M DualJet petrol engine produces 90PS and 113Nm of torque, paired with a smooth 5-speed AMT transmission that delivers an impressive 23.2 km/l fuel efficiency. The Swift's lightweight HEARTECT platform enhances both safety and driving dynamics, with a tight 4.8m turning radius perfect for city driving. The exterior features Suzuki's signature floating roof design, LED projector headlights, and sporty 15-inch alloy wheels. Inside, the cabin offers surprising space with 905mm of rear legroom and a 268-liter boot capacity. The 7-inch touchscreen infotainment system supports smartphone connectivity, while automatic climate control maintains optimal comfort. Safety features include dual airbags, ABS with EBD, rear parking sensors with camera, and ISOFIX child seat anchors. The Swift's responsive steering and well-tuned suspension provide an engaging driving experience, while the lightweight construction (kerb weight just 855kg) contributes to its agile handling. With its combination of youthful styling, low running costs, and Suzuki's renowned reliability, the Swift 2020 remains one of the most popular choices in its class.",
+    "whyChoose": [
+      "Best-in-class fuel efficiency",
+      "Lowest maintenance costs in segment",
+      "Sporty handling with responsive steering",
+      "Surprisingly spacious interior for its size",
+      "Excellent resale value"
+    ],
+    "bookingCount": 0,
+    "imageUrl": "https://i.ibb.co/7YfVqQk/suzuki-swift-2020.jpg",
+    "location": {
+      "city": "Chattogram",
+      "pickupPoints": [
+        "Agrabad",
+        "GEC Circle"
+      ]
+    },
+    "rating": 4.2,
+    "ownerId": "NmMhgTmZfpRZWHsaacFeWmpwffp1"
+  },
+  {
+    "carModel": "Honda Vezel 2019",
+    "brand": "Honda",
+    "category": "SUV",
+    "fuelType": "Hybrid",
+    "transmission": "Automatic",
+    "seatingCapacity": 5,
+    "dailyRentalPrice": 4800,
+    "hourlyRentalPrice": 550,
+    "availability": true,
+    "registrationNumber": "CTG-654321",
+    "features": [
+      "Honda SENSING Safety Suite",
+      "7-inch Touchscreen Display",
+      "Push Button Start",
+      "LED Headlights with DRL",
+      "Magic Seat Configuration",
+      "Dual-Zone Climate Control",
+      "Electric Parking Brake",
+      "18-inch Alloy Wheels",
+      "LaneWatch Camera",
+      "Paddle Shifters"
+    ],
+    "color": "Black",
+    "year": 2019,
+    "mileage": "20 km/l",
+    "description": "The Honda Vezel 2019 Hybrid combines stylish urban crossover design with Honda's efficient hybrid technology. The 1.5L i-VTEC engine paired with an electric motor delivers a combined 152PS, with an impressive fuel economy of 26.4 km/l (JC08 mode). The Vezel's distinctive design features hidden rear door handles that create a coupe-like profile, with LED lighting front and rear. The interior offers Honda's versatile Magic Seat system, allowing multiple cargo configurations including Tall, Long, and Utility modes. The 7-inch touchscreen Display Audio system includes Bluetooth connectivity, while the LaneWatch camera provides enhanced visibility when changing lanes. Safety features include Honda SENSING with Collision Mitigation Braking System, Road Departure Mitigation, Adaptive Cruise Control, and Lane Keeping Assist. The hybrid system features three driving modes (EV, Hybrid, and Engine) that automatically switch for optimal efficiency. The Vezel's raised driving position offers excellent visibility, while the compact 4,295mm length makes it easy to maneuver in urban environments. With its premium interior finishes, quiet cabin, and Honda's reputation for reliability, the Vezel Hybrid remains a top choice for those seeking a stylish yet practical crossover.",
+    "whyChoose": [
+      "Exceptional hybrid fuel efficiency",
+      "Honda's renowned reliability",
+      "Versatile Magic Seat configurations",
+      "Comprehensive Honda SENSING safety",
+      "Sporty design with premium touches"
+    ],
+    "bookingCount": 0,
+    "imageUrl": "https://i.ibb.co/4WQ2YyF/honda-vezel-2019.jpg",
+    "location": {
+      "city": "Chattogram",
+      "pickupPoints": [
+        "Patenga",
+        "Chawkbazar"
+      ]
+    },
+    "rating": 4.5,
+    "ownerId": "NmMhgTmZfpRZWHsaacFeWmpwffp1"
+  }
+]
+]
