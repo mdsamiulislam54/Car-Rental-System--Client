@@ -10,7 +10,7 @@ const CarListingCard = ({ car }) => {
         <img
           src={car.imageUrl}
           alt={car.carModel}
-          className="w-full h-56 object-contain mx-auto hover:scale-110 transition duration-300 hover:cursor-zoom-in"
+          className="w-full h-40 object-contain mx-auto hover:scale-110 transition duration-300 hover:cursor-zoom-in"
         />
 
       </div>
@@ -18,7 +18,7 @@ const CarListingCard = ({ car }) => {
       <div className="p-4 border-t border-gray-200">
         {/* Title + Availability */}
         <div className="flex items-center justify-between mb-2">
-          <h2 className="text-lg sm:text-xl font-semibold text-text">{car.carModel}</h2>
+          <h2 className="text-sm font-semibold text-text">{car.carModel}</h2>
           <span
             className={`text-sm px-3 py-1 rounded-md ${car.availability ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"
               }`}
@@ -27,19 +27,10 @@ const CarListingCard = ({ car }) => {
           </span>
         </div>
 
-        {/* Brand, Price/hour */}
-        <div className="text-sm text-gray-500 mb-2">
-          <div className="flex justify-between items-center">
-            <p><span className="font-semibold text-text">Brand:</span> {car.brand}</p>
-            <div className="">
-              ৳ {car.dailyRentalPrice}/day
-            </div>
-          </div>
-          <p><span className="font-semibold text-text">Hourly:</span> ৳ {car.hourlyRentalPrice}/hr</p>
-        </div>
+      
 
         {/* Icons Row */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm text-gray-600 mb-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm text-gray-600 mb-4 text-sm">
           <div className="flex items-center gap-2">
             <FaUsers className="text-primary" />
             <span>{car.seatingCapacity} seats</span>

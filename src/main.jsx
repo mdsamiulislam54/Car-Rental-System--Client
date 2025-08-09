@@ -25,6 +25,7 @@ import ManageBookingCar from "./Page/DashbordPage/DashbordHomePage/ManageBooking
 import MyBooking from './Page/DashbordPage/MyBooking/MyBooking.jsx'
 import BookingProvider from "./ContextApi/myBookingContext/BookingProvider.jsx";
 import ManageUser from "./Page/DashbordPage/DashbordHomePage/ManageUser/ManageUser.jsx";
+import AboutUs from "./Page/AboutUs/AboutUs.jsx";
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, Component: Home },
       { path: "available-cars", element: <AvailableCars /> },
-     
+      
 
       {
         path: "car-details/:id",
@@ -41,7 +42,10 @@ const router = createBrowserRouter([
           fetch(` http://localhost:5000/car-details/${params.id}`),
         element: <PrivateRoute><CarDetailsPage /></PrivateRoute>
       },
-     
+     {
+      path:"/about-us",
+      Component:AboutUs
+     }
     ],
   },
   {

@@ -47,6 +47,13 @@ const Navbar = () => {
       Home
     </Link>
     <Link
+      to="/about-us"
+      className={`text-[15px] leading-[24px] text-text font-medium  font-rubik  relative ${pathname === "/about-us" ? "active" : ""
+        }`}
+    >
+      About Us
+    </Link>
+    <Link
       to="/available-cars"
       className={`text-[15px] leading-[24px] text-text font-medium  font-rubik    relative ${pathname === "/available-cars" ? "active" : ""
         }`}

@@ -90,7 +90,7 @@ const AboutUs = () => {
             {/* Team Member 1 */}
             <div className="text-center w-1/3">
               <img
-                src={'https://img.freepik.com/free-photo/experienced-businessman-standing-office-room-indian-content-office-employee-eyeglasses-smiling-posing-with-folded-hands-business-management-corporation-concept_74855-11681.jpg?t=st=1754156061~exp=1754159661~hmac=e29c5b53632cff62cd58356b95ae8b762ff14e98a0ad2ee316978c61c3de8909&w=1380'}
+                src={'https://img.freepik.com/free-photo/content-indian-ceo-standing-smiling-portrait-successful-pensive-bearded-businessman-glasses-posing-office-room-business-expression-management-concept_74855-11642.jpg?t=st=1754729773~exp=1754733373~hmac=f9daade7197113f52fdbeaa850cab64c6bb576742be10c572d29050a8be49dd8&w=1480'}
                 alt="Team Member"
                 className="w-full h-56 object-cover rounded-lg mb-4"
               />
@@ -101,7 +101,7 @@ const AboutUs = () => {
             {/* Team Member 2 */}
             <div className="text-center w-1/3">
               <img
-                src={'https://img.freepik.com/free-photo/well-done-young-corporate-woman-entrepreneur-suit-glasses-shows-thumbs-up-smiles-pleased-white_176420-41080.jpg?t=st=1754156148~exp=1754159748~hmac=5f50980ff5082077e85ff77629df1b75b2c13e221634d71a15a45aee6cca55c4&w=1380'}
+                src={'https://img.freepik.com/free-photo/confident-professional-businesswoman-cross-arms-chest-looking-selfassured-camera-smiling-standing-white-background_176420-48895.jpg?t=st=1754729889~exp=1754733489~hmac=c3bd2f547e72253285bc4bf15aacc5b18c98d2458a373587a5915eeac3c9e0f3&w=1480'}
                 alt="Team Member"
                 className="w-full h-56 object-cover rounded-lg mb-4"
               />
