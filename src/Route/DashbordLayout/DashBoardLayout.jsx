@@ -1,168 +1,119 @@
-import React, { useContext, useState } from 'react';
-import { Link, Outlet } from 'react-router';
-import { Menu, X } from 'lucide-react';
-import { motion } from 'framer-motion';
-
-import UseAuth from '../../Hook/useAuth/useAuth';
+import React, { useState } from "react";
+import { Outlet } from "react-router";
 import {
-    LayoutDashboard,
-    Users,
-    CalendarClock,
-    Car,
-    CarFront,
-    ClipboardList,
-    Home
+  Menu,
+  Sun,
+  Bell,
 } from "lucide-react";
-
+import { motion } from "framer-motion";
+import SidebarContent from "./SidebarContent";
 
 const DashBoardLayout = () => {
-    const { user } = UseAuth()
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // mobile aside
+  const [isCollapsed, setIsCollapsed] = useState(false); // large device aside
 
-    const isAdmin = user?.role === 'admin';
+  const user = {
+    displayName: "Md. Shamiul Islam",
+    email: "samiul@example.com",
+    photoURL: "https://i.ibb.co/4W2DGKm/default-user.png",
+    role: "admin",
+  };
 
+  const isAdmin = user.role === "admin";
 
-    const sidebarVariants = {
-        hidden: { x: '-100%' },
-        visible: { x: 0 },
-    };
+  const sidebarVariants = {
+    hidden: { x: "-100%" },
+    visible: { x: 0 },
+  };
 
-    return (
-        <div className="flex min-h-screen bg-gray-100 relative">
-            {/* Mobile Toggle Button */}
-            <div className="lg:hidden absolute top-4 right-4 z-50">
-                <button onClick={() => setIsOpen(!isOpen)} className="bg-white p-2 rounded shadow">
-                    {isOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+  return (
+    <div className="bg-gray-100 min-h-screen">
+      {/* Sidebar - Large Device */}
+      <aside
+        className={`hidden lg:flex flex-col fixed top-0 left-0 h-full
+        bg-white shadow transition-all duration-300 z-50
+        ${isCollapsed ? "w-20" : "w-64"}`}
+      >
+        <SidebarContent user={user} isAdmin={isAdmin} collapsed={isCollapsed} />
+      </aside>
+
+      {/* Sidebar - Mobile */}
+      <motion.aside
+        initial="hidden"
+        animate={isOpen ? "visible" : "hidden"}
+        variants={sidebarVariants}
+        transition={{ type: "tween", duration: 0.3 }}
+        className="fixed lg:hidden top-0 left-0 w-64 bg-white shadow h-full z-50"
+      >
+        <SidebarContent user={user} isAdmin={isAdmin} onClose={() => setIsOpen(false)} />
+      </motion.aside>
+
+      {/* Main Content */}
+      <div
+        className={`flex-1 flex flex-col transition-all duration-300
+        ${isCollapsed ? "lg:ml-20" : "lg:ml-64"}`}
+      >
+        {/* Top Navbar */}
+        <div className="flex items-center justify-between bg-white p-4 shadow sticky top-0 z-40">
+          <div className="flex items-center gap-3">
+            {/* Hamburger (Mobile) */}
+            <button
+              className="p-2 rounded-md hover:bg-gray-200 lg:hidden"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <Menu size={22} />
+            </button>
+            {/* Collapse Button (Large Device) */}
+            <button
+              className="p-2 rounded-md hover:bg-gray-200 hidden lg:block"
+              onClick={() => setIsCollapsed(!isCollapsed)}
+            >
+              <Menu size={22} />
+            </button>
+
+            {/* Search Input */}
+            <input
+              type="text"
+              placeholder="Search..."
+              className="border border-gray-300 rounded px-3 py-1 w-40 sm:w-64"
+            />
+          </div>
+
+          <div className="flex items-center gap-4">
+            {/* Theme Toggle */}
+            <button className="p-2 hover:bg-gray-200 rounded-full">
+              <Sun size={20} />
+            </button>
+
+            {/* Notifications */}
+            <div className="relative">
+              <button className="p-2 hover:bg-gray-200 rounded-full">
+                <Bell size={20} />
+              </button>
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-1">
+                5
+              </span>
             </div>
 
-            {/* Sidebar for small devices (with animation) */}
-            <motion.aside
-                initial="hidden"
-                animate={isOpen ? 'visible' : 'hidden'}
-                variants={sidebarVariants}
-                transition={{ type: 'tween', duration: 0.4 }}
-                className="w-64 bg-white text-black shadow p-4 fixed h-full z-40 lg:hidden"
-            >
-                <SidebarContent user={user} isAdmin={isAdmin} onClose={() => setIsOpen(false)} />
-            </motion.aside>
-
-            {/* Sidebar for large screens (always visible) */}
-            <aside className="hidden lg:block w-64 bg-white text-black shadow p-4 h-full fixed">
-                <SidebarContent user={user} isAdmin={isAdmin} />
-            </aside>
-
-            {/* Main content */}
-            <main className="flex-1 min-h-screen p-6 w-full lg:ml-64 transition-all duration-300">
-                <Outlet />
-            </main>
+            {/* Profile */}
+            <div className="flex items-center gap-2">
+              <img
+                src={user.photoURL}
+                alt="Profile"
+                className="w-8 h-8 rounded-full border"
+              />
+              <span className="hidden sm:block font-medium">{user.displayName}</span>
+            </div>
+          </div>
         </div>
-    );
+
+        {/* Page Content */}
+        <main className="p-6 flex-1">
+          <Outlet />
+        </main>
+      </div>
+    </div>
+  );
 };
 
 export default DashBoardLayout;
-
-// SidebarContent extracted for reuse
-const SidebarContent = ({ user, isAdmin, onClose }) => {
-    return (
-        <>
-            <div className="flex flex-col items-center mb-6">
-                <img
-                    src={user?.photoURL || 'https://i.ibb.co/4W2DGKm/default-user.png'}
-                    alt="User"
-                    className="w-20 h-20 rounded-full border-4 border-gray-300 mb-2"
-                />
-                <p className="text-lg font-semibold">{user?.displayName || 'User Name'}</p>
-                <p className="text-sm text-gray-500">{user?.email}</p>
-            </div>
-
-            <nav>
-                <ul className="space-y-2">
-                    <li>
-                        <Link
-                            to="/dashboard"
-                            onClick={onClose}
-                            className="flex items-center gap-2 py-2 px-4 hover:bg-gray-200 rounded"
-                        >
-                            <LayoutDashboard size={18} />
-                            Dashboard Home
-                        </Link>
-                    </li>
-
-                    {isAdmin && (
-                        <>
-                            <li>
-                                <Link
-                                    to="/dashboard/manage/user"
-                                    onClick={onClose}
-                                    className="flex items-center gap-2 py-2 px-4 hover:bg-gray-200 rounded"
-                                >
-                                    <Users size={18} />
-                                    Manage Users
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to="/dashboard/manage-booking"
-                                    onClick={onClose}
-                                    className="flex items-center gap-2 py-2 px-4 hover:bg-gray-200 rounded"
-                                >
-                                    <CalendarClock size={18} />
-                                    Manage Booking Car
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to="/dashboard/my-cars"
-                                    onClick={onClose}
-                                    className="flex items-center gap-2 py-2 px-4 hover:bg-gray-200 rounded"
-                                >
-                                    <CarFront size={18} />
-                                    Manage All Cars
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    to="/dashboard/add-car"
-                                    onClick={onClose}
-                                    className="flex items-center gap-2 py-2 px-4 hover:bg-gray-200 rounded"
-                                >
-                                    <Car size={18} />
-                                    Add Car
-                                </Link>
-                            </li>
-                        </>
-                    )}
-
-                    {!isAdmin && (
-                        <>
-
-                            <li>
-                                <Link
-                                    to="/dashboard/my-booking-cars"
-                                    onClick={onClose}
-                                    className="flex items-center gap-2 py-2 px-4 hover:bg-gray-200 rounded"
-                                >
-                                    <ClipboardList size={18} />
-                                    My Booking Cars
-                                </Link>
-                            </li>
-                        </>
-                    )}
-
-                    <li>
-                        <Link
-                            to="/"
-                            onClick={onClose}
-                            className="flex items-center gap-2 py-2 px-4 hover:bg-gray-200 rounded"
-                        >
-                            <Home size={18} />
-                            Back to Home
-                        </Link>
-                    </li>
-                </ul>
-            </nav>
-
-        </>
-    );
-};
