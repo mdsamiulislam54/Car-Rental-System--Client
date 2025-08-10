@@ -14,7 +14,7 @@ const RecentListingCar = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(" http://localhost:5000/car");
+        const res = await axios.get("https://car-rental-system-server-beta.vercel.app/car");
        
         const data = res.data;
        

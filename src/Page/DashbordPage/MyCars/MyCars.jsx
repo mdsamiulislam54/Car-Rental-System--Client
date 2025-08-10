@@ -41,7 +41,7 @@ const MyCars = () => {
     try {
       setLoading(true);
       const res = await axios.get(
-        ` http://localhost:5000/my-cars?sort=${sortOrder}&email=${user.email}&limit=${perPage}&page=${currentPage + 1
+        `https://car-rental-system-server-beta.vercel.app/my-cars?sort=${sortOrder}&email=${user.email}&limit=${perPage}&page=${currentPage + 1
           }`,
         {
           headers: {
@@ -70,7 +70,7 @@ const MyCars = () => {
 
     await axios
       .patch(
-        ` http://localhost:5000/
+        `https://car-rental-system-server-beta.vercel.app/
 
 update-car/${selectedCar._id}`,
         updatedCar
@@ -117,7 +117,7 @@ update-car/${selectedCar._id}`,
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = await axios.delete(` http://localhost:5000/
+        const res = await axios.delete(`https://car-rental-system-server-beta.vercel.app/
 
 my-cars/${id}`);
         if (res.data.deletedCount > 0) {

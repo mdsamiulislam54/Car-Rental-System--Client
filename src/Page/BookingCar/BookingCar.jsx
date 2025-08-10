@@ -32,7 +32,7 @@ function BookingCar() {
     useEffect(() => {
         const fetchCarTypes = async () => {
             try {
-                const res = await axios.get(' http://localhost:5000/car-type', { withCredentials: true });
+                const res = await axios.get('https://car-rental-system-server-beta.vercel.app/car-type', { withCredentials: true });
                 if (res.status !== 200) {
                     throw new Error("Failed to fetch car types");
                 }

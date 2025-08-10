@@ -44,7 +44,7 @@ const Login = () => {
         const currentUser = userCredential.user;
 
         if (currentUser) {
-          const res = await axios.post(" http://localhost:5000/user-create", {
+          const res = await axios.post("https://car-rental-system-server-beta.vercel.app/user-create", {
             userName: currentUser.displayName,
             userEmail: currentUser.email,
           });

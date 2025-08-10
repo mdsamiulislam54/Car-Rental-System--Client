@@ -3,7 +3,7 @@ import axios from "axios"
 export const totalCar = async ()=>{
 
     try {
-        const res= await axios.get(" http://localhost:5000/admin/total/car")
+        const res= await axios.get("https://car-rental-system-server-beta.vercel.app/admin/total/car")
         const data = res?.data;
         return data
     } catch (error) {
@@ -13,7 +13,7 @@ export const totalCar = async ()=>{
 export const totalUser = async ()=>{
 
     try {
-        const res= await axios.get(" http://localhost:5000/admin/total/user")
+        const res= await axios.get("https://car-rental-system-server-beta.vercel.app/admin/total/user")
         const data = res?.data;
         return data
     } catch (error) {
@@ -23,7 +23,7 @@ export const totalUser = async ()=>{
 export const totalBookinCar = async ()=>{
 
     try {
-        const res= await axios.get(" http://localhost:5000/dashboard/total/booking/car")
+        const res= await axios.get("https://car-rental-system-server-beta.vercel.app/dashboard/total/booking/car")
         const data = res?.data;
         return data
     } catch (error) {
@@ -33,7 +33,7 @@ export const totalBookinCar = async ()=>{
 export const totalBookinCarPending = async ()=>{
 
     try {
-        const res= await axios.get(" http://localhost:5000/dashboard/total/booking/car/pending")
+        const res= await axios.get("https://car-rental-system-server-beta.vercel.app/dashboard/total/booking/car/pending")
         const data = res?.data;
         return data
     } catch (error) {

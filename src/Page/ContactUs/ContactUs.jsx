@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { MdEmail, MdPhone, MdHeadset } from "react-icons/md";
 
 const locations = [
   {
@@ -7,68 +8,105 @@ const locations = [
     address: "123 Main Street, Dhaka, Bangladesh",
     phone: "+880 1234 567890",
     email: "info@carrental.com",
-    lat: 23.8103,
-    lng: 90.4125,
   },
   {
     id: 2,
-    name: "Branch Office",
+    name: "Branch Office 1",
     address: "45 Second Avenue, Chittagong, Bangladesh",
     phone: "+880 9876 543210",
     email: "chattogram@carrental.com",
-    lat: 22.3569,
-    lng: 91.7832,
+  },
+  {
+    id: 3,
+    name: "Branch Office 2",
+    address: "78 Third Road, Sylhet, Bangladesh",
+    phone: "+880 1122 334455",
+    email: "sylhet@carrental.com",
+  },
+  {
+    id: 4,
+    name: "Branch Office 3",
+    address: "56 Fourth Lane, Khulna, Bangladesh",
+    phone: "+880 6677 889900",
+    email: "khulna@carrental.com",
   },
 ];
 
-const COntactUs = () => {
+const ContactUs = () => {
   return (
-    <section className="bg-white py-16 px-6 md:px-12 max-w-7xl mx-auto">
-      <motion.h2
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+    <section className="min-h-screen max-w-7xl mx-auto px-6 py-16 font-rubik">
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-4xl font-bold text-gray-900 mb-12 text-center"
+        className="text-4xl font-bold text-center mb-12 text-gray-900"
       >
         Contact Us
-      </motion.h2>
+      </motion.h1>
 
-      <div className="flex flex-col lg:flex-row gap-12">
-        {/* Company Info */}
-        <div className="lg:w-1/3 space-y-8">
-          {locations.map(({ id, name, address, phone, email }) => (
-            <motion.div
-              key={id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: id * 0.2, duration: 0.5 }}
-              className="bg-gray-50 p-6 rounded-lg shadow-md"
-            >
-              <h3 className="text-2xl font-semibold text-primary mb-3">{name}</h3>
-              <p className="text-gray-700 mb-1">{address}</p>
-              <p className="text-gray-700 mb-1">Phone: <a href={`tel:${phone}`} className="text-primary hover:underline">{phone}</a></p>
-              <p className="text-gray-700">
-                Email: <a href={`mailto:${email}`} className="text-primary hover:underline">{email}</a>
-              </p>
-            </motion.div>
-          ))}
-        </div>
+      {/* Address Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        {locations.map(({ id, name, address, phone, email }) => (
+          <motion.div
+            key={id}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: id * 0.2 }}
+            className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow duration-300"
+          >
+            <h3 className="text-xl font-semibold text-primary mb-3">{name}</h3>
+            <p className="text-gray-700 mb-2">{address}</p>
+            <p className="text-gray-700 mb-1">
+              Phone: <a href={`tel:${phone}`} className="text-primary hover:underline">{phone}</a>
+            </p>
+            <p className="text-gray-700">
+              Email: <a href={`mailto:${email}`} className="text-primary hover:underline">{email}</a>
+            </p>
+          </motion.div>
+        ))}
+      </div>
 
-        {/* Map */}
-        <div className="lg:w-2/3 h-[400px] rounded-lg overflow-hidden shadow-lg">
-          <iframe
-            title="Company Locations"
-            src={`https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_API_KEY&q=Dhaka,Bangladesh&zoom=6`}
-            width="100%"
-            height="100%"
-            allowFullScreen=""
-            loading="lazy"
-            className="border-0"
-          ></iframe>
-        </div>
+      {/* Contact Form + Info */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+   
+        {/* Contact Form */}
+        <motion.form
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="bg-white p-8 rounded-lg shadow-md"
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <h2 className="text-2xl font-semibold mb-6 text-gray-900">Send Us a Message</h2>
+          <input
+            type="text"
+            placeholder="Your Name"
+            required
+            className="w-full border border-gray-300 rounded-md px-4 py-3 mb-5 focus:outline-none focus:ring-2 focus:ring-primary"
+          />
+          <input
+            type="email"
+            placeholder="Your Email"
+            required
+            className="w-full border border-gray-300 rounded-md px-4 py-3 mb-5 focus:outline-none focus:ring-2 focus:ring-primary"
+          />
+          <textarea
+            placeholder="Your Message"
+            required
+            rows={5}
+            className="w-full border border-gray-300 rounded-md px-4 py-3 mb-5 resize-none focus:outline-none focus:ring-2 focus:ring-primary"
+          ></textarea>
+          <button
+            type="submit"
+            className="w-full bg-primary text-white font-semibold py-3 rounded-md hover:bg-primary/90 transition-colors duration-300"
+          >
+            Send Message
+          </button>
+        </motion.form>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d283284.24906440463!2d90.22046308233712!3d23.77966638791799!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2sDhaka!5e0!3m2!1sen!2sbd!4v1754827206958!5m2!1sen!2sbd" width="100%" height="300"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </section>
   );
 };
 
-export default COntactUs;
+export default ContactUs;
