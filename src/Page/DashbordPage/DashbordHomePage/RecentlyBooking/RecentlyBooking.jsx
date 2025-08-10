@@ -1,5 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import TotalCarChart from './TotalCarChart';
+import Example from './TotalCarChart';
 
 const RecentlyBooking = () => {
 
@@ -110,8 +112,10 @@ const RecentlyBooking = () => {
                     </div>
                 </div>
             </div>
-            <div className='col-span-1 bg-white mt-10 p-4 rounded-md '>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt vitae neque architecto aspernatur eius! Maxime ea at fugiat distinctio reiciendis animi tempora eum vero eius asperiores. Quae facilis officia repellat.
+            <div className='col-span-1 bg-white mt-10 p-4 rounded-md  '>
+                
+                    <TotalCarChart/>
+                   
             </div>
         </div>
     )
