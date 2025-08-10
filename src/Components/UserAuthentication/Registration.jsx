@@ -23,26 +23,29 @@ const Registration = () => {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
     const { email, password, name, photo } = data;
-    console.log(name, email)
+  
     try {
       const result = await createUser(email, password);
       const createdUser = result.user;
-      console.log(name)
+
       await updateProfile(createdUser, {
         displayName: name,
         photoURL: photo,
       }).then(async () => {
-
+          console.log(createdUser.email)
         // ✅ Backend user insert
-        await axios.post(` http://localhost:5000/user?email=${email}`, {
-          userName: name,
-          userEmail: email,
-        });
+        const userData = {
+          userName: createdUser.displayName,
+          userEmail: createdUser.email
+        }
+       
+          await axios.post(` http://localhost:5000/user-create`,userData );
         Swal.fire({
           title: "Registration Successful",
           icon: "success",
         });
         navigate("/login");
+      
 
 
         form.reset();
@@ -121,7 +124,7 @@ const Registration = () => {
 
             <form className="space-y-5" onSubmit={handleReg}>
               <div>
-               
+
                 <input
                   type="text"
                   name="name"
@@ -131,33 +134,33 @@ const Registration = () => {
                 />
               </div>
               <div>
-                
+
                 <input
                   type="text"
                   name="photo"
                   required
-                   placeholder="Enter Your Photo Url..."
+                  placeholder="Enter Your Photo Url..."
                   className="w-full input"
                 />
               </div>
               <div>
-              
+
                 <input
                   type="email"
                   name="email"
                   required
-                   placeholder="Enter Your Email..."
+                  placeholder="Enter Your Email..."
                   className="w-full input"
                 />
               </div>
 
               <div className="relative">
-              
+
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
                   required
-                   placeholder="Enter Your Password..."
+                  placeholder="Enter Your Password..."
                   className="w-full input"
                 />
                 <span className="absolute right-3 top-5 transform -translate-y-1/2">

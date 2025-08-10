@@ -119,7 +119,7 @@ update-booking/${modifyId}`,
     return <Loader />;
   }
   return (
-    <div className="min-h-screen bg-gray-50 w-11/12 mx-auto">
+    <div className="min-h-screen w-11/12 mx-auto">
       {booking.length === 0 ? (
         <div className="flex justify-center flex-col gap-8 items-center min-h-screen  px-4 text-center">
 
@@ -142,13 +142,13 @@ update-booking/${modifyId}`,
         </div>
       ) : (
         <div className="">
-          <div className="mb-20">
+          <div className="mb-20 bg-white">
             {loading ? (
               <Loader />
             ) : chartBookingData.length === 0 ? (
               <p className="text-center text-lg">No chart data found</p>
             ) : (
-              <ResponsiveContainer width="100%" height={200}>
+              <ResponsiveContainer width="100%" height={200} className='bg-white p-2'>
                 <LineChart
                   width={500}
                   height={300}
@@ -178,9 +178,9 @@ update-booking/${modifyId}`,
           </div>
 
           <div className=" ">
-            <div className="overflow-x-auto">
-              <table className="w-full text-center border-collapse relative ">
-                <thead className="bg-gray-100 ">
+            <div className="overflow-x-auto bg-white p-4">
+              <table className="w-full text-center border-collapse relative bg-white p-">
+                <thead className="">
                   <tr>
                     <th className="p-3 text-sm md:text-base font-bold">
                       Car Image
@@ -203,7 +203,7 @@ update-booking/${modifyId}`,
                   </tr>
                 </thead>
 
-                <tbody className="text-center bg-gray-50 ">
+                <tbody className="text-center  ">
                   {loading ? (
                     <tr>
                       <td colSpan="6" className="p-5 text-lg">
@@ -220,7 +220,7 @@ update-booking/${modifyId}`,
                     booking.map((car) => (
                       <tr
                         key={car._id}
-                        className=" hover:bg-gray-200 transition bg-gray-100"
+                        className=" hover:bg-gray-200 transition "
                       >
                         <td className="p-3">
                           <img

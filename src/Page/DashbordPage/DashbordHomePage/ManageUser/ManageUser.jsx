@@ -37,7 +37,7 @@ const ManageUser = () => {
     }, [perPage, currentPage])
     return (
         <div>
-            <div>
+            <div className='bg-white'>
                 <div className="overflow-x-auto">
                     <table className="table">
                         {/* head */}

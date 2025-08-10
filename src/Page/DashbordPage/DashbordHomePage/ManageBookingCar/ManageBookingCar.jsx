@@ -13,15 +13,15 @@ const ManageBookingCar = () => {
 
 
     const fetchData = async () => {
-    try {
-        const data = await totalBookinCarPending();
-        setBookingCar(data || []);
-    } catch (error) {
-        console.error("Error fetching booking cars:", error);
-    } finally {
-        setLoading(false);
-    }
-};
+        try {
+            const data = await totalBookinCarPending();
+            setBookingCar(data || []);
+        } catch (error) {
+            console.error("Error fetching booking cars:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
     useEffect(() => {
 
 
@@ -52,41 +52,41 @@ const ManageBookingCar = () => {
         }
     };
 
-  const handleCancelBooking = async (id) => {
-  try {
-    // Confirm action
-    const result = await Swal.fire({
-      title: 'Are you sure?',
-      text: 'You want to cancel this booking!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, cancel it!'
-    });
+    const handleCancelBooking = async (id) => {
+        try {
+            // Confirm action
+            const result = await Swal.fire({
+                title: 'Are you sure?',
+                text: 'You want to cancel this booking!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, cancel it!'
+            });
 
-    if (result.isConfirmed) {
-      // Call the cancel booking API
-      const res = await axios.patch(` http://localhost:5000/admin/booking/cencel/${id}`);
+            if (result.isConfirmed) {
+                // Call the cancel booking API
+                const res = await axios.patch(` http://localhost:5000/admin/booking/cencel/${id}`);
 
-      if (res.data?.message === 'Booking canceled successfully') {
-        Swal.fire(
-          'Cancelled!',
-          'The booking has been canceled.',
-          'success'
-        );
-        fetchData()
-      }
-    }
-  } catch (error) {
-    Swal.fire('Error!', 'Failed to cancel the booking.', 'error');
-    console.error("Cancel error:", error);
-  }
-};
+                if (res.data?.message === 'Booking canceled successfully') {
+                    Swal.fire(
+                        'Cancelled!',
+                        'The booking has been canceled.',
+                        'success'
+                    );
+                    fetchData()
+                }
+            }
+        } catch (error) {
+            Swal.fire('Error!', 'Failed to cancel the booking.', 'error');
+            console.error("Cancel error:", error);
+        }
+    };
 
     return (
-        <div className="p-4">
-            
+        <div className="p-4 bg-white">
+
 
             {loading ? (
                 <p className="text-blue-500 text-lg">Loading...</p>
@@ -95,10 +95,10 @@ const ManageBookingCar = () => {
                     <p>No Pending Booking Car</p>
                 </div>
             ) : (
-                <div className="ooverflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+                <div className="overflow-x-auto rounded-box border border-base-content/5 bg-white">
                     <table className="table ">
                         {/* Table Head */}
-                        <thead className="bg-gray-100 text-gray-700">
+                        <thead className="bg-white text-gray-700">
                             <tr>
                                 <th>Image</th>
                                 <th>Car Model</th>
@@ -139,7 +139,7 @@ const ManageBookingCar = () => {
                                     <td>
                                         <div className="flex gap-2">
                                             <button className="btn btn-sm btn-success" onClick={() => handleConfirm(car._id)}>Confirm</button>
-                                            <button onClick={()=>handleCancelBooking(car._id)} className="btn btn-sm btn-error">Cancel</button>
+                                            <button onClick={() => handleCancelBooking(car._id)} className="btn btn-sm btn-error">Cancel</button>
                                         </div>
                                     </td>
                                 </tr>
