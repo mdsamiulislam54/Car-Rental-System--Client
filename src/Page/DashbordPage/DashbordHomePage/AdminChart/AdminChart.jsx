@@ -14,7 +14,7 @@ import Map from '../../../../assets/bangladeshHigh.svg';
 const AdminChart = ({ revenueChartData }) => {
   return (
     <div className="grid lg:grid-cols-3 gap-4">
-      <div className="col-span-2 bg-white p-2 rounded-md h-full">
+      <div className="lg:col-span-2 bg-white p-2 rounded-md h-full">
         <nav className="flex items-center justify-between py-4 border-b border-gray-200 mb-4">
           <h2 className="text-lg font-semibold font-rubik text-gray-800">
             Statistical Report
@@ -37,13 +37,13 @@ const AdminChart = ({ revenueChartData }) => {
         </div>
       </div>
 
-      <div className="bg-white p-2 rounded-md">
+      <div className="bg-white p-2 rounded-md lg:col-span-1">
           <nav className="flex items-center justify-between py-4 border-b border-gray-200 mb-4">
           <h2 className="text-lg font-semibold font-rubik text-gray-800">
            Locations
           </h2>
         </nav>
-        <img src={'https://static.vecteezy.com/system/resources/previews/034/992/069/large_2x/isolated-illustration-of-simplified-administrative-map-of-bangladesh-borders-and-names-of-the-regions-black-line-silhouettes-vector.jpg'} alt="Bangladesh Map" className="h-80 w-full" />
+        <img src={'https://static.vecteezy.com/system/resources/previews/034/992/069/large_2x/isolated-illustration-of-simplified-administrative-map-of-bangladesh-borders-and-names-of-the-regions-black-line-silhouettes-vector.jpg'} alt="Bangladesh Map" className="h-80 w-full object-contain" />
       
       </div>
     </div>

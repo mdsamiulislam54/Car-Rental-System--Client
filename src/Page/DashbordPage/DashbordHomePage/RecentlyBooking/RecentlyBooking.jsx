@@ -28,7 +28,7 @@ const RecentlyBooking = () => {
     }, [perPage, currentPage,])
     return (
         <div className='grid md:grid-cols-3 gap-4'>
-            <div className='bg-white mt-10 p-4 rounded-md col-span-2 '>
+            <div className='bg-white mt-10 p-4 rounded-md lg:col-span-2 '>
                 <nav className="flex items-center justify-between py-4 border-b border-gray-200 mb-4">
                     <h2 className="text-lg font-semibold font-rubik text-gray-800">
                         Recently Booking Car
@@ -112,7 +112,7 @@ const RecentlyBooking = () => {
                     </div>
                 </div>
             </div>
-            <div className='col-span-1 bg-white mt-10 p-4 rounded-md  '>
+            <div className='lg:col-span-1 bg-white mt-10 p-4 rounded-md  '>
                 
                     <TotalCarChart/>
                    
