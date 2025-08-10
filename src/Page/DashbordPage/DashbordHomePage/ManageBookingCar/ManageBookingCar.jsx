@@ -123,7 +123,7 @@ const ManageBookingCar = () => {
                                         />
                                     </td>
                                     <td>{car?.carModel || "N/A"}</td>
-                                    <td>${car?.totalPrice || 0}</td>
+                                    <td>৳ {car?.totalPrice || 0}</td>
                                     <td>
                                         <span className={`badge ${car.bookingStatus === 'pending' ? 'badge-warning' : 'badge-success'}`}>
                                             {car.bookingStatus}

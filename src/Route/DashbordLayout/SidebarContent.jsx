@@ -19,7 +19,7 @@ const SidebarContent = ({ user, isAdmin, collapsed, onClose }) => {
 
     return (
         <div className="h-full flex flex-col relative">
-              <div className="absolute top-4 right-2 ">
+              <div className="absolute top-4 right-2 md:hidden ">
                     <button onClick={onClose} className="hover:bg-gray-100 p-2 rounded-full font-bold cursor-pointer">
                         <IoClose size={20}/>
                     </button>
@@ -39,7 +39,7 @@ const SidebarContent = ({ user, isAdmin, collapsed, onClose }) => {
                             <Link
                                 to={item.to}
                                 onClick={onClose}
-                                className="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-200 hover:text-primary"
+                                className="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-200 hover:text-primary font-rubik text-gray-600"
                             >
                                 {item.icon}
                                 {!collapsed && <span>{item.label}</span>}

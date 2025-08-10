@@ -32,9 +32,9 @@ const CarDetailsPage = () => {
 
   const totalCost = () => {
     if (bookingType === "day") {
-      return diffDay() * car.dailyRentalPrice || 0
+      return car.dailyRentalPrice  * diffDay()   || 0
     }
-    return diffHour() * car.hourlyRentalPrice || 0
+    return car.hourlyRentalPrice * diffHour()   || 0
   };
 
   const resetBookingForm = () => {

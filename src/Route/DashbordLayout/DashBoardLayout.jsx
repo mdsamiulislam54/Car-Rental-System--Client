@@ -7,19 +7,15 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import SidebarContent from "./SidebarContent";
+import UseAuth from "../../Hook/useAuth/useAuth";
 
 const DashBoardLayout = () => {
   const [isOpen, setIsOpen] = useState(false); // mobile aside
   const [isCollapsed, setIsCollapsed] = useState(false); // large device aside
 
-  const user = {
-    displayName: "Md. Shamiul Islam",
-    email: "samiul@example.com",
-    photoURL: "https://i.ibb.co/4W2DGKm/default-user.png",
-    role: "admin",
-  };
+const {user} = UseAuth()
 
-  const isAdmin = user.role === "admin";
+  const isAdmin = user?.role === "admin";
 
   const sidebarVariants = {
     hidden: { x: "-100%" },
@@ -32,7 +28,7 @@ const DashBoardLayout = () => {
       <aside
         className={`hidden lg:flex flex-col fixed top-0 left-0 h-full
         bg-white shadow transition-all duration-300 z-50
-        ${isCollapsed ? "w-20" : "w-64"}`}
+        ${isCollapsed ? "w-20" : "w-56"}`}
       >
         <SidebarContent user={user} isAdmin={isAdmin} collapsed={isCollapsed} />
       </aside>
@@ -51,7 +47,7 @@ const DashBoardLayout = () => {
       {/* Main Content */}
       <div
         className={`flex-1 flex flex-col transition-all duration-300
-        ${isCollapsed ? "lg:ml-20" : "lg:ml-64"}`}
+        ${isCollapsed ? "lg:ml-20" : "lg:ml-56"}`}
       >
         {/* Top Navbar */}
         <div className="flex items-center justify-between bg-white p-4 shadow sticky top-0 z-40">
@@ -98,11 +94,11 @@ const DashBoardLayout = () => {
             {/* Profile */}
             <div className="flex items-center gap-2">
               <img
-                src={user.photoURL}
+                src={user?.photoURL}
                 alt="Profile"
                 className="w-8 h-8 rounded-full border"
               />
-              <span className="hidden sm:block font-medium">{user.displayName}</span>
+              <span className="hidden sm:block font-medium">{user?.displayName}</span>
             </div>
           </div>
         </div>
