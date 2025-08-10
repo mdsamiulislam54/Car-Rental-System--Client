@@ -21,6 +21,7 @@ import BookingContext from "../../../ContextApi/myBookingContext/BookingContext"
 import { MdMoney } from "react-icons/md";
 import StatCard from "./StatCard";
 import AdminChart from "./AdminChart/AdminChart";
+import RecentlyBooking from "./RecentlyBooking/RecentlyBooking";
 const DashboardHomePage = () => {
     const { user } = UseAuth();
     const [totalCars, setTotalCar] = useState(0);
@@ -154,6 +155,9 @@ const DashboardHomePage = () => {
                 user?.role === 'admin' && (
                     <div className="w-full">
                         <AdminChart revenueChartData={revenueChartData} />
+                        <div>
+                            <RecentlyBooking bookingCar={bookingCar}/>
+                        </div>
                     </div>
                 )
             }
