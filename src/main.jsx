@@ -22,7 +22,7 @@ import DashBoardLayout from "./Route/DashbordLayout/DashBoardLayout.jsx";
 import MyCarsTable from "./Page/DashbordPage/MyCars/MyCars.jsx";
 import DashboardHomePage from "./Page/DashbordPage/DashbordHomePage/DashboardHomePage.jsx";
 import ManageBookingCar from "./Page/DashbordPage/DashbordHomePage/ManageBookingCar/ManageBookingCar.jsx";
-import MyBooking from './Page/DashbordPage/MyBooking/MyBooking.jsx'
+import MyBooking from './Page/DashbordPage/UserDashboard/MyBooking/MyBooking.jsx'
 import BookingProvider from "./ContextApi/myBookingContext/BookingProvider.jsx";
 import ManageUser from "./Page/DashbordPage/DashbordHomePage/ManageUser/ManageUser.jsx";
 import AboutUs from "./Page/AboutUs/AboutUs.jsx";
@@ -40,8 +40,8 @@ const router = createBrowserRouter([
       {
         path: "car-details/:id",
         loader: ({ params }) =>
-          fetch(`https://car-rental-system-server-beta.vercel.app/car-details/${params.id}`),
-        element: <PrivateRoute><CarDetailsPage /></PrivateRoute>
+          fetch(` http://localhost:5000/car-details/${params.id}`),
+        element: <CarDetailsPage />
       },
      {
       path:"/about-us",

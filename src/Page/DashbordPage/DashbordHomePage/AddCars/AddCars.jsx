@@ -34,7 +34,7 @@ const AddCars = () => {
   const Navigate = useNavigate();
   const { user } = useContext(UserContext);
   const onSubmit = async (data) => {
-
+    console.log(data);
     const featuresArray = data.features.map((item) => item.value);
 
     const pickupPointsArray = data.pickupPoints.split(",").map((item) => item.trim());
@@ -67,7 +67,7 @@ const AddCars = () => {
     };
 
     try {
-      const res = await axios.post(`https://car-rental-system-server-beta.vercel.app/car?email=${user.email}`, carData, {
+      const res = await axios.post(` http://localhost:5000/car?email=${user.email}`, carData, {
         headers: {
           Authorization: `Bearer ${user.accessToken}`,
         },

@@ -39,7 +39,7 @@ const {user} = UseAuth()
         animate={isOpen ? "visible" : "hidden"}
         variants={sidebarVariants}
         transition={{ type: "tween", duration: 0.3 }}
-        className="fixed lg:hidden top-0 left-0 w-64 bg-white shadow h-full z-50"
+        className="fixed lg:hidden top-0 left-0 w-56 bg-white shadow h-full z-50"
       >
         <SidebarContent user={user} isAdmin={isAdmin} onClose={() => setIsOpen(false)} />
       </motion.aside>
@@ -47,7 +47,7 @@ const {user} = UseAuth()
       {/* Main Content */}
       <div
         className={`flex-1 flex flex-col transition-all duration-300
-        ${isCollapsed ? "lg:ml-20" : "lg:ml-56"}`}
+        ${isCollapsed ? "lg:ml-20" : "lg:ml-52"}`}
       >
         {/* Top Navbar */}
         <div className="flex items-center justify-between bg-white p-4 shadow sticky top-0 z-40">
@@ -75,16 +75,16 @@ const {user} = UseAuth()
             />
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center md:gap-4 gap-1">
             {/* Theme Toggle */}
-            <button className="p-2 hover:bg-gray-200 rounded-full">
-              <Sun size={20} />
+            <button className="mx-1 hover:bg-gray-200 rounded-full ">
+              <Sun size={16}/>
             </button>
 
             {/* Notifications */}
             <div className="relative">
               <button className="p-2 hover:bg-gray-200 rounded-full">
-                <Bell size={20} />
+                <Bell size={16} />
               </button>
               <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-1">
                 5
@@ -96,7 +96,7 @@ const {user} = UseAuth()
               <img
                 src={user?.photoURL}
                 alt="Profile"
-                className="w-8 h-8 rounded-full border"
+                className="md:w-8 md:h-8 w-5 h-5 rounded-full border"
               />
               <span className="hidden sm:block font-medium">{user?.displayName}</span>
             </div>
@@ -104,7 +104,7 @@ const {user} = UseAuth()
         </div>
 
         {/* Page Content */}
-        <main className="p-6 flex-1">
+        <main className="p-2 flex-1">
           <Outlet />
         </main>
       </div>

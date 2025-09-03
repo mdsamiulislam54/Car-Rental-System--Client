@@ -41,7 +41,7 @@ const MyCars = () => {
     try {
       setLoading(true);
       const res = await axios.get(
-        `https://car-rental-system-server-beta.vercel.app/my-cars?sort=${sortOrder}&email=${user.email}&limit=${perPage}&page=${currentPage + 1
+        ` http://localhost:5000/my-cars?sort=${sortOrder}&email=${user.email}&limit=${perPage}&page=${currentPage + 1
           }`,
         {
           headers: {
@@ -70,7 +70,7 @@ const MyCars = () => {
 
     await axios
       .patch(
-        `https://car-rental-system-server-beta.vercel.app/
+        ` http://localhost:5000/
 
 update-car/${selectedCar._id}`,
         updatedCar
@@ -117,7 +117,7 @@ update-car/${selectedCar._id}`,
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = await axios.delete(`https://car-rental-system-server-beta.vercel.app/
+        const res = await axios.delete(` http://localhost:5000/
 
 my-cars/${id}`);
         if (res.data.deletedCount > 0) {
@@ -127,7 +127,7 @@ my-cars/${id}`);
       }
     });
   };
-
+console.log(sortOrder);
   return (
     <div className=" w-11/12 mx-auto min-h-screen bg-center relative z-0 py-5 text-white">
       {carData?.length === 0 ? (
@@ -152,28 +152,7 @@ my-cars/${id}`);
         </div>
       ) : (
         <div>
-          <div className="mb-20">
-            <ResponsiveContainer width="100%" height={200}>
-              <LineChart
-                data={chartData}
-                syncId="myCarsSync"
-                margin={{ top: 20, right: 30, left: 0, bottom: 0 }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line
-                  type="monotone"
-                  dataKey="price"
-                  stroke="#FF0000"
-                  activeDot={{ r: 8 }}
-                />
-                <Line type="monotone" dataKey="bookingCount" stroke="#82ca9d" />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
+      
 
           <div className="overflow-x-auto">
             <div className=" flex justify-end text-black ">
@@ -218,7 +197,7 @@ my-cars/${id}`);
                     <td className="p-2">{car.carModel}</td>
                     <td className="p-2">{car.dailyRentalPrice}</td>
                     <td className="p-2">{car.bookingCount}</td>
-                    <td className="p-2 ">{car.availability === true ? 'available':"not available"}</td>
+                    <td className="p-2 ">{car.availability }</td>
                     <td className="p-2">
                       {new Date(car.updatedAt || car.createdAt).toLocaleDateString()}
                     </td>

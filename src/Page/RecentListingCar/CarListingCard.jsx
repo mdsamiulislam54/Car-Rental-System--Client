@@ -52,7 +52,7 @@ const CarListingCard = ({ car }) => {
         {/* Book Now Button */}
         <div className="flex">
           <Link to={`/car-details/${car._id}`} className="w-full">
-            <Button text="Book Now" icon={FaCar} className="w-full" />
+            <Button text="Book Now" icon={FaCar} className="" />
           </Link>
         </div>
       </div>

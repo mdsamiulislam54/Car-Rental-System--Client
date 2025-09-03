@@ -39,7 +39,7 @@ const Registration = () => {
           userEmail: createdUser.email
         }
        
-          await axios.post(`https://car-rental-system-server-beta.vercel.app/user-create`,userData );
+          await axios.post(` http://localhost:5000/user-create`,userData );
         Swal.fire({
           title: "Registration Successful",
           icon: "success",
@@ -70,7 +70,7 @@ const Registration = () => {
 
       // optional: JWT token set with credentials
       await axios.post(
-        `https://car-rental-system-server-beta.vercel.app/jwt?email=${currentUser.email}`,
+        ` http://localhost:5000/jwt?email=${currentUser.email}`,
         {},
         { withCredentials: true }
       );
