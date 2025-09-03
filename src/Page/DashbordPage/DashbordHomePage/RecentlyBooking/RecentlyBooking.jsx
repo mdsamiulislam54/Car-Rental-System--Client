@@ -113,9 +113,9 @@ const RecentlyBooking = () => {
                 </div>
             </div>
             <div className='lg:col-span-1 bg-white mt-10 p-4 rounded-md  '>
-                
-                    <TotalCarChart/>
-                   
+
+                <TotalCarChart />
+
             </div>
         </div>
     )

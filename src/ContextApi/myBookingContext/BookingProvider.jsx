@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import BookingContext from './BookingContext'
 import UseAuth from '../../Hook/useAuth/useAuth';
 import axios from 'axios';
@@ -7,6 +7,11 @@ const BookingProvider = ({ children }) => {
     const [booking, setBookingData] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
     const [error, setError] = React.useState(null);
+      const [count, setCount] = useState(0);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [perPage, setPerPage] = useState(5);
+    const pageNumber = Math.ceil(count / perPage) || 0
+    const pageArray = [...Array(pageNumber).keys()];
 
     const { user } = UseAuth()
 
@@ -14,14 +19,17 @@ const BookingProvider = ({ children }) => {
     try {
         setLoading(true);
         const res = await axios.get(
-            ` http://localhost:5000/booking-car?uid=${user.uid}&email=${user.email}`,
+            ` http://localhost:5000/booking-car?uid=${user.uid}&email=${user.email}&limit=${perPage}&page=${currentPage + 1}`,
             {
                 headers: {
                     Authorization: `Bearer ${user.accessToken}`,
                 },
             }
         );
-        setBookingData(res.data);
+        console.log(res)
+        setBookingData(res?.data?.result);
+        setCount(res?.data?.count)
+
     } catch (err) {
         setError(err.message);
     } finally {
@@ -33,14 +41,14 @@ const BookingProvider = ({ children }) => {
     if (user) {
         bookingDataFatch();
     }
-}, [user]);
+}, [user,currentPage,perPage]);
 
 const pendingBooking = booking.filter((item) => item.bookingStatus === "pending");
 const confirmedBooking = booking.filter((item) => item.bookingStatus === "confirmed");
 const cancelledBooking = booking.filter((item) => item.bookingStatus === "canceled");
   
     return (
-        <BookingContext.Provider value={{ bookingDataFatch, booking, setBookingData, loading, error ,pendingBooking,confirmedBooking,cancelledBooking}}>
+        <BookingContext.Provider value={{ bookingDataFatch, booking, setBookingData, loading, error ,pendingBooking,confirmedBooking,cancelledBooking, currentPage, pageArray,setCurrentPage}}>
             {children}
         </BookingContext.Provider>
 
