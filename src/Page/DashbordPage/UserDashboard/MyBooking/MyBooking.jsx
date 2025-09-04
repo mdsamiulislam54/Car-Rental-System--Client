@@ -21,6 +21,7 @@ import { formatDate } from "../../../../Hook/DateFormate";
 import UserContext from "../../../../ContextApi/UserContext/UserContext";
 import Loader from "../../../../Components/Loader/Loader";
 import BookingContext from "../../../../ContextApi/myBookingContext/BookingContext";
+import ModifyBookingModal from "./ModifyBookingModal";
 
 const MyBooking = () => {
 
@@ -31,8 +32,8 @@ const MyBooking = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndtDate] = useState(null);
   const { user } = useContext(UserContext)
-  const { booking,pageArray,currentPage ,setCurrentPage} = useContext(BookingContext);
- 
+  const { booking, pageArray, currentPage, setCurrentPage,bookingDataFatch } = useContext(BookingContext);
+
 
 
 
@@ -256,59 +257,63 @@ update-booking/${modifyId}`,
         </div>
       )}
 
-        {/* Pagination */}
-                    <div className="flex justify-center mt-8">
-                        <nav className="flex items-center gap-1 sm:gap-2">
-                            {/* Previous Button */}
-                            <button
-                                className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base"
-                                disabled={currentPage === 0}
-                                onClick={() => setCurrentPage((prev) => prev - 1)}
-                            >
-                                <span className="hidden sm:inline">Previous</span>
-                                <span className="sm:hidden">←</span>
-                            </button>
+    {
+      modifyDate && <ModifyBookingModal setEndtDate={setEndtDate} setStartDate={setStartDate} startDate={startDate} endDate={endDate} handleConfirmModifyDate={handleConfirmModifyDate}/>
+    }
 
-                            {/* Page Numbers */}
-                            <div className="flex items-center gap-1">
-                                {pageArray?.map((page) => {
-                                    // Show only first, last, and nearby pages on mobile
-                                    if (window.innerWidth < 640 &&
-                                        page !== 0 &&
-                                        page !== pageArray.length - 1 &&
-                                        Math.abs(page - currentPage) > 1) {
-                                        if (Math.abs(page - currentPage) === 2) {
-                                            return <span key={page} className="px-2">...</span>;
-                                        }
-                                        return null;
-                                    }
+      {/* Pagination */}
+      <div className="flex justify-center mt-8">
+        <nav className="flex items-center gap-1 sm:gap-2">
+          {/* Previous Button */}
+          <button
+            className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base"
+            disabled={currentPage === 0}
+            onClick={() => setCurrentPage((prev) => prev - 1)}
+          >
+            <span className="hidden sm:inline">Previous</span>
+            <span className="sm:hidden">←</span>
+          </button>
 
-                                    return (
-                                        <button
-                                            key={page}
-                                            className={`w-8 h-8 sm:w-10 sm:h-10 rounded-md text-sm sm:text-base ${currentPage === page
-                                                ? "bg-primary text-white"
-                                                : "border border-gray-300 hover:bg-gray-100"
-                                                }`}
-                                            onClick={() => setCurrentPage(page)}
-                                        >
-                                            {page + 1}
-                                        </button>
-                                    );
-                                })}
-                            </div>
+          {/* Page Numbers */}
+          <div className="flex items-center gap-1">
+            {pageArray?.map((page) => {
+              // Show only first, last, and nearby pages on mobile
+              if (window.innerWidth < 640 &&
+                page !== 0 &&
+                page !== pageArray.length - 1 &&
+                Math.abs(page - currentPage) > 1) {
+                if (Math.abs(page - currentPage) === 2) {
+                  return <span key={page} className="px-2">...</span>;
+                }
+                return null;
+              }
 
-                            {/* Next Button */}
-                            <button
-                                className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base"
-                                disabled={pageArray?.length - 1 === currentPage}
-                                onClick={() => setCurrentPage((prev) => prev + 1)}
-                            >
-                                <span className="hidden sm:inline">Next</span>
-                                <span className="sm:hidden">→</span>
-                            </button>
-                        </nav>
-                    </div>
+              return (
+                <button
+                  key={page}
+                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded-md text-sm sm:text-base ${currentPage === page
+                    ? "bg-primary text-white"
+                    : "border border-gray-300 hover:bg-gray-100"
+                    }`}
+                  onClick={() => setCurrentPage(page)}
+                >
+                  {page + 1}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Next Button */}
+          <button
+            className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base"
+            disabled={pageArray?.length - 1 === currentPage}
+            onClick={() => setCurrentPage((prev) => prev + 1)}
+          >
+            <span className="hidden sm:inline">Next</span>
+            <span className="sm:hidden">→</span>
+          </button>
+        </nav>
+      </div>
     </div>
   );
 };

@@ -66,7 +66,7 @@ const MyCars = () => {
     const form = e.target;
     const fromData = new FormData(form);
     const updatedCar = Object.fromEntries(fromData.entries());
-    console.log(updatedCar);
+    
 
     await axios
       .patch(
@@ -127,7 +127,7 @@ my-cars/${id}`);
       }
     });
   };
-console.log(sortOrder);
+
   return (
     <div className=" w-11/12 mx-auto min-h-screen bg-center relative z-0 py-5 text-white">
       {carData?.length === 0 ? (

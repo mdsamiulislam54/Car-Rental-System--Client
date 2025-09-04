@@ -48,7 +48,7 @@ const SidebarContent = ({ user, isAdmin, collapsed, onClose }) => {
                             <Link
                                 to={item.to}
                                 onClick={onClose}
-                                className="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-200 hover:text-primary font-rubik text-gray-600"
+                                className="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-200 hover:text-primary font-rubik text-sm text-gray-800"
                             >
                                 {item.icon}
                                 {!collapsed && <span>{item.label}</span>}
