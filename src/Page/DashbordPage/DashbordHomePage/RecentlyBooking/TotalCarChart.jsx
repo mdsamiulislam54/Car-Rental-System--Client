@@ -1,5 +1,6 @@
-import React from 'react';
+
 import { ResponsiveContainer, PieChart, Pie, Legend } from 'recharts';
+
 
 const data = [
     { name: 'Group A', value: 400 },
@@ -8,6 +9,8 @@ const data = [
     { name: 'Group D', value: 200 },
 ];
 const TotalCarChart = () => {
+
+  
     return (
         <div>
             <nav className="flex items-center justify-between py-4 border-b border-gray-200 mb-4">
@@ -17,7 +20,7 @@ const TotalCarChart = () => {
             </nav>
 
             <div className='space-y-10'>
-                <div style={{ width: '100%', height: 150  }}>
+                <div style={{ width: '100%', height: 150 }}>
                     <h1>Total Cars</h1>
                     <ResponsiveContainer>
                         <PieChart>
@@ -25,8 +28,8 @@ const TotalCarChart = () => {
                         </PieChart>
                     </ResponsiveContainer>
                 </div>
-                <div style={{ width: '100%', height: 150  }}>
-                     <h1>Total Pending</h1>
+                <div style={{ width: '100%', height: 150 }}>
+                    <h1>Total Pending</h1>
                     <ResponsiveContainer>
                         <PieChart>
                             <Pie dataKey="value" data={data} fill="#8884d8" label />
@@ -34,7 +37,7 @@ const TotalCarChart = () => {
                     </ResponsiveContainer>
                 </div>
                 <div style={{ width: '100%', height: 150 }}>
-                     <h1>Total User</h1>
+                    <h1>Total User</h1>
                     <ResponsiveContainer>
                         <PieChart>
                             <Pie dataKey="value" data={data} fill="#8884d8" label />

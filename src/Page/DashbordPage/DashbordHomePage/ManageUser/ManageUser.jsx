@@ -1,14 +1,19 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import { Blocks } from 'lucide-react';
+import React, { useContext, useEffect, useState } from 'react'
+import { MdBlock } from 'react-icons/md';
+import Swal from 'sweetalert2';
+import UserContext from '../../../../ContextApi/UserContext/UserContext';
 
 const ManageUser = () => {
-    const [user, setUser] = useState([]);
+    const [users, setUser] = useState([]);
     const [count, setCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
     const [loading, setLoading] = useState(true)
     const [perPage, setPerPage] = useState(6);
     const pageNumber = Math.ceil(count / perPage) || 0
     const pageArray = [...Array(pageNumber).keys()];
+    const { user } = useContext(UserContext);
     const fetchData = async () => {
         try {
             setLoading(true);
@@ -35,14 +40,44 @@ const ManageUser = () => {
     useEffect(() => {
         fetchData()
     }, [perPage, currentPage])
+
+    const manageUser = async (id) => {
+        const result = await Swal.fire({
+            title: 'Are you sure?',
+            text: 'You want to Block this User!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, cancel it!'
+
+        })
+
+        if (result.isConfirmed) {
+            const res = await axios.delete(`http://localhost:5000/admin/user/block?id=${id}`)
+            
+            console.log(res)
+            if (res.status === 200) {
+                Swal.fire(
+                    'Cancelled!',
+                    `${res?.data.message}`,
+                    'success'
+                );
+
+                fetchData()
+            }
+
+        }
+    }
+
     return (
         <div>
-            <div className='bg-white'>
-                <div className="overflow-x-auto">
+            <div className=' p-0 md:p-8'>
+                <div className="overflow-x-auto bg-white font-rubik">
                     <table className="table">
                         {/* head */}
                         <thead>
-                            <tr>
+                            <tr className='text-center'>
                                 <th>Name</th>
                                 <th>Role</th>
                                 <th>Email</th>
@@ -50,14 +85,19 @@ const ManageUser = () => {
                             </tr>
                         </thead>
                         <tbody>
-                           
+
                             {
-                                user?.map((user) => <tr key={user.userEmail}>
+                                users?.map((user) => <tr key={user.userEmail} className='text-center'>
                                     <th>{user.userName}</th>
                                     <td>{user.role}</td>
                                     <td>{user.userEmail}</td>
-                                    <td>
-                                        <button>Block</button>
+                                    <td className='flex justify-center'>
+                                        <button
+                                            onClick={() => manageUser(user._id)}
+                                            className='flex justify-center items-center gap-2 bg-gray-200 p-2 rounded-md text-sm cursor-pointer hover:bg-gray-100 transition-all duration-300'>
+                                            <MdBlock color='red' />
+                                            Block
+                                        </button>
 
                                     </td>
                                 </tr>)

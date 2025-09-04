@@ -129,7 +129,7 @@ my-cars/${id}`);
   };
 
   return (
-    <div className=" w-11/12 mx-auto min-h-screen bg-center relative z-0 py-5 text-white">
+    <div className="md:p-8 p-0 min-h-screen bg-center relative z-0  text-white">
       {carData?.length === 0 ? (
         <div className="flex justify-center flex-col gap-8 items-center min-h-screen px-4 text-center">
 
@@ -151,7 +151,7 @@ my-cars/${id}`);
           </Link>
         </div>
       ) : (
-        <div>
+        <div className="p-4 bg-white">
       
 
           <div className="overflow-x-auto">
@@ -169,8 +169,8 @@ my-cars/${id}`);
                 </select>
               </div>
             </div>
-            <table className="w-full text-center border-collapse">
-              <thead className="text-black bg-gray-100">
+            <table className="w-full text-center border-collapse  overflow-x-scroll">
+              <thead className="text-black bg-white">
                 <tr>
                   <th className="p-3">Image</th>
                   <th className="p-3">Car Model</th>
@@ -181,11 +181,11 @@ my-cars/${id}`);
                   <th className="p-3">Actions</th>
                 </tr>
               </thead>
-              <tbody className="bg-gray-50 text-black">
+              <tbody className=" text-black">
                 {carData.map((car) => (
                   <tr
                     key={car._id}
-                    className="hover:bg-gray-200 transition-all"
+                    className="hover:bg-gray-50 transition-all"
                   >
                     <td className="p-2 flex justify-center items-center">
                       <img

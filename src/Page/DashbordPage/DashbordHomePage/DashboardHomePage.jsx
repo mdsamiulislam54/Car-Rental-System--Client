@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import UseAuth from "../../../Hook/useAuth/useAuth";
 import {
+    getUserBookingCar,
     totalBookinCar,
     totalBookinCarPending,
     totalCar,
     totalUser,
+
 } from "../../../Hook/dashboardApi/dashbordApi";
 import {
     CarFront,
@@ -30,17 +32,19 @@ const DashboardHomePage = () => {
     const [pending, setBookingPending] = useState([]);
     const [totalPaid, setTotalledPaid] = useState(0);
     const [totalRevenue, setTotalRevenue] = useState([]);
+    const [userBookingCar, setUserBookingCar] = useState([])
 
     const { booking, pendingBooking, confirmedBooking, cancelledBooking } =
         useContext(BookingContext);
 
     useEffect(() => {
         const fetchTotal = async () => {
-            const [car, users, bookings, pendings] = await Promise.all([
+            const [car, users, bookings, pendings, userBookingCar] = await Promise.all([
                 totalCar(),
                 totalUser(),
                 totalBookinCar(),
                 totalBookinCarPending(),
+                getUserBookingCar(user.uid)
             ]);
             setTotalCar(car.total);
             setTotalledPaid(car.paid || 0);
@@ -48,6 +52,7 @@ const DashboardHomePage = () => {
             setTotalUser(users);
             setBookingCar(bookings);
             setBookingPending(pendings);
+            setUserBookingCar(userBookingCar)
         };
         fetchTotal();
     }, []);
@@ -64,6 +69,14 @@ const DashboardHomePage = () => {
     };
 
     const revenueChartData = totalRevenue.map((car) => (
+        {
+            carName: car.carModel,
+            price: car.totalPrice,
+            userName: car.userName,
+            status: car.paymentStatus
+        }
+    ))
+    const userBooking = userBookingCar?.map((car) => (
         {
             carName: car.carModel,
             price: car.totalPrice,
@@ -157,6 +170,16 @@ const DashboardHomePage = () => {
                         <AdminChart revenueChartData={revenueChartData} />
                         <div>
                             <RecentlyBooking bookingCar={bookingCar}/>
+                        </div>
+                    </div>
+                )
+            }
+            {
+                user?.role === 'user' && (
+                    <div className="w-full">
+                        <AdminChart revenueChartData={userBooking} />
+                        <div>
+                            <RecentlyBooking bookingCar={userBooking}/>
                         </div>
                     </div>
                 )

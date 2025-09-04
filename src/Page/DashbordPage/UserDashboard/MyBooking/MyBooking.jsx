@@ -147,7 +147,7 @@ update-booking/${modifyId}`,
             {/* Desktop Table */}
             <table className="hidden sm:table w-full text-center border-collapse relative bg-white">
               <thead className="font-rubik">
-                <tr>
+                <tr className="text-center">
                   <th className="p-2 md:p-3 text-xs md:text-sm font-bold">Car Image</th>
                   <th className="p-2 md:p-3 text-xs md:text-sm font-bold">Car Model</th>
                   <th className="p-2 md:p-3 text-xs md:text-sm font-bold">Booking Date</th>
@@ -158,7 +158,7 @@ update-booking/${modifyId}`,
               </thead>
               <tbody>
                 {booking.map((car) => (
-                  <tr key={car._id} className="hover:bg-gray-50 transition">
+                  <tr key={car._id} className="hover:bg-gray-50 transition text-center">
                     <td className="p-2">
                       <img
                         src={car.carImages}
