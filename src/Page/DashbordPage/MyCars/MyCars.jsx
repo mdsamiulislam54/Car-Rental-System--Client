@@ -36,13 +36,13 @@ const MyCars = () => {
 
   useEffect(() => {
     fetchData();
-  }, [sortOrder,currentPage, perPage, user]);
+  }, [sortOrder, currentPage, perPage, user]);
   const fetchData = async () => {
     try {
       setLoading(true);
       const res = await axios.get(
         ` http://localhost:5000/my-cars?sort=${sortOrder}&email=${user.email}&limit=${perPage}&page=${currentPage + 1
-          }`,
+        }`,
         {
           headers: {
             Authorization: `Bearer ${user.accessToken}`,
@@ -66,7 +66,7 @@ const MyCars = () => {
     const form = e.target;
     const fromData = new FormData(form);
     const updatedCar = Object.fromEntries(fromData.entries());
-    
+
 
     await axios
       .patch(
@@ -127,7 +127,7 @@ my-cars/${id}`);
       }
     });
   };
-
+console.log(selectedCar)
   return (
     <div className="md:p-8 p-0 min-h-screen bg-center relative z-0  text-white">
       {carData?.length === 0 ? (
@@ -152,7 +152,7 @@ my-cars/${id}`);
         </div>
       ) : (
         <div className="p-4 bg-white">
-      
+
 
           <div className="overflow-x-auto">
             <div className=" flex justify-end text-black ">
@@ -197,7 +197,7 @@ my-cars/${id}`);
                     <td className="p-2">{car.carModel}</td>
                     <td className="p-2">{car.dailyRentalPrice}</td>
                     <td className="p-2">{car.bookingCount}</td>
-                    <td className="p-2 ">{car.availability }</td>
+                    <td className="p-2 ">{car.availability}</td>
                     <td className="p-2">
                       {new Date(car.updatedAt || car.createdAt).toLocaleDateString()}
                     </td>
@@ -226,17 +226,17 @@ my-cars/${id}`);
           <div className="bg-white p-6 mt-14 rounded-lg w-11/12 md:w-2/3 lg:w-1/2 relative  text-black">
             <h2 className="text-xl font-bold mb-4">Update Car</h2>
             <form onSubmit={handleUpdate} className="space-y-3">
-              <div className="flex gap-3 justify-center">
+              <div className="flex gap-3 ">
                 <input
                   name="carModel"
                   defaultValue={selectedCar.carModel}
-                  className="border-2 rounded-md p-2 w-full "
+                  className="input"
                   placeholder="Car Model"
                 />
                 <input
                   name="dailyRentalPrice"
                   defaultValue={selectedCar.dailyRentalPrice}
-                  className="border-2 rounded-md p-2 w-full "
+                  className="input "
                   placeholder="Daily Rental Price"
                 />
               </div>
@@ -244,7 +244,7 @@ my-cars/${id}`);
               <select
                 name="availability"
                 id=""
-                className="border-2 rounded-md p-2 w-full "
+                className="select "
               >
                 <option value={selectedCar.availability}>
                   {selectedCar.availability}
@@ -256,34 +256,37 @@ my-cars/${id}`);
                 <input
                   name="registrationNumber"
                   defaultValue={selectedCar.registrationNumber}
-                  className="border-2 rounded-md p-2 w-full "
+                  className="input "
                   placeholder="Registration Number"
                 />
                 <input
                   name="features"
                   defaultValue={selectedCar.features}
-                  className="border-2 rounded-md p-2 w-full "
+                  className="input "
                   placeholder="Features"
                 />
               </div>
-              <textarea
-                name="description"
-                defaultValue={selectedCar.description}
-                className="border-2 rounded-md p-2 w-full "
-                placeholder="Description"
-              />
+
               <div className="flex gap-3">
                 <input
                   name="image"
                   defaultValue={selectedCar.imageUrl}
-                  className="border-2 rounded-md p-2 w-full "
+                  className="input "
                   placeholder="Image URL"
                 />
                 <input
                   name="location"
-                  defaultValue={selectedCar.location}
-                  className="border-2 rounded-md p-2 w-full "
+                  defaultValue={selectedCar.location.city}
+                  className="input "
                   placeholder="Location"
+                />
+              </div>
+              <div>
+                <textarea
+                  name="description"
+                  defaultValue={selectedCar.description}
+                  className="textarea w-full"
+                  placeholder="Description"
                 />
               </div>
               <div className="flex justify-end gap-2">
@@ -301,41 +304,42 @@ my-cars/${id}`);
                   Save
                 </button>
               </div>
+
             </form>
           </div>
         </div>
       )}
 
-          <div className="flex justify-center items-center mt-10">
+      <div className="flex justify-center items-center mt-10">
+        <button
+          className="btn mx-4"
+          disabled={currentPage === 0}
+          onClick={() => setCurrentPage((prev) => prev - 1)}
+        >
+          Prev
+        </button>
+        <ul className="flex gap-4">
+          {pageArray?.map((page) => {
+            return (
+              <li
+                key={page}
+                className={`btn bg-gray-200 ${currentPage === page ? "bg-primary text-white" : ""
+                  }`}
+                onClick={() => setCurrentPage(page)}
+              >
+                {page + 1}
+              </li>
+            );
+          })}
           <button
             className="btn mx-4"
-            disabled={currentPage === 0}
-            onClick={() => setCurrentPage((prev) => prev - 1)}
+            disabled={pageArray?.length - 1 === currentPage ? true : false}
+            onClick={() => setCurrentPage((prev) => prev + 1)}
           >
-            Prev
+            Next
           </button>
-          <ul className="flex gap-4">
-            {pageArray?.map((page) => {
-              return (
-                <li
-                  key={page}
-                  className={`btn bg-gray-200 ${currentPage === page ? "bg-primary text-white" : ""
-                    }`}
-                  onClick={() => setCurrentPage(page)}
-                >
-                  {page + 1}
-                </li>
-              );
-            })}
-            <button
-              className="btn mx-4"
-              disabled={pageArray?.length - 1 === currentPage ? true : false}
-              onClick={() => setCurrentPage((prev) => prev + 1)}
-            >
-              Next
-            </button>
-          </ul>
-        </div>
+        </ul>
+      </div>
     </div>
   );
 };

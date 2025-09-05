@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { LuSquareMenu } from "react-icons/lu";
 import { IoGrid } from "react-icons/io5";
 
@@ -23,6 +23,10 @@ const AvailableCars = () => {
   const pageNumber = Math.ceil(count / perPage) || 0
   const pageArray = [...Array(pageNumber).keys()];
   const { state } = useLocation();
+  const [maxPrice, setMaxPrice] = useState(100000)
+  const [minPrice, setMinPrice] = useState(0)
+  const fromRef = useRef()
+  
 
 
   useEffect(() => {
@@ -31,14 +35,14 @@ const AvailableCars = () => {
         setLoading(true);
         const res = await axios.get(
           ` http://localhost:5000/available-cars?search=${search}&sort=${sortOrder}&limit=${perPage}&page=${currentPage + 1
-          }&carModel=${state?.carModel || ''}&location=${state?.location || ""}`
+          }&minPrice=${minPrice}&maxPrice=${maxPrice}`
         );
 
         const data = res.data;
 
         setCarData(data.cars);
         setCount(data.count);
-        console.log(data.count)
+    
       } catch (err) {
         setError(err.message);
       } finally {
@@ -47,7 +51,7 @@ const AvailableCars = () => {
     };
 
     fetchData();
-  }, [search, sortOrder, perPage, currentPage, state]);
+  }, [search, sortOrder, perPage, currentPage, state,minPrice,maxPrice]);
   const handleSearch = (e) => {
     e.preventDefault();
     const searchText = e.target.search.value;
@@ -59,6 +63,14 @@ const AvailableCars = () => {
     return <div style={{ color: "red" }}>{error}</div>;
   }
 
+const handleReset = () => {
+  setSearch('');
+  setMinPrice(0); 
+  setMaxPrice(100000); 
+  if (fromRef.current) {
+    fromRef.current.reset(); 
+  }
+}
 
   return (
     <div className="min-h-screen  text-text font-rubik pb-5 bg-gray-50">
@@ -131,23 +143,25 @@ const AvailableCars = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Price Range</label>
-                <div className="flex items-center space-x-2">
+                <form rom ref={fromRef} className="flex items-center space-x-2" >
                   <input
                     type="number"
                     placeholder="Min"
+                    onChange={(e)=>setMinPrice(e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md"
                   />
                   <span>-</span>
                   <input
                     type="number"
                     placeholder="Max"
+                    onChange={(e)=>setMaxPrice(e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md"
                   />
-                </div>
+                </form>
               </div>
 
              
-              <Button  text={"Reset Filters"}  onClick={()=>setSearch('')}/>
+              <Button  text={"Reset Filters"}  onClick={()=>handleReset()}/>
             </div>
           </div>
         </div>
@@ -155,8 +169,8 @@ const AvailableCars = () => {
         {/* Right Side - Car Listings */}
         <div className="w-full md:w-3/4 lg:w-4/5">
           {/* View Toggle and Results Count */}
-          <div className="flex justify-between items-center mb-6">
-            <p className="text-gray-600">{carData?.length} cars available</p>
+          <div className="flex justify-end items-center mb-6">
+           
             <button
               onClick={() => setLineView(!lineView)}
               className="p-2 bg-gray-100 rounded-md hover:bg-gray-200 transition"
@@ -169,7 +183,7 @@ const AvailableCars = () => {
           {carData?.length === 0 ? (
             <div className="min-h-[50vh] flex justify-center items-center flex-col gap-4 bg-white rounded-lg shadow p-8">
               <p className="text-2xl text-center font-rubik font-bold text-gray-700">No cars found</p>
-              <Link>
+              <Link to={'/available-cars'}>
                 <Button text={'Try Again'}/>
               </Link>
             </div>
