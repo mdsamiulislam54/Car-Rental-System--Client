@@ -59,13 +59,13 @@ const AvailableCarsCard = ({ lineView, car }) => {
                   {seatingCapacity} Seats
                 </span>
               )}
-              {/* Add more features here if needed */}
+              
             </div>
 
             {/* Book Button */}
             <div className="mt-2">
               <Link to={`/car-details/${_id}`}>
-                <Button text={"Book Now"} />
+                <Button text={"See Details"} />
               </Link>
             </div>
           </div>

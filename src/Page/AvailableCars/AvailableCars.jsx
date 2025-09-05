@@ -75,13 +75,13 @@ const handleReset = () => {
   return (
     <div className="min-h-screen  text-text font-rubik pb-5 bg-gray-50">
       <div
-        className="h-[50vh] bg-center bg-no-repeat relative mb-4 rounded-md"
-        style={{ backgroundImage: `url(${'https://img.freepik.com/free-vector/modern-cars-automobiles-vehicles-set_107791-9139.jpg?t=st=1754721674~exp=1754725274~hmac=e70d18981345a8c1fc937c661eaa254a998c85e3f382d02c72ca08ce1ea1b49a&w=1480'})` }}
+        className="h-[50vh] bg-cover  bg-no-repeat relative mb-4 rounded-md"
+        style={{ backgroundImage: `url(${'https://img.freepik.com/free-vector/modern-cars-automobiles-vehicles-set_107791-9139.jpg?t=st=1757069702~exp=1757073302~hmac=eede7c7720fd21887b2f938ce3f95fa0afbd1229dcf642f5ca38d26340c1a420&w=1480'})` }}
       >
         <div className="absolute inset-0 bg-black/40">
           <div className="flex justify-center items-center h-full text-white flex-col space-y-4">
             <div className="flex items-center">
-              <CarIcon className="w-8 h-8 mr-3 " /> {/* Replace with your actual car icon component */}
+              <CarIcon className="w-8 h-8 mr-3 " />
               <p className="text-3xl font-bold font-rubik ">
                 Available Cars
               </p>
@@ -89,12 +89,12 @@ const handleReset = () => {
 
             <div className="flex items-center gap-2 text-sm">
               <Link to={'/'} className="flex items-center hover:text-red-300 transition-colors">
-                <HomeIcon className="w-4 h-4 mr-1" /> {/* Replace with your home icon */}
+                <HomeIcon className="w-4 h-4 mr-1" /> 
                 Home
               </Link>
-              <ChevronRightIcon className="w-4 h-4 text-gray-400" /> {/* Right arrow icon */}
+              <ChevronRightIcon className="w-4 h-4 text-gray-400" /> 
               <span className="flex items-center text-gray-300 font-semibold">
-                <CarIcon className="w-4 h-4 mr-1 text-gray-400" /> {/* Small car icon */}
+                <CarIcon className="w-4 h-4 mr-1 text-gray-400" /> 
                 Available Cars
               </span>
             </div>
@@ -112,7 +112,7 @@ const handleReset = () => {
                 type="text"
                 name="search"
                 placeholder="Model, brand, location..."
-                className="w-full border border-gray-300 rounded-md py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-700"
+                className="w-full border border-gray-300 rounded-md py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-700 input "
               />
               <button
                 type="submit"
@@ -133,7 +133,7 @@ const handleReset = () => {
                 <select
                   value={sortOrder}
                   onChange={(e) => setSortOrder(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500"
+                  className="select"
                 >
                   <option value="default">Default</option>
                   <option value="asc">Lowest Price First</option>
@@ -148,14 +148,14 @@ const handleReset = () => {
                     type="number"
                     placeholder="Min"
                     onChange={(e)=>setMinPrice(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                    className="input"
                   />
                   <span>-</span>
                   <input
                     type="number"
                     placeholder="Max"
                     onChange={(e)=>setMaxPrice(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                    className="input"
                   />
                 </form>
               </div>
@@ -189,7 +189,7 @@ const handleReset = () => {
             </div>
           ) : (
             loading ? (<Loader />) : (
-              <div className={lineView ? "space-y-4" : "grid md:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-4 gap-6 min-h-screen"}>
+              <div className={lineView ? "space-y-2" : "grid md:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-4 gap-2 min-h-screen"}>
                 {carData?.map((car) => (
                   <AvailableCarsCard
                     key={car._id}

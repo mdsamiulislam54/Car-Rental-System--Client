@@ -30,6 +30,7 @@ const Login = () => {
       if (currentUser) {
         Swal.fire({ icon: "success", title: "Login Successful!" });
         navigate(state?.pathname || "/");
+        navigate('/')
       }
     } catch (error) {
       console.error(error);

@@ -27,6 +27,9 @@ import BookingProvider from "./ContextApi/myBookingContext/BookingProvider.jsx";
 import ManageUser from "./Page/DashbordPage/DashbordHomePage/ManageUser/ManageUser.jsx";
 import AboutUs from "./Page/AboutUs/AboutUs.jsx";
 import COntactUs from "./Page/ContactUs/ContactUs.jsx";
+import AddBlogs from "./Page/DashbordPage/AdminDashboard/AddBlogs/AddBlogs.jsx";
+import Blogs from "./Page/Blogs/Blogs.jsx";
+import ContactUs from "./Page/ContactUs/ContactUs.jsx";
 
 const router = createBrowserRouter([
   {
@@ -49,7 +52,11 @@ const router = createBrowserRouter([
      },
      {
       path:"/contact-us",
-      Component:COntactUs
+      Component:ContactUs
+     },
+     {
+      path:"/blog",
+      Component:Blogs
      }
     ],
   },
@@ -101,6 +108,10 @@ const router = createBrowserRouter([
        {
         path: '/dashboard/my-booking-cars',
         element: <PrivateRoute><MyBooking/></PrivateRoute>
+      },
+       {
+        path: '/dashboard/add/blogs',
+        element: <PrivateRoute><AddBlogs/></PrivateRoute>
       },
       {
         path:'/dashboard/manage/user',

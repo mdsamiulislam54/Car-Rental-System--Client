@@ -11,6 +11,7 @@ const SidebarContent = ({ user, isAdmin, collapsed, onClose }) => {
                 { to: "/dashboard/manage/user", label: "Manage Users", icon: <Users size={18} /> },
                 { to: "/dashboard/manage-booking", label: "Manage Booking Car", icon: <CalendarClock size={18} /> },
                 { to: "/dashboard/my-cars", label: "Manage All Cars", icon: <CarFront size={18} /> },
+                { to: "/dashboard/add/blogs", label: "Add Blogs", icon: <CarFront size={18} /> },
                 
             ]
             : [
