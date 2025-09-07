@@ -13,12 +13,13 @@ const Blogs = () => {
     const [perPage, setPerPage] = useState(3);
     const pageNumber = Math.ceil(count / perPage) || 0
     const pageArray = [...Array(pageNumber).keys().map(i => i + 1)];
-    const [category, setCategory] = useState('')
+    const [category, setCategory] = useState('');
+    const [search, setSearch] = useState('')
 
     const fetchBlogsData = async () => {
         try {
             setLoading(true)
-            const res = await axios.get(`http://localhost:5000/blogs?page=${currentPage}&limit=${perPage}&category=${category}`);
+            const res = await axios.get(`http://localhost:5000/blogs?page=${currentPage}&limit=${perPage}&category=${category}&search=${search}`);
             console.log(res?.data.blogs);
             setBlogs(res?.data?.blogs)
             setCount(res?.data?.count)
@@ -31,14 +32,13 @@ const Blogs = () => {
 
     useEffect(() => {
         fetchBlogsData()
-    }, [currentPage, perPage, category])
+    }, [currentPage, perPage, category,search])
 
-
-
-
-
-
-
+const handleSearch = (e)=>{
+    e.preventDefault();
+    const search = e.target.search.value;
+    setSearch(search)
+}
 
 
     const tags = [
@@ -67,7 +67,7 @@ const Blogs = () => {
         "Hypercars",
     ];
 
-    console.log(category)
+
     return (
         <div className="min-h-screen flex flex-col">
             {/* Banner */}
@@ -111,7 +111,7 @@ const Blogs = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
                     {/* Left Column (Search) */}
                     <div className="lg:col-span-3 col-span-12 border-r pr-2 border-gray-200">
-                        <form className="relative mb-4">
+                        <form className="relative mb-4" onSubmit={handleSearch}>
                             <input
                                 type="text"
                                 name="search"
