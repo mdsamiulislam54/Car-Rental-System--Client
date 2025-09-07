@@ -139,9 +139,9 @@ const Blogs = () => {
 
                             <div>
                                 <h2 className="font-semibold mb-2 font-rubik my-4">Tags</h2>
-                                <ul className="space-y-1 text-sm text-gray-700 grid lg:grid-cols-3 grid-cols-6 gap-4 lg:ml-4">
+                                <ul className="space-y-1 text-sm text-gray-700 grid  lg:grid-cols-2   md:grid-cols-6 xl:grid-cols-3 grid-cols-4 gap-4 lg:ml-4">
                                     {tags.map((tag, idx) => (
-                                        <li key={idx} className="hover:text-red-500 transition-colors cursor-pointer text-[14px] font-rubik bg-gray-100 p-1 text-center shadow rounded-xl">
+                                        <li key={idx} className="hover:text-red-500 transition-colors cursor-pointer text-[12px] font-rubik bg-gray-100 p-2 text-center  rounded-md">
                                             {tag}
                                         </li>
                                     ))}
@@ -151,7 +151,7 @@ const Blogs = () => {
                     </div>
 
                     {/* Middle Column (Main Content) */}
-                    <div className="lg:col-span-6 col-span-12">
+                    <div className="lg:col-span-9 col-span-12">
                         <div className="p-4 bg-base-100 rounded-md  text-center">
                             <div className="space-y-8">
                                 {
@@ -166,7 +166,7 @@ const Blogs = () => {
                     </div>
 
                     {/* Right Column (Extra widgets / ads) */}
-                    <div className="lg:col-span-3 col-span-12">
+                    {/* <div className="lg:col-span-3 col-span-12">
                         <div className="p-4 bg-base-200 rounded-md shadow">
                             <h2 className="font-semibold mb-2">Trending</h2>
                             <ul className="space-y-1 text-sm text-gray-700">
@@ -175,11 +175,11 @@ const Blogs = () => {
                                 <li>🏎️ Fastest Cars This Year</li>
                             </ul>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             {/* Pagination */}
-            <div className="flex justify-center mt-8">
+            <div className="flex justify-center my-8">
                 <nav className="flex items-center gap-1 sm:gap-2">
                     {/* Previous Button */}
                     <button

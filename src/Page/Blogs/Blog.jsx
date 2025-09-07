@@ -13,7 +13,7 @@ const Blog = ({ blogs }) => {
         <article>
 
             <div className='overflow-hidden'>
-                <img src={coverImage} alt={title} className='w-full h-[300px] object-center rounded-md hover:scale-125 transition-all duration-500 cursor-pointer' />
+                <img src={coverImage} alt={title} loading='lazy' className='w-full h-[350px] object-cover rounded-md hover:scale-125 transition-all duration-500 cursor-pointer'  />
             </div>
             <div className='my-2 flex justify-between items-center cursor-pointer'>
                 <div className='flex items-center gap-2 font-rubik'>
@@ -47,7 +47,7 @@ const Blog = ({ blogs }) => {
             </div>
 
             <div className='text-start'>
-                <p className='text-2xl font-bold font-rubik line-clamp-1'>{title}</p>
+                <p className='text-2xl font-bold font-rubik line-clamp-1 mb-4'>{title}</p>
                 <p className='text-sm text-gray-800 font-rubik line-clamp-3 leading-6'>{excerpt}...</p>
 
                 <div className='flex justify-end my-2'>
