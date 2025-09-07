@@ -51,7 +51,7 @@ const MyCars = () => {
       );
 
       const data = res.data;
-      console.log(data.cars);
+     
       setCarData(data.cars || []);
       setCount(data.totalCars || 0);
     } catch (err) {

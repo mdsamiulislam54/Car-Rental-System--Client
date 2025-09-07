@@ -31,6 +31,7 @@ import AddBlogs from "./Page/DashbordPage/AdminDashboard/AddBlogs/AddBlogs.jsx";
 import Blogs from "./Page/Blogs/Blogs.jsx";
 import ContactUs from "./Page/ContactUs/ContactUs.jsx";
 import BlogsDetails from "./Page/Blogs/BlogsDetails.jsx";
+import ManageBlogs from "./Page/DashbordPage/AdminDashboard/ManageBlogs/ManageBlogs.jsx";
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, Component: Home },
       { path: "available-cars", element: <AvailableCars /> },
-      
+
 
       {
         path: "car-details/:id",
@@ -47,23 +48,23 @@ const router = createBrowserRouter([
           fetch(` http://localhost:5000/car-details/${params.id}`),
         element: <CarDetailsPage />
       },
-     {
-      path:"/about-us",
-      Component:AboutUs
-     },
-     {
-      path:"/contact-us",
-      Component:ContactUs
-     },
-     {
-      path:"/blog",
-      Component:Blogs
-     },
-     {
-      path:"blog/details/:id",
-      loader:({params})=> fetch(` http://localhost:5000/blogs/${params.id}`),
-      Component:BlogsDetails
-     }
+      {
+        path: "/about-us",
+        Component: AboutUs
+      },
+      {
+        path: "/contact-us",
+        Component: ContactUs
+      },
+      {
+        path: "/blog",
+        Component: Blogs
+      },
+      {
+        path: "blog/details/:id",
+        loader: ({ params }) => fetch(` http://localhost:5000/blogs/${params.id}`),
+        Component: BlogsDetails
+      }
     ],
   },
   {
@@ -77,51 +78,44 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    Component: DashBoardLayout,
+    element: <PrivateRoute>
+      <DashBoardLayout />
+    </PrivateRoute>,
 
     children: [
       {
         index: true,
-        element: <PrivateRoute>
-          <DashboardHomePage />
-        </PrivateRoute>
+        Component: DashboardHomePage
+
       },
 
       {
         path: "/dashboard/my-cars",
-        element: (
-          <PrivateRoute>
-            <MyCarsTable />
-          </PrivateRoute>
-        ),
+        Component: MyCarsTable
       },
-       {
+      {
         path: "/dashboard/add-car",
-        element: (
-          <PrivateRoute>
-            <AddCars />
-          </PrivateRoute>
-        ),
+        Component: AddCars
       },
       {
-        path:"/dashboard/manage-booking",
-        element:(
-          <PrivateRoute>
-            <ManageBookingCar/>
-          </PrivateRoute>
-        )
+        path: "/dashboard/manage-booking",
+        Component: ManageBookingCar
       },
-       {
+      {
         path: '/dashboard/my-booking-cars',
-        element: <PrivateRoute><MyBooking/></PrivateRoute>
-      },
-       {
-        path: '/dashboard/add/blogs',
-        element: <PrivateRoute><AddBlogs/></PrivateRoute>
+        Component: MyBooking
       },
       {
-        path:'/dashboard/manage/user',
-        element:<ManageUser/>
+        path: '/dashboard/add/blogs',
+        Component: AddBlogs
+      },
+      {
+        path: '/dashboard/manage/blogs',
+        Component: ManageBlogs
+      },
+      {
+        path: '/dashboard/manage/user',
+        Component: ManageUser
       }
 
 
@@ -133,9 +127,9 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <UserProvider>
       <BookingProvider>
-      <Suspense fallback={<Loading />}>
-        <RouterProvider router={router}></RouterProvider>
-      </Suspense>
+        <Suspense fallback={<Loading />}>
+          <RouterProvider router={router}></RouterProvider>
+        </Suspense>
       </BookingProvider>
     </UserProvider>
 

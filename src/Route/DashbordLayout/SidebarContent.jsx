@@ -2,6 +2,8 @@ import { Menu, X, Sun, Bell, LayoutDashboard, Users, CalendarClock, Car, CarFron
     from "lucide-react";
 import { IoClose } from "react-icons/io5";
 import { Link } from "react-router";
+import { RiAddBoxFill,RiStickyNoteAddFill  } from "react-icons/ri";
+import { BsFillHouseAddFill } from "react-icons/bs";
 
 const SidebarContent = ({ user, isAdmin, collapsed, onClose }) => {
     const menuItems = [
@@ -11,7 +13,8 @@ const SidebarContent = ({ user, isAdmin, collapsed, onClose }) => {
                 { to: "/dashboard/manage/user", label: "Manage Users", icon: <Users size={18} /> },
                 { to: "/dashboard/manage-booking", label: "Manage Booking Car", icon: <CalendarClock size={18} /> },
                 { to: "/dashboard/my-cars", label: "Manage All Cars", icon: <CarFront size={18} /> },
-                { to: "/dashboard/add/blogs", label: "Add Blogs", icon: <CarFront size={18} /> },
+                { to: "/dashboard/add/blogs", label: "Add Blogs", icon: <RiAddBoxFill size={18} /> },
+                { to: "/dashboard/manage/blogs", label: "Manage Blogs", icon: <RiStickyNoteAddFill size={18} /> },
                 
             ]
             : [
@@ -24,7 +27,7 @@ const SidebarContent = ({ user, isAdmin, collapsed, onClose }) => {
                 }
 
             ]),
-        { to: "/", label: "Back to Home", icon: <Home size={18} /> },
+        { to: "/", label: "Back to Home", icon: <BsFillHouseAddFill size={18} /> },
     ];
 
     return (

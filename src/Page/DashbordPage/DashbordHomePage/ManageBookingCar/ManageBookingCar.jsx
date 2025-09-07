@@ -85,7 +85,7 @@ const ManageBookingCar = () => {
     };
 
     return (
-        <div className="p-4 bg-white">
+        <div className="md:p-8">
 
 
             {loading ? (
@@ -119,7 +119,7 @@ const ManageBookingCar = () => {
                                         <img
                                             src={car?.carImages || 'https://via.placeholder.com/100'}
                                             alt="car"
-                                            className="w-30 object-cover rounded"
+                                            className="w-20 object-cover rounded"
                                         />
                                     </td>
                                     <td>{car?.carModel || "N/A"}</td>

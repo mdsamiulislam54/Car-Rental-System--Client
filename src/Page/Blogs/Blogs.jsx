@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router";
 import Blog from "./Blog";
+import Loader from "../../Components/Loader/Loader";
 
 const Blogs = () => {
     const [blogs, setBlogs] = useState([]);
@@ -32,13 +33,13 @@ const Blogs = () => {
 
     useEffect(() => {
         fetchBlogsData()
-    }, [currentPage, perPage, category,search])
+    }, [currentPage, perPage, category, search])
 
-const handleSearch = (e)=>{
-    e.preventDefault();
-    const search = e.target.search.value;
-    setSearch(search)
-}
+    const handleSearch = (e) => {
+        e.preventDefault();
+        const search = e.target.search.value;
+        setSearch(search)
+    }
 
 
     const tags = [
@@ -74,14 +75,14 @@ const handleSearch = (e)=>{
             <div
                 className="h-[40vh] sm:h-[50vh] bg-cover bg-no-repeat relative mb-6 rounded-md"
                 style={{
-                    backgroundImage: `url(${"https://img.freepik.com/free-vector/modern-cars-automobiles-vehicles-set_107791-9139.jpg"})`,
+                    backgroundImage: `url(${"https://img.freepik.com/free-vector/convertible-car-drive-road-mountain-sand-desert_107791-20832.jpg?t=st=1757240011~exp=1757243611~hmac=021ac9ae1d269b25aa7ca65a0481fc69a50c7352b2240e6b7eade97922960f03&w=1480"})`,
                 }}
             >
                 <div className="absolute inset-0 bg-black/50">
                     <div className="flex justify-center items-center h-full text-white flex-col space-y-4 px-4 text-center">
                         {/* Title */}
                         <div className="flex items-center">
-                            <CarIcon className="w-8 h-8 mr-2" />
+                            
                             <p className="text-3xl sm:text-4xl font-bold font-rubik">
                                 Blogs
                             </p>
@@ -177,9 +178,14 @@ const handleSearch = (e)=>{
                         ) : (
                             <div className="p-4 bg-base-100 rounded-md text-center">
                                 <div className="space-y-8">
-                                    {blogs?.map((blog) => {
-                                        return <Blog key={blog._id} blogs={blog} />;
-                                    })}
+                                    {
+                                        loading ? <Loader /> : (
+                                            blogs?.map((blog) => {
+                                                return <Blog key={blog._id} blogs={blog} />;
+                                            })
+                                        )
+                                    }
+
                                 </div>
                             </div>
                         )}

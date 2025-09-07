@@ -47,7 +47,7 @@ const {user} = UseAuth()
       {/* Main Content */}
       <div
         className={`flex-1 flex flex-col transition-all duration-300
-        ${isCollapsed ? "lg:ml-20" : "lg:ml-52"}`}
+        ${isCollapsed ? "lg:ml-20" : "lg:ml-56"}`}
       >
         {/* Top Navbar */}
         <div className="flex items-center justify-between bg-white p-4 shadow sticky top-0 z-40">
