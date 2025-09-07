@@ -12,12 +12,13 @@ const Blogs = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [perPage, setPerPage] = useState(3);
     const pageNumber = Math.ceil(count / perPage) || 0
-    const pageArray = [...Array(pageNumber).keys()];
+    const pageArray = [...Array(pageNumber).keys().map(i => i + 1)];
+    const [category, setCategory] = useState('')
 
     const fetchBlogsData = async () => {
         try {
             setLoading(true)
-            const res = await axios.get(`http://localhost:5000/blogs?page=${currentPage}&limit=${perPage}`);
+            const res = await axios.get(`http://localhost:5000/blogs?page=${currentPage}&limit=${perPage}&category=${category}`);
             console.log(res?.data.blogs);
             setBlogs(res?.data?.blogs)
             setCount(res?.data?.count)
@@ -30,7 +31,7 @@ const Blogs = () => {
 
     useEffect(() => {
         fetchBlogsData()
-    }, [currentPage, perPage])
+    }, [currentPage, perPage, category])
 
 
 
@@ -65,6 +66,8 @@ const Blogs = () => {
         "Culture",
         "Hypercars",
     ];
+
+    console.log(category)
     return (
         <div className="min-h-screen flex flex-col">
             {/* Banner */}
@@ -104,10 +107,10 @@ const Blogs = () => {
             </div>
 
             {/* Content */}
-            <div className="w-11/12 mx-auto flex-1 my-10">
+            <div className="w-11/12 mx-auto flex-1 my-5">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
                     {/* Left Column (Search) */}
-                    <div className="lg:col-span-3 col-span-12">
+                    <div className="lg:col-span-3 col-span-12 border-r pr-2 border-gray-200">
                         <form className="relative mb-4">
                             <input
                                 type="text"
@@ -128,6 +131,7 @@ const Blogs = () => {
                             <ul className="space-y-1 text-sm text-gray-700 ml-4">
                                 {categories.map((cat, idx) => (
                                     <li
+                                        onClick={() => setCategory(cat)}
                                         key={idx}
                                         className="hover:text-red-500 transition-colors cursor-pointer text-[14px] font-rubik"
                                     >
@@ -152,85 +156,93 @@ const Blogs = () => {
 
                     {/* Middle Column (Main Content) */}
                     <div className="lg:col-span-9 col-span-12">
-                        <div className="p-4 bg-base-100 rounded-md  text-center">
-                            <div className="space-y-8">
-                                {
-                                    blogs?.map((blog) => {
-                                        return (
-                                            <Blog key={blog._id} blogs={blog} />
-                                        )
-                                    })
-                                }
+                        {blogs?.length === 0 ? (
+                            <div className="flex justify-center items-center min-h-screen ">
+                                <div className="flex flex-col items-center justify-center space-y-4">
+
+                                    <h2 className="text-xl font-semibold text-gray-600">
+                                        No Blogs Found
+                                    </h2>
+                                    <p className="text-gray-500">
+                                        We couldn’t find any blogs for this category. Try changing the filter.
+                                    </p>
+                                    <button
+                                        onClick={() => window.location.reload()}
+                                        className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+                                    >
+                                        Refresh
+                                    </button>
+                                </div>
                             </div>
+                        ) : (
+                            <div className="p-4 bg-base-100 rounded-md text-center">
+                                <div className="space-y-8">
+                                    {blogs?.map((blog) => {
+                                        return <Blog key={blog._id} blogs={blog} />;
+                                    })}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Pagination */}
+                        <div className="flex justify-center my-8">
+                            <nav className="flex items-center gap-1 sm:gap-2">
+                                {/* Previous Button */}
+                                <button
+                                    className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base"
+                                    disabled={currentPage === 0}
+                                    onClick={() => setCurrentPage((prev) => prev - 1)}
+                                >
+                                    <span className="hidden sm:inline">Previous</span>
+                                    <span className="sm:hidden">←</span>
+                                </button>
+
+                                {/* Page Numbers */}
+                                <div className="flex items-center gap-1">
+                                    {pageArray?.map((page) => {
+                                        // Show only first, last, and nearby pages on mobile
+                                        if (window.innerWidth < 640 &&
+                                            page !== 0 &&
+                                            page !== pageArray.length - 1 &&
+                                            Math.abs(page - currentPage) > 1) {
+                                            if (Math.abs(page - currentPage) === 2) {
+                                                return <span key={page} className="px-2">...</span>;
+                                            }
+                                            return null;
+                                        }
+
+                                        return (
+                                            <button
+                                                key={page}
+                                                className={`w-8 h-8 sm:w-10 sm:h-10 rounded-md text-sm sm:text-base ${currentPage === page
+                                                    ? "bg-primary text-white"
+                                                    : "border border-gray-300 hover:bg-gray-100"
+                                                    }`}
+                                                onClick={() => setCurrentPage(page)}
+                                            >
+                                                {page}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+
+                                {/* Next Button */}
+                                <button
+                                    className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base"
+                                    disabled={pageArray?.length - 1 === currentPage}
+                                    onClick={() => setCurrentPage((prev) => prev + 1)}
+                                >
+                                    <span className="hidden sm:inline">Next</span>
+                                    <span className="sm:hidden">→</span>
+                                </button>
+                            </nav>
                         </div>
                     </div>
 
-                    {/* Right Column (Extra widgets / ads) */}
-                    {/* <div className="lg:col-span-3 col-span-12">
-                        <div className="p-4 bg-base-200 rounded-md shadow">
-                            <h2 className="font-semibold mb-2">Trending</h2>
-                            <ul className="space-y-1 text-sm text-gray-700">
-                                <li>🔥 Top 10 Cars of 2025</li>
-                                <li>💡 Hybrid vs Electric</li>
-                                <li>🏎️ Fastest Cars This Year</li>
-                            </ul>
-                        </div>
-                    </div> */}
+
                 </div>
             </div>
-            {/* Pagination */}
-            <div className="flex justify-center my-8">
-                <nav className="flex items-center gap-1 sm:gap-2">
-                    {/* Previous Button */}
-                    <button
-                        className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base"
-                        disabled={currentPage === 0}
-                        onClick={() => setCurrentPage((prev) => prev - 1)}
-                    >
-                        <span className="hidden sm:inline">Previous</span>
-                        <span className="sm:hidden">←</span>
-                    </button>
 
-                    {/* Page Numbers */}
-                    <div className="flex items-center gap-1">
-                        {pageArray?.map((page) => {
-                            // Show only first, last, and nearby pages on mobile
-                            if (window.innerWidth < 640 &&
-                                page !== 0 &&
-                                page !== pageArray.length - 1 &&
-                                Math.abs(page - currentPage) > 1) {
-                                if (Math.abs(page - currentPage) === 2) {
-                                    return <span key={page} className="px-2">...</span>;
-                                }
-                                return null;
-                            }
-
-                            return (
-                                <button
-                                    key={page}
-                                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded-md text-sm sm:text-base ${currentPage === page
-                                        ? "bg-primary text-white"
-                                        : "border border-gray-300 hover:bg-gray-100"
-                                        }`}
-                                    onClick={() => setCurrentPage(page)}
-                                >
-                                    {page + 1}
-                                </button>
-                            );
-                        })}
-                    </div>
-
-                    {/* Next Button */}
-                    <button
-                        className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base"
-                        disabled={pageArray?.length - 1 === currentPage}
-                        onClick={() => setCurrentPage((prev) => prev + 1)}
-                    >
-                        <span className="hidden sm:inline">Next</span>
-                        <span className="sm:hidden">→</span>
-                    </button>
-                </nav>
-            </div>
         </div>
     );
 };

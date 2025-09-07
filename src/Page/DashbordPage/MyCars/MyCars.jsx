@@ -127,7 +127,7 @@ my-cars/${id}`);
       }
     });
   };
-console.log(selectedCar)
+
   return (
     <div className="md:p-8 p-0 min-h-screen bg-center relative z-0  text-white">
       {carData?.length === 0 ? (
