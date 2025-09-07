@@ -30,6 +30,7 @@ import COntactUs from "./Page/ContactUs/ContactUs.jsx";
 import AddBlogs from "./Page/DashbordPage/AdminDashboard/AddBlogs/AddBlogs.jsx";
 import Blogs from "./Page/Blogs/Blogs.jsx";
 import ContactUs from "./Page/ContactUs/ContactUs.jsx";
+import BlogsDetails from "./Page/Blogs/BlogsDetails.jsx";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,11 @@ const router = createBrowserRouter([
      {
       path:"/blog",
       Component:Blogs
+     },
+     {
+      path:"blog/details/:id",
+      loader:({params})=> fetch(` http://localhost:5000/blogs/${params.id}`),
+      Component:BlogsDetails
      }
     ],
   },

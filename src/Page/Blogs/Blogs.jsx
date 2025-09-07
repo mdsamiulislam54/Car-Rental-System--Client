@@ -110,7 +110,7 @@ const handleSearch = (e)=>{
             <div className="w-11/12 mx-auto flex-1 my-5">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
                     {/* Left Column (Search) */}
-                    <div className="lg:col-span-3 col-span-12 border-r pr-2 border-gray-200">
+                    <div className="lg:col-span-3 col-span-12 border-r pr-2 border-gray-200 ">
                         <form className="relative mb-4" onSubmit={handleSearch}>
                             <input
                                 type="text"
@@ -143,10 +143,10 @@ const handleSearch = (e)=>{
 
                             <div>
                                 <h2 className="font-semibold mb-2 font-rubik my-4">Tags</h2>
-                                <ul className="space-y-1 text-sm text-gray-700 grid  lg:grid-cols-2   md:grid-cols-6 xl:grid-cols-3 grid-cols-4 gap-4 lg:ml-4">
+                                <ul className="space-y-1 text-sm text-gray-700 grid  lg:grid-cols-2   md:grid-cols-6 xl:grid-cols-3 grid-cols-4 gap-4 lg:ml-2">
                                     {tags.map((tag, idx) => (
-                                        <li key={idx} className="hover:text-red-500 transition-colors cursor-pointer text-[12px] font-rubik bg-gray-100 p-2 text-center  rounded-md">
-                                            {tag}
+                                        <li key={idx} className="badge bg-gray-100 text-[12px]">
+                                            #{tag}
                                         </li>
                                     ))}
                                 </ul>

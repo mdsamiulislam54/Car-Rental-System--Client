@@ -35,7 +35,7 @@ const AddBlogs = () => {
 
     const onSubmit = async (data) => {
         try {
-            console.log("Blog Data:", data);
+            
 
             // POST request to server
             const response = await axios.post("http://localhost:5000/admin/blog/post", data);
@@ -123,7 +123,7 @@ const AddBlogs = () => {
                             onClick={() => remove(index)}
                             className="btn btn-error btn-sm"
                         >
-                            ❌ Remove Section
+                            Remove Section
                         </button>
                     </div>
                 ))}
@@ -183,8 +183,8 @@ const AddBlogs = () => {
             </label>
 
             {/* Submit */}
-            <button type="submit" className="btn btn-success w-full">
-                ✅ Save Blog
+            <button type="submit" className="btn bg-primary text-white w-full">
+                Save Blog
             </button>
         </form>
     );

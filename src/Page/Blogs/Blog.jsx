@@ -8,7 +8,7 @@ import { Link } from 'react-router';
 import { IoIosArrowRoundForward } from "react-icons/io";
 
 const Blog = ({ blogs }) => {
-    const { coverImage, published, views, tags, categories, author, excerpt, content, title, slug } = blogs
+    const { coverImage, published, views, tags, categories, author, excerpt, content, title, slug, _id } = blogs
     return (
         <article>
 
@@ -52,7 +52,7 @@ const Blog = ({ blogs }) => {
 
                 <div className='flex justify-end my-2'>
                     <Link
-                       
+                       to={`/blog/details/${_id}`}
                         className="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-md hover:bg-red-500 hover:text-white transition-colors w-fit"
                     >
                         <span className="font-medium">See More</span>
