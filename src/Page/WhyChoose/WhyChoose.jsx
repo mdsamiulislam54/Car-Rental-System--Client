@@ -3,7 +3,7 @@ import money from "../../assets/icons/money.png";
 import booking from "../../assets/icons/calendar.png";
 import phone from "../../assets/icons/telephone.png";
 import BookingCar from "../BookingCar/BookingCar";
-
+import { motion } from "framer-motion";
 const features = [
   {
     icon: car,
@@ -32,13 +32,18 @@ const WhyChoose = () => {
     <div className="relative my-10">
       <div className="w-11/12 mx-auto py-2 px-4">
         {/* Booking Form */}
-        <div className="w-11/12 mx-auto bg-white rounded-md shadow z-10 absolute -top-40 left-1/2 -translate-x-1/2 p-5">
+        <motion.div
+          initial={{ opacity: 0, y: 120 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, }}
+
+          className="w-11/12 mx-auto bg-white rounded-md shadow z-10 absolute -top-40 left-1/2 -translate-x-1/2 p-5">
           <BookingCar />
-        </div>
+        </motion.div>
 
         {/* Why Choose Section */}
         <div className="mt-40">
-        
+
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 font-rubik">
             {features.map((feature, index) => (

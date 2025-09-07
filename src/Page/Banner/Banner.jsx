@@ -3,6 +3,8 @@ import { FaPlay, FaPause, FaCheckCircle } from "react-icons/fa";
 import { Typewriter } from "react-simple-typewriter";
 import Button from "../../Components/Button/Button";
 import BookingCar from "../BookingCar/BookingCar";
+import { motion, scale } from "framer-motion";
+
 
 const Banner = () => {
   return (
@@ -17,10 +19,16 @@ const Banner = () => {
         />
       </div>
 
-      {/* Foreground Content */}
+   
       <div className="relative z-10 flex items-center justify-between w-11/12 mx-auto min-h-screen my-14">
         {/* Left Content */}
-        <div className="lg:w-1/2 space-y-4 max-lg:absolute  max-lg:top-[50%] left-[50%]  max-lg:translate-x-[-50%]  max-lg:translate-y-[-50%]  max-lg:z-90 w-full  max-lg:text-center ">
+        <motion.div
+        initial={{opacity:0, x:-120}}
+        animate={{opacity:1, x:0}}
+        transition={{duration:0.5, }}
+
+        
+        className="lg:w-1/2 space-y-4 max-lg:absolute  max-lg:top-[50%] left-[50%]  max-lg:translate-x-[-50%]  max-lg:translate-y-[-50%]  max-lg:z-90 w-full  max-lg:text-center ">
           <h4 className="text-xl font-semibold font-rubik text-text">Plan your trip today</h4>
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight tracking-wider font-rubik text-text  ">
             Enjoy <span className="text-primary">great</span> savings <br></br> on car rentals
@@ -37,7 +45,7 @@ const Banner = () => {
           >
            <Button text="Book Ride Car" icon={FaCheckCircle}/>
           </Link>
-        </div>
+        </motion.div>
 
         {/* Right Car Image */}
         <div className="w-1/2 flex justify-center items-center relative">
