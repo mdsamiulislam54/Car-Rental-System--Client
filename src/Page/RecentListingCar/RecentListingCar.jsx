@@ -34,7 +34,7 @@ const RecentListingCar = () => {
     return <div style={{ color: "red" }}>{error}</div>;
   }
   return (
-    <div className="my-10">
+    <div className="mb-10 mt-20">
       <div className="custom-container py-10">
         <h1 className="text-4xl my-10 font-bold font-rubik text-text  text-center car-heading relative  ">Latest Vehicle</h1>
         <div  className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

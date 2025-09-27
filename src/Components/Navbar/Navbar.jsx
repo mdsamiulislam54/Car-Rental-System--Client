@@ -82,8 +82,8 @@ const Navbar = () => {
     <nav
       className={`z-100  ${pathname === "/"
         ? scrollY > 50
-          ? "fixed-nav bg-white shadow"
-          : "absolute top-0 left-0 bg-transparent w-full"
+          ? "fixed-nav bg-white/95  shadow"
+          : "absolute top-0 left-0 bg-transparent text-white w-full"
         : scrollY > 50
           ? "fixed-nav bg-white shadow"
           : "bg-white shadow"

@@ -19,9 +19,9 @@ const Home = () => {
       <section>
         <Banner />
       </section>
-      <section>
+      {/* <section>
         <WhyChoose />
-      </section>
+      </section> */}
 
       <section>
         <RecentListingCar />

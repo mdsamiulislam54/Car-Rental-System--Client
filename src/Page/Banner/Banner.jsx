@@ -1,62 +1,47 @@
 import { Link } from "react-router";
-import {  FaCheckCircle } from "react-icons/fa";
+import { FaCheckCircle } from "react-icons/fa";
 import Button from "../../Components/Button/Button";
 import { motion } from "framer-motion";
-
+import BookingCar from "../BookingCar/BookingCar";
 
 const Banner = () => {
   return (
-    <div className="relative min-h-screen bg-white overflow-hidden rounded-2xl">
-      {/* Background Image - behind everything */}
-      <div className="absolute right-0 z-2">
-        <img
-          src="https://demo.xpeedstudio.com/carrental/home-v4/wp-content/uploads/sites/5/2020/06/banner_image.png"
-          alt="banner bg"
-          className="h-full object-cover"
-          loading="lazy"
-        />
-      </div>
+    <div
+      className="relative h-[90vh] bg-white bg-cover "
+      style={{
+        backgroundImage: `url("https://img.freepik.com/free-vector/car-led-lights-realistic-composition-with-dark-silhouette-automobile-with-dimmed-headlights-shadows-illustration_1284-28532.jpg?t=st=1758950120~exp=1758953720~hmac=c622a3b5d27b59c0a3309756e397053f8e61ad5daa7cb4e61200444b95a2c83a&w=1480")`,
+      }}
+    >
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/50 z-0"></div>
 
-   
-      <div className="relative z-10 flex items-center justify-between custom-container mx-auto min-h-screen my-14">
-        {/* Left Content */}
+      {/* Content */}
+      <div className="relative custom-container flex justify-center items-center h-full z-10">
         <motion.div
-        initial={{opacity:0, x:-120}}
-        animate={{opacity:1, x:0}}
-        transition={{duration:0.5, }}
-
-        
-        className="lg:w-1/2 space-y-4 max-lg:absolute  max-lg:top-[50%] left-[50%]  max-lg:translate-x-[-50%]  max-lg:translate-y-[-50%]  max-lg:z-90 w-full  max-lg:text-center ">
-          <h4 className="text-xl font-semibold font-rubik text-text">Plan your trip today</h4>
-          <h1 className="text-3xl md:text-5xl font-extrabold leading-tight tracking-wider font-rubik text-text  ">
-            Enjoy <span className="text-primary">great</span> savings <br></br> on car rentals
+          initial={{ opacity: 0, x: -120 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col justify-center items-center gap-4 text-white"
+        >
+          <h4 className="text-md font-semibold font-rubik text-text">
+            Plan your trip today
+          </h4>
+          <h1 className="text-3xl md:text-5xl font-extrabold leading-tight tracking-wider font-rubik text-center">
+            Enjoy <span>great</span> savings <br /> on car rentals
           </h1>
-          <p className="text-base font-rubik text-gray-600 lg:max-w-md">
+          <p className="text-base font-rubik text-gray-200 lg:max-w-md text-center">
             Join us in driving positive change and reaching our sustainability goals—
             together, we can make a difference.
           </p>
 
-          <Link
-            to="/available-cars"
-            className="w-full max-lg:flex justify-center"
-           
-          >
-           <Button text="Book Ride Car" icon={FaCheckCircle}/>
+          <Link to="/available-cars">
+            <Button text="Book Ride Car" icon={FaCheckCircle} />
           </Link>
         </motion.div>
-
-        {/* Right Car Image */}
-        <div className="w-1/2 flex justify-center items-center relative">
-          <img
-            src="https://demo.xpeedstudio.com/carrental/home-v4/wp-content/uploads/sites/5/2020/06/banner_car.png"
-            alt="banner car"
-            loading="lazy"
-            className=" h-auto md:max-w-[500px] lg:max-w-[600px] xl:max-w-[700px] max-lg:hidden object-contain absolute md:-left-30 mt-10  "
-          />
-        </div>
       </div>
-
-     
+      <div className="absolute -bottom-24 left-[50%] translate-x-[-50%] custom-container  ">
+        <BookingCar/>
+      </div>
     </div>
   );
 };
