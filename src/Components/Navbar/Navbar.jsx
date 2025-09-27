@@ -6,6 +6,8 @@ import UserContext from "../../ContextApi/UserContext/UserContext";
 import { TbLogout } from "react-icons/tb";
 import Swal from "sweetalert2";
 import Button from "../Button/Button";
+import { TiWeatherSunny } from "react-icons/ti";
+import { DarkModetoggle } from "../../Hook/DarkMode/DarkMode";
 
 const Navbar = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -38,6 +40,7 @@ const Navbar = () => {
       });
   };
 
+  
   const navItem = <>
     <Link
       to="/"
@@ -60,8 +63,8 @@ const Navbar = () => {
     >
       Available Cars
     </Link>
- 
-  
+
+
     <Link
       to="/blog"
       className={`text-[15px] leading-[24px] text-text font-medium  font-rubik    relative ${pathname === "/my-booking" ? "active" : ""
@@ -156,38 +159,43 @@ const Navbar = () => {
 
         {/* Navbar End */}
         <div className="navbar-end">
-        <div className="dropdown dropdown-end ">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full cursor-pointer">
-              <img
-                alt="Profile img"
-                src={user?.photoURL || 'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp'} />
+          <button className="mx-4 cursor-pointer" onClick={DarkModetoggle}>
+            <TiWeatherSunny size={30}/>
+          </button>
+          <div className="dropdown dropdown-end ">
+
+
+            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full cursor-pointer">
+                <img
+                  alt="Profile img"
+                  src={user?.photoURL || 'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp'} />
+              </div>
             </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-md dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow space-y-2 font-rubik">
+              <li>
+                <Link className="justify-between">
+                  Profile
+
+                </Link>
+              </li>
+              <li className=""><Link to={'/dashboard'}>Dashboard</Link></li>
+              <span className="ml-3">
+
+                {
+                  user ? (
+                    <Button text={'Logout'} onClick={handleLogOut} icon={TbLogout} />
+
+                  ) : (
+                    <Link to={'/login'}><Button text={'Login'} icon={TbLogout} /></Link>
+                  )
+                }
+              </span>
+
+            </ul>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-md dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow space-y-2 font-rubik">
-            <li>
-              <Link className="justify-between">
-                Profile
-                
-              </Link>
-            </li>
-            <li className=""><Link to={'/dashboard'}>Dashboard</Link></li>
-            <span className="ml-3"> 
-
-            {
-              user ? (
-                <Button text={'Logout'} onClick={handleLogOut} icon={TbLogout} />
-               
-              ) : (
-                 <Link to={'/login'}><Button text={'Login'} icon={TbLogout} /></Link>
-              )
-            }
-            </span>
-
-          </ul>
-        </div>
         </div>
       </div>
     </nav>

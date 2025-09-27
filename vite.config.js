@@ -7,9 +7,9 @@ export default defineConfig({
   plugins: [react(),tailwindcss()],
 })
 
-//  https://car-rental-system-server-beta.vercel.app/
+//  http://localhost:5000/
 
 
 
-//  https://car-rental-system-server-beta.vercel.app/
+//  http://localhost:5000/
 

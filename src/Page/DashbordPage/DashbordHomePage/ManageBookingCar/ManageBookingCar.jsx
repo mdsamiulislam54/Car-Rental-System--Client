@@ -30,7 +30,7 @@ const ManageBookingCar = () => {
 
     const handleConfirm = async (id) => {
         try {
-            const res = await axios.patch(` https://car-rental-system-server-beta.vercel.app/admin/booking/confirm/${id}`);
+            const res = await axios.patch(` http://localhost:5000/admin/booking/confirm/${id}`);
 
             if (res.data) {
                 Swal.fire({
@@ -67,7 +67,7 @@ const ManageBookingCar = () => {
 
             if (result.isConfirmed) {
                 // Call the cancel booking API
-                const res = await axios.patch(` https://car-rental-system-server-beta.vercel.app/admin/booking/cencel/${id}`);
+                const res = await axios.patch(` http://localhost:5000/admin/booking/cencel/${id}`);
 
                 if (res.data?.message === 'Booking canceled successfully') {
                     Swal.fire(

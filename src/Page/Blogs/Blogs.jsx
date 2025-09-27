@@ -20,7 +20,7 @@ const Blogs = () => {
     const fetchBlogsData = async () => {
         try {
             setLoading(true)
-            const res = await axios.get(`https://car-rental-system-server-beta.vercel.app/blogs?page=${currentPage}&limit=${perPage}&category=${category}&search=${search}`);
+            const res = await axios.get(`http://localhost:5000/blogs?page=${currentPage}&limit=${perPage}&category=${category}&search=${search}`);
             console.log(res?.data.blogs);
             setBlogs(res?.data?.blogs)
             setCount(res?.data?.count)

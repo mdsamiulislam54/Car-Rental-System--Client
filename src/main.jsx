@@ -45,7 +45,7 @@ const router = createBrowserRouter([
       {
         path: "car-details/:id",
         loader: ({ params }) =>
-          fetch(` https://car-rental-system-server-beta.vercel.app/car-details/${params.id}`),
+          fetch(` http://localhost:5000/car-details/${params.id}`),
         element: <CarDetailsPage />
       },
       {
@@ -62,7 +62,7 @@ const router = createBrowserRouter([
       },
       {
         path: "blog/details/:id",
-        loader: ({ params }) => fetch(` https://car-rental-system-server-beta.vercel.app/blogs/${params.id}`),
+        loader: ({ params }) => fetch(` http://localhost:5000/blogs/${params.id}`),
         Component: BlogsDetails
       }
     ],

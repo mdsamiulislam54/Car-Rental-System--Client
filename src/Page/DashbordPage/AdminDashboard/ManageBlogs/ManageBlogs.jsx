@@ -19,7 +19,7 @@ const ManageBlogs = () => {
     const fetchBlogsData = async () => {
         try {
             setLoading(true)
-            const res = await axios.get(`https://car-rental-system-server-beta.vercel.app/admin/manage/blogs?page=${currentPage}&limit=${perPage}`);
+            const res = await axios.get(`http://localhost:5000/admin/manage/blogs?page=${currentPage}&limit=${perPage}`);
             console.log(res?.data.blogs);
             setBlogs(res?.data?.blogs)
             setCount(res?.data?.count)
@@ -47,7 +47,7 @@ const ManageBlogs = () => {
                 try {
 
                     const response = await axios.delete(
-                        `https://car-rental-system-server-beta.vercel.app/admin/delete/blogs/${id}`
+                        `http://localhost:5000/admin/delete/blogs/${id}`
                     );
 
                     if (response.status === 200) {

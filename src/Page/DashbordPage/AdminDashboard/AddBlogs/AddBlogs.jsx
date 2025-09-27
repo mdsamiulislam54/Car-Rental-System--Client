@@ -33,7 +33,7 @@ const AddBlogs = () => {
 
     const onSubmit = async (data) => {
         try {
-            const response = await axios.post("https://car-rental-system-server-beta.vercel.app/admin/blog/post", data);
+            const response = await axios.post("http://localhost:5000/admin/blog/post", data);
 
             if (response.data) {
                 Swal.fire({

@@ -21,7 +21,7 @@ const BookingProvider = ({ children }) => {
         try {
             setLoading(true);
             const res = await axios.get(
-                ` https://car-rental-system-server-beta.vercel.app/booking-car?uid=${user.uid}&email=${user.email}&limit=${perPage}&page=${currentPage + 1}`,
+                ` http://localhost:5000/booking-car?uid=${user.uid}&email=${user.email}&limit=${perPage}&page=${currentPage + 1}`,
                 {
                     headers: {
                         Authorization: `Bearer ${user.accessToken}`,

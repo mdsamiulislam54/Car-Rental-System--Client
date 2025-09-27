@@ -29,29 +29,33 @@ const AvailableCars = () => {
   
 
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const res = await axios.get(
-          ` https://car-rental-system-server-beta.vercel.app/available-cars?search=${search}&sort=${sortOrder}&limit=${perPage}&page=${currentPage + 1
-          }&minPrice=${minPrice}&maxPrice=${maxPrice}`
-        );
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      setLoading(true);
 
-        const data = res.data;
+      let query = `search=${search}&sort=${sortOrder}&limit=${perPage}&page=${currentPage + 1}&minPrice=${minPrice}&maxPrice=${maxPrice}&carModel=${state?.carModel}`;
 
-        setCarData(data.cars);
-        setCount(data.count);
-    
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+      const res = await axios.get(
+        `http://localhost:5000/available-cars?${query}`
+      );
 
-    fetchData();
-  }, [search, sortOrder, perPage, currentPage, state,minPrice,maxPrice]);
+      const data = res.data;
+      setCarData(data.cars);
+      setCount(data.count);
+
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchData();
+}, [search, sortOrder, perPage, currentPage, state, minPrice, maxPrice]);
+
+
+
   const handleSearch = (e) => {
     e.preventDefault();
     const searchText = e.target.search.value;
@@ -72,6 +76,7 @@ const handleReset = () => {
   }
 }
 
+console.log(state)
   return (
     <div className="min-h-screen  text-text font-rubik pb-5 bg-gray-50">
       <div

@@ -11,6 +11,7 @@ function BookingCar() {
   const navigate = useNavigate()
 
   const onSubmit = async (data) => {
+    console.log(data)
     try {
       navigate('/available-cars', {
         state: {
@@ -26,7 +27,7 @@ function BookingCar() {
   useEffect(() => {
     const fetchCarTypes = async () => {
       try {
-        const res = await axios.get('https://car-rental-system-server-beta.vercel.app/car-type', { withCredentials: true });
+        const res = await axios.get('http://localhost:5000/car-type', { withCredentials: true });
         if (res.status !== 200) {
           throw new Error("Failed to fetch car types");
         }
@@ -43,7 +44,7 @@ function BookingCar() {
   const unickPicupLocation = [...new Set(pickupLocation)];
 
   return (
-    <div className="bg-white p-6 shadow rounded-xl">
+    <div className="bg-white dark:bg-black p-6 shadow rounded-xl">
       <form 
         onSubmit={handleSubmit(onSubmit)} 
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-end"

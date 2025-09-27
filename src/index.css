@@ -5,6 +5,7 @@
 
 
 @import "tailwindcss";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 @theme {
   --font-rubik: "Rubik", sans-serif;
   --color-text:"#010103"
@@ -20,11 +21,9 @@
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: #FF0000;       /* Red */
-  --color-secondary: #FD6932;     /* Orange */
-  --color-background: #0F0F0F;    /* Dark Background */
-          /* Light Text */
-  --color-accent: #FFD700;        /* Gold */
+  --color-primary: #FF0000;      
+  --color-secondary: #FD6932;   
+  --color-accent: #FFD700;       
   --color-muted: #AAAAAA; 
   
 }
