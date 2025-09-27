@@ -21,7 +21,7 @@ const Footer = () => {
         backgroundPosition: "center",
       }}
     >
-      <div className="bg-white/70 shadow border-t border-gray-200">
+      <div className="bg-white/70 dark:bg-black/90 dark:text-white shadow border-t dark:border-gray-700 border-gray-200">
         <div className="w-11/12 mx-auto">
           <footer className="footer lg:footer-horizontal py-14">
             {/* Logo & Contact */}
@@ -98,21 +98,21 @@ const Footer = () => {
                 <h4 className="text-xl font-bold tracking-wide">
                   Subscribe to our Newsletter to Get
                 </h4>
-                <h4 className="text-xl font-bold tracking-wide text-primary">
+                <h4 className="text-xl font-bold tracking-wide text-accent">
                   Updates on our Latest Collection
                 </h4>
                 <p className="text-sm my-2">
                   Get 20% off your first order just by subscribing!
                 </p>
               </div>
-              <form className="space-y-2">
+              <form className="space-y-2 w-full">
                 <div className="relative ">
                   <input
-                    type="text"
+                    type="email"
                     placeholder="Enter Email Address"
-                    className="w-full p-3 pl-10 rounded-md border border-gray-300 text-black"
+                    className="w-full p-3 pl-10 rounded-md border border-gray-300 text-black dark:text-white"
                   />
-                  <span className="absolute top-2 text-primary left-2">
+                  <span className="absolute top-2 text-accent left-2">
                     <MdOutgoingMail size={30} />
                   </span>
                 </div>
@@ -122,7 +122,7 @@ const Footer = () => {
           </footer>
 
           {/* Bottom Bar */}
-          <div className="text-center py-5 border-t border-gray-200">
+          <div className="text-center py-5 border-t dark:border-gray-700 border-gray-200">
             <p className="mb-0">© 2025 RentRide, All rights reserved.</p>
           </div>
         </div>

@@ -39,25 +39,25 @@ const BlogsDetails = () => {
     const readTime = calculateReadTime(content);
 
     return (
-        <div className="min-h-screen lg:py-20 py-10">
+        <div className="min-h-screen  py-10">
             {/* Hero Section */}
-            <div className="hero  bg-base-100">
+            <div className="hero ">
                 <div className="">
                     <div className="lg:w-8/12 custom-container mx-auto ">
                         <Link className='' to={-1}>
                             <IoIosArrowRoundBack size={24} />
                         </Link>
 
-                        <h1 className="text-3xl md:text-5xl font-bold font-rubik text-base-content mt-4  lg:text-start text-center">
+                        <h1 className="text-3xl md:text-5xl font-bold font-rubik text-base-content mt-4  lg:text-start text-center dark:text-white">
                             {title}
                         </h1>
 
-                        <p className="py-6 text-sm text-base-content/70 italic lg:text-start text-center">
+                        <p className="py-6 text-sm text-base-content/70 italic lg:text-start text-center dark:text-white">
                             {excerpt}
                         </p>
 
                         {/* Author and Metadata */}
-                        <div className="flex flex-col sm:flex-row   gap-4 mb-8">
+                        <div className="flex flex-col sm:flex-row dark:text-white  gap-4 mb-8">
                             <div className='flex items-center max-lg:justify-center gap-2 font-rubik'>
                                 <div className='bg-gray-100 p-2 rounded-full'>
                                     <FcBusinessman size={30} />
@@ -72,7 +72,7 @@ const BlogsDetails = () => {
                                 </p>
                             </div>
 
-                            <div className="flex flex-wrap justify-center gap-4 text-sm text-base-content/60">
+                            <div className="flex flex-wrap justify-center gap-4 text-sm text-base-content/60 dark:text-white">
                                 <div className="flex items-center gap-1">
                                     <CalendarDays size={16} />
                                     <span>{formatDate(publishedAt)}</span>
@@ -92,7 +92,7 @@ const BlogsDetails = () => {
             </div>
 
             {/* Main Content */}
-            <div className="lg:w-8/12 custom-container mx-auto  py-0">
+            <div className="lg:w-8/12 custom-container mx-auto  py-0 ">
                 <div className="flex flex-col lg:flex-row gap-8">
                     {/* Article Content */}
                     <article className="flex-1 font-rubik">
@@ -107,8 +107,8 @@ const BlogsDetails = () => {
 
                         {/* Introduction */}
                         {content.introduction && (
-                            <div className="prose prose-lg max-w-none mb-8">
-                                <p className="md:text-xl text-sm leading-relaxed text-base-content/80">
+                            <div className="prose prose-lg max-w-none mb-8 ">
+                                <p className="md:text- text-sm leading-relaxed text-base-content/80 dark:text-white">
                                     {content.introduction}
                                 </p>
                             </div>
@@ -117,11 +117,11 @@ const BlogsDetails = () => {
                         {/* Content Sections */}
                         {content.sections?.map((section, index) => (
                             <div key={index} className="mb-8">
-                                <h2 className="text-2xl font-bold text-base-content mb-4">
+                                <h2 className="text-2xl font-bold text-base-content mb-4 dark:text-white">
                                     {section.heading}
                                 </h2>
                                 <div className="prose prose-lg max-w-none">
-                                    <p className="text-base-content/80 leading-relaxed whitespace-pre-line">
+                                    <p className="text-base-content/80 leading-relaxed whitespace-pre-line dark:text-white">
                                         {section.body}
                                     </p>
                                 </div>
@@ -130,11 +130,11 @@ const BlogsDetails = () => {
 
                         {/* Conclusion */}
                         {content.conclusion && (
-                            <div className="bg-base-200 rounded-lg p-6 mb-8">
-                                <h3 className="text-xl font-semibold text-base-content mb-4">
+                            <div className="bg-base-200 dark:bg-gray-900 dark:text-white rounded-lg p-6 mb-8">
+                                <h3 className="text-xl font-semibold text-base-content mb-4 dark:text-white">
                                     Conclusion
                                 </h3>
-                                <p className="text-base-content/80 leading-relaxed">
+                                <p className="text-base-content/80 leading-relaxed dark:text-white">
                                     {content.conclusion}
                                 </p>
                             </div>
@@ -146,7 +146,7 @@ const BlogsDetails = () => {
                                 {tags.map((tag, index) => (
                                     <span
                                         key={index}
-                                        className="badge  badge-lg bg-gray-100"
+                                        className="badge  badge-lg bg-gray-100 dark:bg-gray-900 dark:text-white"
                                     >
                                         #{tag}
                                     </span>

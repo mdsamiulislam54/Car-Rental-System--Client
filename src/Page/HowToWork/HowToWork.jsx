@@ -37,14 +37,14 @@ import BackgroundImage from '../../assets/footer-banner.png'
 
 export default function HowItWorks() {
   return (
-    <div className="bg-white my-10 " style={{
+    <div className="bg-white dark:bg-black  " style={{
       backgroundImage: `url(${BackgroundImage})`,
       backgroundSize: "cover",
       backgroundPosition: "center",
     }}>
-      <div className="bg-white/70 py-4 ">
+      <div className="bg-white/70 dark:bg-black/90 py-4 ">
         <div className="custom-container  mx-auto ">
-          <h2 className="text-4xl font-bold text-center mb-10 text-text font-rubik">How It Works</h2>
+          <h2 className="text-4xl font-bold text-center pb-10 text-text font-rubik dark:text-white">How It Works</h2>
           <div className="relative border-l-2 border-dashed border-primary ml-4 sm:ml-0 sm:border-l-0 sm:before:absolute sm:before:left-1/2 sm:before:top-0 sm:before:bottom-0 sm:before:border-l-2 sm:before:border-dashed sm:before:border-primary">
             {steps.map((step, index) => (
               <div
@@ -55,15 +55,15 @@ export default function HowItWorks() {
                 <div className="hidden sm:block w-5/12"></div>
 
                 {/* Dot in the middle (or left on mobile) */}
-                <div className="absolute left-[-15px] sm:left-1/2 sm:-translate-x-1/2 w-6 h-6 bg-primary rounded-full z-10 border-4 border-white shadow"></div>
+                <div className="absolute left-[-15px] sm:left-1/2 sm:-translate-x-1/2 w-6 h-6 bg-accent rounded-full z-10 border-4 border-white shadow"></div>
 
                 {/* Content Box */}
-                <div className="bg-white border border-gray-200 shadow-md rounded-xl p-5 w-full sm:w-5/12 mt-2 sm:mt-0">
-                  <div className="flex items-center gap-3 mb-2 text-primary">
+                <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-600 shadow-md rounded-xl p-5 w-full sm:w-5/12 mt-2 sm:mt-0">
+                  <div className="flex items-center gap-3 mb-2 text-accent">
                     {step.icon}
                     <h3 className="text-lg font-semibold">{step.title}</h3>
                   </div>
-                  <p className="text-sm text-gray-600">{step.description}</p>
+                  <p className="text-sm text-gray-600 dark:text-white">{step.description}</p>
                 </div>
               </div>
             ))}

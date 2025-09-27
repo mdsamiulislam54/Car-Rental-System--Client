@@ -10,6 +10,7 @@ import { FaSearch } from "react-icons/fa";
 import Button from "../../Components/Button/Button";
 import { FaHome as HomeIcon, FaCar as CarIcon } from 'react-icons/fa';
 import { HiChevronRight as ChevronRightIcon } from 'react-icons/hi';
+import Pagination from "../../Components/Pagination/Pagination";
 const AvailableCars = () => {
   const [lineView, setLineView] = useState(false);
   const [carData, setCarData] = useState([]);
@@ -19,7 +20,7 @@ const AvailableCars = () => {
   const [sortOrder, setSortOrder] = useState("Default");
   const [count, setCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-  const [perPage, setPerPage] = useState(6);
+  const [perPage, setPerPage] = useState(16);
   const pageNumber = Math.ceil(count / perPage) || 0
   const pageArray = [...Array(pageNumber).keys()];
   const { state } = useLocation();
@@ -34,7 +35,7 @@ useEffect(() => {
     try {
       setLoading(true);
 
-      let query = `search=${search}&sort=${sortOrder}&limit=${perPage}&page=${currentPage + 1}&minPrice=${minPrice}&maxPrice=${maxPrice}&carModel=${state?.carModel}`;
+      let query = `search=${search}&sort=${sortOrder}&limit=${perPage}&page=${currentPage + 1}&minPrice=${minPrice}&maxPrice=${maxPrice}&carModel=${state?.carModel || ""}`;
 
       const res = await axios.get(
         `http://localhost:5000/available-cars?${query}`
@@ -76,12 +77,12 @@ const handleReset = () => {
   }
 }
 
-console.log(state)
+
   return (
-    <div className="min-h-screen  text-text font-rubik pb-5 bg-gray-50">
-      <div
-        className="h-[50vh] bg-cover  bg-no-repeat relative mb-4 rounded-md"
-        style={{ backgroundImage: `url(${'https://img.freepik.com/free-vector/modern-cars-automobiles-vehicles-set_107791-9139.jpg?t=st=1757069702~exp=1757073302~hmac=eede7c7720fd21887b2f938ce3f95fa0afbd1229dcf642f5ca38d26340c1a420&w=1480'})` }}
+    <div className="min-h-screen  text-text font-rubik pb-5  dark:bg-black">
+      {/* <div
+        className="h-[60vh] bg-center    relative mb-4 rounded-md"
+        style={{ backgroundImage: `url(${'https://img.freepik.com/free-vector/car-driving-road-along-night-beach-automobile_107791-15615.jpg?t=st=1758973465~exp=1758977065~hmac=839b5e4dfe1df5194ac6e5839ae297c86d64ecfba9f23492b0c8b4afc86203d8&w=1480'})` }}
       >
         <div className="absolute inset-0 bg-black/40">
           <div className="flex justify-center items-center h-full text-white flex-col space-y-4">
@@ -105,13 +106,14 @@ console.log(state)
             </div>
           </div>
         </div>
-      </div>
-      <div className="w-11/12 mx-auto flex flex-col md:flex-row gap-6">
+      </div> */}
+      <div className="custom-container flex flex-col lg:flex-row gap-6 my-10">
+        
         {/* Left Side - Filters */}
-        <div className="w-full md:w-1/4 lg:w-1/5 space-y-6">
+        <div className="w-full lg:w-1/5 space-y-6 lg:mt-16">
           {/* Search Box */}
-          <div className="bg-white p-4 rounded-lg shadow">
-            <h3 className="font-rubik font-bold text-lg mb-4 text-gray-800">Search Cars</h3>
+          <div className="bg-white dark:bg-gray-900  p-4 rounded-lg shadow">
+            <h3 className="font-rubik font-bold text-lg mb-4 text-gray-800 dark:text-white">Search Cars</h3>
             <form onSubmit={handleSearch} className="relative">
               <input
                 type="text"
@@ -129,12 +131,12 @@ console.log(state)
           </div>
 
           {/* Filters */}
-          <div className="bg-white p-4 rounded-lg shadow">
-            <h3 className="font-rubik font-bold text-lg mb-4 text-gray-800">Filters</h3>
+          <div className="bg-white dark:bg-gray-900 p-4 rounded-lg shadow">
+            <h3 className="font-rubik font-bold text-lg mb-4 text-gray-800 dark:text-white">Filters</h3>
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Sort By</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-white mb-1">Sort By</label>
                 <select
                   value={sortOrder}
                   onChange={(e) => setSortOrder(e.target.value)}
@@ -147,7 +149,7 @@ console.log(state)
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Price Range</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-white mb-1">Price Range</label>
                 <form rom ref={fromRef} className="flex items-center space-x-2" >
                   <input
                     type="number"
@@ -172,7 +174,7 @@ console.log(state)
         </div>
 
         {/* Right Side - Car Listings */}
-        <div className="w-full md:w-3/4 lg:w-4/5">
+        <div className="w-full  lg:w-4/5">
           {/* View Toggle and Results Count */}
           <div className="flex justify-end items-center mb-6">
            
@@ -186,15 +188,15 @@ console.log(state)
 
           {/* Car Listings */}
           {carData?.length === 0 ? (
-            <div className="min-h-[50vh] flex justify-center items-center flex-col gap-4 bg-white rounded-lg shadow p-8">
-              <p className="text-2xl text-center font-rubik font-bold text-gray-700">No cars found</p>
+            <div className="min-h-[50vh] flex justify-center items-center flex-col gap-4 bg-white  dark:bg-gray-900 rounded-lg shadow p-8">
+              <p className="text-2xl text-center font-rubik font-bold text-gray-700 dark:text-gray-100">No cars found</p>
               <Link to={'/available-cars'}>
                 <Button text={'Try Again'}/>
               </Link>
             </div>
           ) : (
             loading ? (<Loader />) : (
-              <div className={lineView ? "space-y-2" : "grid md:grid-cols-2 lg:grid-cols-3 xxl:grid-cols-4 gap-2 min-h-screen"}>
+              <div className={lineView ? "space-y-2" : "grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xxl:grid-cols-4 gap-2 "}>
                 {carData?.map((car) => (
                   <AvailableCarsCard
                     key={car._id}
@@ -208,58 +210,7 @@ console.log(state)
           )}
 
           {/* Pagination */}
-          <div className="flex justify-center mt-8">
-            <nav className="flex items-center gap-1 sm:gap-2">
-              {/* Previous Button */}
-              <button
-                className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base"
-                disabled={currentPage === 0}
-                onClick={() => setCurrentPage((prev) => prev - 1)}
-              >
-                <span className="hidden sm:inline">Previous</span>
-                <span className="sm:hidden">←</span>
-              </button>
-
-              {/* Page Numbers */}
-              <div className="flex items-center gap-1">
-                {pageArray?.map((page) => {
-                  // Show only first, last, and nearby pages on mobile
-                  if (window.innerWidth < 640 &&
-                    page !== 0 &&
-                    page !== pageArray.length - 1 &&
-                    Math.abs(page - currentPage) > 1) {
-                    if (Math.abs(page - currentPage) === 2) {
-                      return <span key={page} className="px-2">...</span>;
-                    }
-                    return null;
-                  }
-
-                  return (
-                    <button
-                      key={page}
-                      className={`w-8 h-8 sm:w-10 sm:h-10 rounded-md text-sm sm:text-base ${currentPage === page
-                          ? "bg-primary text-white"
-                          : "border border-gray-300 hover:bg-gray-100"
-                        }`}
-                      onClick={() => setCurrentPage(page)}
-                    >
-                      {page + 1}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Next Button */}
-              <button
-                className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base"
-                disabled={pageArray?.length - 1 === currentPage}
-                onClick={() => setCurrentPage((prev) => prev + 1)}
-              >
-                <span className="hidden sm:inline">Next</span>
-                <span className="sm:hidden">→</span>
-              </button>
-            </nav>
-          </div>
+          <Pagination setCurrentPage={setCurrentPage} pageArray={pageArray} currentPage={currentPage}/>
         </div>
       </div>
     </div>

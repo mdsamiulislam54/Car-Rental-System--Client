@@ -54,8 +54,8 @@ const Testimonial = () => {
     <div className="py-10">
       <div className="w-11/12 mx-auto ">
         {/* heading */}
-        <h2 className="text-3xl font-bold text-center mb-10 text-text font-rubik">
-          Customers Say
+        <h2 className="text-3xl font-bold text-center mb-12 text-text font-rubik dark:text-white">
+          Whispers from the Heart
         </h2>
 
         {/* swiperSlider */}
@@ -71,21 +71,23 @@ const Testimonial = () => {
             640: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
           }}
-          className=""
+        
         >
           {testimonials.map((testimonial, index) => (
             <SwiperSlide key={index}>
-              <div className="p-4  bg-white rounded-xl shadow-md mb-10  flex flex-col items-center text-center h-[270px] hover:shadow-lg transition-all duration-300 font-rubik">
+              <div className="p-4  bg-white dark:bg-gray-900 dark:text-white rounded-xl shadow-md mb-10  flex flex-col items-center text-center h-[270px] hover:shadow-lg transition-all duration-300 font-rubik">
                 <img
                   src={testimonial.image}
                   alt={testimonial.name}
-                  className="w-16 h-16 rounded-full object-cover mb-3 border-2 border-primary"
+                  loading="lazy"
+                  property
+                  className="w-16 h-16 rounded-full object-cover mb-3 border-2 border-accent"
                 />
                 <h4 className="font-semibold text-lg">{testimonial.name}</h4>
-                <span className="text-sm text-gray-600">
+                <span className="text-sm text-gray-600 dark:text-gray-50">
                   {testimonial.location}
                 </span>
-                <p className="text-sm mt-3 text-gray-600">
+                <p className="text-sm mt-3 text-gray-600 dark:text-gray-300">
                   " {testimonial.message} "
                 </p>
               </div>

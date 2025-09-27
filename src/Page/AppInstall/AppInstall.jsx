@@ -5,8 +5,8 @@ import { Link } from "react-router";
 
 const AppInstall = () => {
   return (
-    <section className="bg-gray-50 font-rubik py-5">
-      <div className="grid grid-cols-1 md:grid-cols-2 w-11/12 xxl:w-8/12 mx-auto items-center gap-12">
+    <section className=" bg-gray-100 dark:bg-black font-rubik py-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 custom-container xxl:w-8/12 mx-auto items-center gap-12">
         
         {/* Left Image */}
         <div className="">
@@ -19,8 +19,8 @@ const AppInstall = () => {
 
         {/* Right Content */}
         <div>
-          <h2 className="text-sm md:text-md lg:text-lg xl:text-3xl font-bold text-center lg:text-start text-gray-900 mb-6 leading-snug">
-            Rent a car on the go – <span className="text-primary">download our app!</span>
+          <h2 className="text-sm md:text-md lg:text-lg xl:text-3xl font-bold text-center lg:text-start text-gray-900 dark:text-gray-100 mb-6 leading-snug">
+            Rent a car on the go <span className="text-accent">download our app!</span>
           </h2>
 
           {/* Features */}
@@ -63,7 +63,7 @@ const AppInstall = () => {
           <div className="grid lg:grid-cols-2 gap-4">
             <Link
               to={'/'}
-              className="flex items-center justify-center gap-3 bg-black text-white px-5 py-2  rounded-lg hover:bg-primary transition"
+              className="flex items-center justify-center gap-3 bg-accent text-white px-5 py-2  rounded-lg hover:bg-accent/90 transition"
             >
               <FaGooglePlay size={28} />
               <span className="text-left leading-tight">

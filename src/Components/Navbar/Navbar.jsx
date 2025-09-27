@@ -85,11 +85,11 @@ const Navbar = () => {
     <nav
       className={`z-100  ${pathname === "/"
         ? scrollY > 50
-          ? "fixed-nav bg-white/95  shadow"
+          ? "fixed-nav bg-white/95 dark:bg-black dark:text-white  shadow"
           : "absolute top-0 left-0 bg-transparent text-white w-full"
         : scrollY > 50
-          ? "fixed-nav bg-white shadow"
-          : "bg-white shadow"
+          ? "fixed-nav bg-white/95 dark:bg-black dark:text-white shadow"
+          : "bg-white  dark:bg-black dark:text-white dark:shadow-gray-700  shadow"
         }`}
     >
       <div className={`navbar custom-container rounded-md `}>

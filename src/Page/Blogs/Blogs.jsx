@@ -5,13 +5,14 @@ import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router";
 import Blog from "./Blog";
 import Loader from "../../Components/Loader/Loader";
+import Pagination from "../../Components/Pagination/Pagination";
 
 const Blogs = () => {
     const [blogs, setBlogs] = useState([]);
     const [loading, setLoading] = useState(false)
     const [count, setCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
-    const [perPage, setPerPage] = useState(3);
+    const [perPage, setPerPage] = useState(4);
     const pageNumber = Math.ceil(count / perPage) || 0
     const pageArray = [...Array(pageNumber).keys().map(i => i + 1)];
     const [category, setCategory] = useState('');
@@ -82,7 +83,7 @@ const Blogs = () => {
                     <div className="flex justify-center items-center h-full text-white flex-col space-y-4 px-4 text-center">
                         {/* Title */}
                         <div className="flex items-center">
-                            
+
                             <p className="text-3xl sm:text-4xl font-bold font-rubik">
                                 Blogs
                             </p>
@@ -108,10 +109,10 @@ const Blogs = () => {
             </div>
 
             {/* Content */}
-            <div className="w-11/12 mx-auto flex-1 my-5">
+            <div className="custom-container flex-1 my-5">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
                     {/* Left Column (Search) */}
-                    <div className="lg:col-span-3 col-span-12 border-r pr-2 border-gray-200 ">
+                    <div className="lg:col-span-3 col-span-12 border-r dark:border-gray-600 pr-2 border-gray-200 ">
                         <form className="relative mb-4" onSubmit={handleSearch}>
                             <input
                                 type="text"
@@ -128,13 +129,13 @@ const Blogs = () => {
                         </form>
                         {/* Example Sidebar */}
                         <div className="p-4 rounded-md ">
-                            <h2 className="font-semibold mb-2">Categories</h2>
-                            <ul className="space-y-1 text-sm text-gray-700 ml-4">
+                            <h2 className="font-semibold mb-2 dark:text-gray-100">Categories</h2>
+                            <ul className="space-y-1 text-sm text-gray-700 dark:text-gray-100 ml-4">
                                 {categories.map((cat, idx) => (
                                     <li
                                         onClick={() => setCategory(cat)}
                                         key={idx}
-                                        className="hover:text-red-500 transition-colors cursor-pointer text-[14px] font-rubik"
+                                        className="hover:text-accent transition-colors cursor-pointer text-[14px] font-rubik"
                                     >
                                         {cat}
                                     </li>
@@ -143,10 +144,10 @@ const Blogs = () => {
 
 
                             <div>
-                                <h2 className="font-semibold mb-2 font-rubik my-4">Tags</h2>
-                                <ul className="space-y-1 text-sm text-gray-700 grid  lg:grid-cols-2   md:grid-cols-6 xl:grid-cols-3 grid-cols-4 gap-4 lg:ml-2">
+                                <h2 className="font-semibold dark:text-white mb-2 font-rubik my-4">Tags</h2>
+                                <ul className="space-y-1 text-sm text-gray-700 grid  lg:grid-cols-2   md:grid-cols-6 xl:grid-cols-2 grid-cols-3 gap-4 lg:ml-2">
                                     {tags.map((tag, idx) => (
-                                        <li key={idx} className="badge bg-gray-100 text-[12px]">
+                                        <li key={idx} className="badge bg-gray-100 dark:bg-gray-900 dark:text-white text-[12px]">
                                             #{tag}
                                         </li>
                                     ))}
@@ -176,8 +177,8 @@ const Blogs = () => {
                                 </div>
                             </div>
                         ) : (
-                            <div className="p-4 bg-base-100 rounded-md text-center">
-                                <div className="space-y-8">
+                            <div className="p-4 rounded-md text-center">
+                                <div className="space-y-8 sm:grid grid-cols-2 gap-4">
                                     {
                                         loading ? <Loader /> : (
                                             blogs?.map((blog) => {
@@ -191,61 +192,12 @@ const Blogs = () => {
                         )}
 
                         {/* Pagination */}
-                        <div className="flex justify-center my-8">
-                            <nav className="flex items-center gap-1 sm:gap-2">
-                                {/* Previous Button */}
-                                <button
-                                    className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base"
-                                    disabled={currentPage === 0}
-                                    onClick={() => setCurrentPage((prev) => prev - 1)}
-                                >
-                                    <span className="hidden sm:inline">Previous</span>
-                                    <span className="sm:hidden">←</span>
-                                </button>
-
-                                {/* Page Numbers */}
-                                <div className="flex items-center gap-1">
-                                    {pageArray?.map((page) => {
-                                        // Show only first, last, and nearby pages on mobile
-                                        if (window.innerWidth < 640 &&
-                                            page !== 0 &&
-                                            page !== pageArray.length - 1 &&
-                                            Math.abs(page - currentPage) > 1) {
-                                            if (Math.abs(page - currentPage) === 2) {
-                                                return <span key={page} className="px-2">...</span>;
-                                            }
-                                            return null;
-                                        }
-
-                                        return (
-                                            <button
-                                                key={page}
-                                                className={`w-8 h-8 sm:w-10 sm:h-10 rounded-md text-sm sm:text-base ${currentPage === page
-                                                    ? "bg-primary text-white"
-                                                    : "border border-gray-300 hover:bg-gray-100"
-                                                    }`}
-                                                onClick={() => setCurrentPage(page)}
-                                            >
-                                                {page}
-                                            </button>
-                                        );
-                                    })}
-                                </div>
-
-                                {/* Next Button */}
-                                <button
-                                    className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base"
-                                    disabled={pageArray?.length - 1 === currentPage}
-                                    onClick={() => setCurrentPage((prev) => prev + 1)}
-                                >
-                                    <span className="hidden sm:inline">Next</span>
-                                    <span className="sm:hidden">→</span>
-                                </button>
-                            </nav>
-                        </div>
+                      <Pagination setCurrentPage={setCurrentPage} currentPage={currentPage} pageArray={pageArray} />
                     </div>
 
-
+                        
+                             
+                       
                 </div>
             </div>
 

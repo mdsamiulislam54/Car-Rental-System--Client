@@ -6,7 +6,7 @@ import axios from "axios";
 import Button from "../../Components/Button/Button";
 import { FaCar, FaLine } from "react-icons/fa";
 import { IoArrowBack } from "react-icons/io5";
-import Loader from "../../Components/Loader/Loader";
+
 
 const CarDetailsPage = () => {
   const car = useLoaderData();
@@ -47,21 +47,25 @@ const CarDetailsPage = () => {
     setError("");
   };
 
-  const handleBookNow = async (totalPrice) => {
-    if (user.role === "admin") {
+  const handleBookNow = async () => {
+    if (!user) return navigate('/login')
+    if (user?.role === "admin") {
+      alert()
       return Swal.fire({
         title: "Access Denied!",
         text: "Admin is not allowed to perform this action.",
         icon: "warning",
         confirmButtonText: "Okay",
       });
+
     }
     if (!startDate || !endDate) {
+
       setError("Please select both start and end date");
       return;
     }
     const bookCar = {
-      totalPrice,
+      totalPrice: totalCost().toFixed(2),
       carModel: car.carModel,
       availability: car.availability,
       startDay: startDate,
@@ -75,6 +79,7 @@ const CarDetailsPage = () => {
       carId: car._id,
       paymentStatus: "paid",
     };
+  
     setLoading(true)
     const res = await axios.post(`http://localhost:5000/booking-car`, bookCar);
     if (res.data) {
@@ -95,39 +100,42 @@ const CarDetailsPage = () => {
     }
   };
 
-  console.log(car)
+
   return (
-    <div className="w-11/12 mx-auto py-8 font-rubik space-y-10">
+    <div className="custom-container py-8 font-rubik space-y-10 relative">
+      <div className="absolute top-0 left-0 p-1 m-3 bg-gray-100 rounded-full font-rubik hover:bg-gray-200 transition-all duration-300">
+        <Link to={-1}>
+          <IoArrowBack />
+        </Link>
+      </div>
       {/* Top Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-white rounded-2xl  p-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-white  rounded-2xl  p-6">
         {/* Left - Car Image */}
         <div className="flex justify-center items-center relative">
-          <div className="absolute top-0 left-0 p-1 bg-gray-100 rounded-full font-rubik hover:bg-gray-200 transition-all duration-300">
-            <Link to={-1}>
-              <IoArrowBack />
-            </Link>
-          </div>
+
           <img
             src={car.imageUrl}
             alt={car.carModel}
+            loading="lazy"
+            property
             className="w-full max-w-lg rounded-lg shadow-lg"
           />
         </div>
 
         {/* Right - Car Info */}
         <div className="space-y-4">
-          <h2 className="text-3xl font-bold text-gray-900">{car.carModel}</h2>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">{car.carModel}</h2>
 
-          <div className="flex flex-wrap items-center gap-6 text-lg font-semibold text-gray-800">
+          <div className="flex flex-wrap items-center gap-6 text-lg font-semibold dark:text-gray-100 text-gray-800">
             <span>৳ {car.dailyRentalPrice} / Day</span>
             <span className="text-gray-400">|</span>
             <span>৳ {car.hourlyRentalPrice} / Hour</span>
           </div>
 
-          <p>
+          <p className="dark:text-white text-gray-900">
             <strong>Availability:</strong>{" "}
             <span
-              className={`p-1 rounded-md text-sm font-bold ${car.availability ? "bg-green-200" : "bg-red-200"
+              className={`p-1 rounded-md text-sm font-bold ${car.availability ? "bg-accent " : "bg-red-200"
                 }`}
             >
               {car.availability ? "Available" : "Not Available"}
@@ -135,7 +143,7 @@ const CarDetailsPage = () => {
           </p>
 
           {/* Car Meta Data */}
-          <div className="grid grid-cols-2 gap-2 text-sm text-gray-700">
+          <div className="grid grid-cols-2 gap-2 text-sm text-gray-700 dark:text-white ">
             <p><strong>Brand:</strong> {car.brand}</p>
             <p><strong>Category:</strong> {car.category}</p>
             <p><strong>Fuel Type:</strong> {car.fuelType}</p>
@@ -145,7 +153,8 @@ const CarDetailsPage = () => {
             <p><strong>Color:</strong> {car.color}</p>
             <p><strong>Mileage:</strong> {car.mileage}</p>
             <p><strong>Location:</strong> {car.location.city}</p>
-            <p><strong>pickupPoints:</strong> {car.location.pickupPoints?.map(point => <li key={point}>{point}</li>)}</p>
+            <p className="flex gap-2"><strong>pickupPoints:</strong> <ul className="flex gap-2">
+              {car.location.pickupPoints?.map(point => <li key={point}>{point}</li>)}</ul></p>
 
           </div>
 
@@ -159,18 +168,18 @@ const CarDetailsPage = () => {
 
       {/* Description */}
       <section>
-        <h3 className="text-2xl font-semibold mb-3 text-gray-900">Description</h3>
-        <p className="text-gray-700 leading-relaxed">{car.description}</p>
+        <h3 className="text-2xl font-semibold mb-3 text-gray-900 dark:text-gray-100">Description</h3>
+        <p className="text-gray-700 dark:text-gray-100 leading-relaxed text-sm">{car.description}</p>
       </section>
 
       {/* Features */}
       <section>
-        <h3 className="text-2xl font-semibold mb-3 text-gray-900">Key Features</h3>
+        <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">Key Features</h3>
         <ul className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 pl-6 ">
           {car.features?.map((feature, i) => (
             <li
               key={i}
-              className="bg-gray-100  p-2 rounded-md text-sm font-medium text-text"
+              className="bg-gray-100 dark:bg-gray-900 dark:text-white text-center  p-2 rounded-md text-sm font-medium text-text"
             >
               {feature}
             </li>
@@ -181,10 +190,10 @@ const CarDetailsPage = () => {
       {/* Why Choose */}
       {car.whyChoose && (
         <section>
-          <h3 className="text-2xl font-semibold mb-3 text-gray-900">Why Choose This Car</h3>
+          <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">Why Choose This Car</h3>
           <ul className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 pl-6">
             {car.whyChoose.map((point, i) => (
-              <li key={i} className="bg-gray-100 p-2 rounded-md text-sm font-medium text-text">{point}</li>
+              <li key={i} className="bg-gray-100 dark:bg-gray-900 dark:text-white text-center p-2 rounded-md text-sm font-medium text-text">{point}</li>
             ))}
           </ul>
         </section>
@@ -240,7 +249,7 @@ const CarDetailsPage = () => {
                 Cancel
               </button>
               <button
-                onClick={() => handleBookNow(diffDay() * car.dailyRentalPrice)}
+                onClick={handleBookNow}
                 className="px-4 py-2 bg-primary text-white rounded hover:bg-primary/90"
               >
                 {

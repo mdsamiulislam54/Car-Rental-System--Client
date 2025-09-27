@@ -38,11 +38,11 @@ const Faq = () => {
     <div className="my-10">
       <div className="w-11/12 mx-auto py-10">
         <div>
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold  mb-3 text-text font-rubik">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold dark:text-white  mb-4 text-text font-rubik ">
               Frequently Asked Questions
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-200 max-w-2xl mx-auto">
               Find answers to the most common questions our customers ask before
               booking a car. If you still need help, feel free to contact our
               support team anytime.
@@ -51,9 +51,9 @@ const Faq = () => {
         </div>
         <div>
           {faq.map((faq,index) => (
-            <div key={index} className="collapse collapse-plus bg-base-100 border border-base-300 font-rubik">
+            <div key={index} className="collapse collapse-plus bg-base-100 dark:bg-gray-900 dark:text-white border dark:border-gray-600 border-base-300 font-rubik mb-5">
               <input type="radio" name="my-accordion-3 " className="" defaultChecked />
-              <div className="collapse-title font-semibold">{faq.question}</div>
+              <div className="collapse-title font-semibold dark:text-gray-300">{faq.question}</div>
               <div className="collapse-content text-sm">{faq.answer}</div>
             </div>
           ))}

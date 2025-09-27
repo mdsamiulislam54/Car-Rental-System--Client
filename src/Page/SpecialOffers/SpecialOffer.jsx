@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
-import { FaCarAlt, FaMapMarkerAlt, FaShieldAlt } from "react-icons/fa";
+
 import { Link } from "react-router";
-import Button from "../../Components/Button/Button";
+
 
 const SpecialOffer = () => {
   return (
-    <section className="">
+    <section className="my-10">
       <div
         style={{ backgroundImage: `url("https://img.freepik.com/free-photo/woman-standing-by-her-new-red-car_1303-31810.jpg?t=st=1758948466~exp=1758952066~hmac=15b4c5672fb57c87cd43d86e0b38326f6c41a9af578664e6cd0143d8b1dc71f7&w=1480")` }}
-        className="custom-container bg-cover bg-no-repeat h-[500px] rounded-box flex flex-col-reverse md:flex-row items-center gap-12 px-6 md:px-0  relative">
+        className="custom-container bg-cover bg-no-repeat h-[450px] rounded-box flex flex-col-reverse md:flex-row items-center gap-12 px-6 md:px-0  relative">
         {/* Left Content */}
         <motion.div
           initial={{ x: -100, opacity: 0 }}
@@ -16,7 +16,7 @@ const SpecialOffer = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="md:w-[70%] space-y-6 max-sm:text-center ml-4 text-white z-[100]"
         >
-          <h3 className=" font-semibold text-md uppercase tracking-wider">
+          <h3 className=" font-semibold text-md uppercase tracking-wider text-accent">
             Would you like to
           </h3>
           <h2 className="text-4xl font-bold font-rubik  leading-tight">
@@ -32,7 +32,7 @@ const SpecialOffer = () => {
         </motion.div>
 
         {/* overlay*/}
-        <div className="absolute inset-0 bg-black/50 z-[2]"></div>
+        <div className="absolute inset-0 bg-black/70 z-[2]"></div>
 
 
       </div>

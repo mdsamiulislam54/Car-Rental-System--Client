@@ -44,7 +44,7 @@ function BookingCar() {
   const unickPicupLocation = [...new Set(pickupLocation)];
 
   return (
-    <div className="bg-white dark:bg-black p-6 shadow rounded-xl">
+    <div className="bg-white dark:bg-black p-6 shadow rounded-xl dark:shadow-white dark:text-white">
       <form 
         onSubmit={handleSubmit(onSubmit)} 
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-end"
@@ -54,7 +54,7 @@ function BookingCar() {
           <label className="block mb-2 font-medium font-rubik text-text">🚗 Select Your Car Type</label>
           <select 
             {...register("carModel", { required: true })} 
-            className="w-full border px-3 py-2 rounded text-gray-600"
+            className="w-full border px-3 py-2 rounded dark:text-gray-300 text-gray-600"
           >
             <option value="">-- Choose Car Type --</option>
             {carType?.map(type => <option key={type}>{type}</option>)}
@@ -67,7 +67,7 @@ function BookingCar() {
           <label className="block mb-2 font-medium font-rubik text-text">📍 Pick-Up Location</label>
           <select 
             {...register("pickupLocation", { required: true })} 
-            className="w-full border px-3 py-2 rounded text-gray-600"
+            className="w-full border px-3 py-2 rounded dark:text-gray-300 text-gray-600"
           >
             <option value="">-- Choose Pick-Up --</option>
             {unickPicupLocation?.map(type => <option key={type}>{type}</option>)}
@@ -80,7 +80,7 @@ function BookingCar() {
           <label className="block mb-2 font-medium font-rubik text-text">📍 Drop-Off Location</label>
           <select 
             {...register("dropLocation", { required: true })} 
-            className="w-full border px-3 py-2 rounded text-gray-600"
+            className="w-full border px-3 py-2 rounded dark:text-gray-300 text-gray-600"
           >
             <option value="">-- Choose Drop-Off --</option>
             {unickPicupLocation?.map(type => <option key={type}>{type}</option>)}

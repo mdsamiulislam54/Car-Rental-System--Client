@@ -7,25 +7,25 @@ import Button from "../../Components/Button/Button";
 
 const features = [
   {
-    icon: <FaUsers className="text-4xl text-primary mb-4" />,
+    icon: <FaUsers className="text-4xl text-accent mb-4" />,
     title: "Our Team",
     desc: "Meet the talented professionals behind our services.",
     animation: { x: -100, opacity: 0 },
   },
   {
-    icon: <FaRegHandshake className="text-4xl text-primary mb-4" />,
+    icon: <FaRegHandshake className="text-4xl text-accent mb-4" />,
     title: "Our Commitment",
     desc: "We provide unmatched service with full dedication.",
     animation: { x: 100, opacity: 0 },
   },
   {
-    icon: <FaAward className="text-4xl text-primary mb-4" />,
+    icon: <FaAward className="text-4xl text-accent mb-4" />,
     title: "Award Winning",
     desc: "Recognized for excellence in customer satisfaction.",
     animation: { y: 100, opacity: 0 },
   },
   {
-    icon: <FaGlobe className="text-4xl text-primary mb-4" />,
+    icon: <FaGlobe className="text-4xl text-accent mb-4" />,
     title: "Global Reach",
     desc: "Providing services in multiple cities worldwide.",
     animation: { y: 100, opacity: 0 },
@@ -47,7 +47,7 @@ const teamMembers = [
 
 const AboutUs = () => {
   return (
-    <div className="py-16 bg-gray-50 relative">
+    <div className="py-16 bg-gray-50 dark:bg-black relative">
       <div className="custom-container font-rubik relative z-100">
         {/* About Section Header */}
         <motion.div
@@ -56,10 +56,10 @@ const AboutUs = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl font-extrabold text-gray-800 mb-4 font-rubik">
+          <h2 className="text-4xl font-extrabold text-gray-800 dark:text-white mb-4 font-rubik">
             About Us
           </h2>
-          <p className="text-sm font-rubik text-gray-700 max-w-3xl mx-auto">
+          <p className="text-sm font-rubik text-gray-700 dark:text-gray-200 max-w-3xl mx-auto">
             We are a team of passionate professionals who are dedicated to
             providing the best customer experience with our luxury car rentals.
             Explore the city in style with our well-maintained fleet.
@@ -74,13 +74,13 @@ const AboutUs = () => {
               initial={item.animation}
               animate={{ x: 0, y: 0, opacity: 1 }}
               transition={{ duration: 0.6 }}
-              className="text-center bg-white p-6 rounded-lg shadow"
+              className="text-center bg-white dark:bg-gray-900 p-6 rounded-lg shadow"
             >
               {item.icon}
-              <h3 className="text-md font-bold text-gray-800 mb-2">
+              <h3 className="text-md font-bold text-gray-800 dark:text-gray-100 mb-2">
                 {item.title}
               </h3>
-              <p className="text-gray-600 text-xs">{item.desc}</p>
+              <p className="text-gray-600 dark:text-gray-200 text-xs">{item.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -92,10 +92,10 @@ const AboutUs = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-2xl sm:text-3xl font-bold text-text mb-6">
+          <h2 className="text-2xl sm:text-3xl font-bold text-text mb-6 dark:text-white">
             Meet The Team
           </h2>
-          <p className="text-sm text-gray-600 max-w-3xl mx-auto mb-8">
+          <p className="text-sm text-gray-600 dark:text-gray-200 max-w-3xl mx-auto mb-8">
             Our team of dedicated experts is here to ensure you have an
             unforgettable experience.
           </p>
@@ -107,10 +107,10 @@ const AboutUs = () => {
                   alt={member.name}
                   className="w-full h-56 object-cover rounded-lg mb-4"
                 />
-                <h4 className="text-xl font-semibold text-gray-800">
+                <h4 className="text-xl font-semibold text-gray-800  dark:text-gray-100">
                   {member.name}
                 </h4>
-                <p className="text-gray-600">{member.role}</p>
+                <p className="text-gray-600 dark:text-gray-200">{member.role}</p>
               </div>
             ))}
           </div>
