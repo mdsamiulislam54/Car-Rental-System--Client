@@ -37,14 +37,14 @@ import BackgroundImage from '../../assets/footer-banner.png'
 
 export default function HowItWorks() {
   return (
-    <div className="bg-white " style={{
+    <div className="bg-white my-10 " style={{
       backgroundImage: `url(${BackgroundImage})`,
       backgroundSize: "cover",
       backgroundPosition: "center",
     }}>
       <div className="bg-white/70 py-4 ">
-        <div className="w-11/12  mx-auto ">
-          <h2 className="text-3xl font-bold text-center mb-6 text-text font-rubik">How It Works</h2>
+        <div className="custom-container  mx-auto ">
+          <h2 className="text-4xl font-bold text-center mb-10 text-text font-rubik">How It Works</h2>
           <div className="relative border-l-2 border-dashed border-primary ml-4 sm:ml-0 sm:border-l-0 sm:before:absolute sm:before:left-1/2 sm:before:top-0 sm:before:bottom-0 sm:before:border-l-2 sm:before:border-dashed sm:before:border-primary">
             {steps.map((step, index) => (
               <div

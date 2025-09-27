@@ -1,9 +1,7 @@
 import { Link } from "react-router";
-import { FaPlay, FaPause, FaCheckCircle } from "react-icons/fa";
-import { Typewriter } from "react-simple-typewriter";
+import {  FaCheckCircle } from "react-icons/fa";
 import Button from "../../Components/Button/Button";
-import BookingCar from "../BookingCar/BookingCar";
-import { motion, scale } from "framer-motion";
+import { motion } from "framer-motion";
 
 
 const Banner = () => {
@@ -20,7 +18,7 @@ const Banner = () => {
       </div>
 
    
-      <div className="relative z-10 flex items-center justify-between w-11/12 mx-auto min-h-screen my-14">
+      <div className="relative z-10 flex items-center justify-between custom-container mx-auto min-h-screen my-14">
         {/* Left Content */}
         <motion.div
         initial={{opacity:0, x:-120}}

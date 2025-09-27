@@ -19,33 +19,34 @@ const Home = () => {
       <section>
         <Banner />
       </section>
-     
       <section>
-        <WhyChoose/>
+        <WhyChoose />
       </section>
-     <section>
-       <RecentListingCar/>
-     </section>
-     <section>
-      <HowToWork/>
-     </section>
-     <section>
-      <AboutUs/>
-     </section>
-    <section>
-      <SpecialOffer/>
-    </section>
-     <section>
-      <AppInstall/>
-    </section>
-    <section>
-      <Faq/>
-    </section>
-    <section>
-     <Testimonial/>
-    </section>
-   
-   
+
+      <section>
+        <RecentListingCar />
+      </section>
+      <section>
+        <HowToWork />
+      </section>
+      <section>
+        <AboutUs />
+      </section>
+      <section>
+        <SpecialOffer />
+      </section>
+      <section>
+        <AppInstall />
+      </section>
+      <section>
+        <Faq />
+      </section>
+      <section>
+        <Testimonial />
+      </section>
+
+
+
     </div>
   );
 };

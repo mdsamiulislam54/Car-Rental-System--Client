@@ -76,7 +76,7 @@ const CarDetailsPage = () => {
       paymentStatus: "paid",
     };
     setLoading(true)
-    const res = await axios.post(`http://localhost:5000/booking-car`, bookCar);
+    const res = await axios.post(`https://car-rental-system-server-beta.vercel.app/booking-car`, bookCar);
     if (res.data) {
       Swal.fire({
         title: "Your Booking Successful!!",

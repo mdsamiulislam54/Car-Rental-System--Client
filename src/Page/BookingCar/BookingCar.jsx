@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-
-import { Link, Navigate, useNavigate } from 'react-router';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 import Button from '../../Components/Button/Button';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -13,7 +12,7 @@ function BookingCar() {
     const navigate = useNavigate()
 
     const onSubmit = async (data) => {
-        console.log("Booking Data:", data);
+
         try {
             navigate('/available-cars', {
                 state: {
@@ -32,14 +31,10 @@ function BookingCar() {
     useEffect(() => {
         const fetchCarTypes = async () => {
             try {
-                const res = await axios.get(' http://localhost:5000/car-type', { withCredentials: true });
+                const res = await axios.get(' https://car-rental-system-server-beta.vercel.app/car-type', { withCredentials: true });
                 if (res.status !== 200) {
                     throw new Error("Failed to fetch car types");
                 }
-
-
-                // console.log(res.data.carTypes)
-                // console.log(res.data.location)
                 setCarType(res.data.carTypes) || []
                 setLocation(res.data.location) || []
 
@@ -77,7 +72,7 @@ function BookingCar() {
                     <div>
                         <label className='block mb-2 font-medium font-rubik text-text'>📍 Pick-Up Location</label>
                         <select {...register("pickupLocation", { required: true })} className='w-full input px-3 py-2 rounded text-gray-400'>
-                          {
+                            {
                                 unickPicupLocation?.map(type => <option key={type}>{type}</option>)
                             }
                         </select>

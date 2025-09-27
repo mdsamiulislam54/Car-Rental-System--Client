@@ -54,7 +54,7 @@ const MyBooking = () => {
       if (result.isConfirmed) {
         try {
           const res = await axios.delete(
-            ` http://localhost:5000/cancel-booking/${id}`
+            ` https://car-rental-system-server-beta.vercel.app/cancel-booking/${id}`
           );
           const data = res.data;
 
@@ -93,7 +93,7 @@ const MyBooking = () => {
     }
     try {
       const res = await axios.patch(
-        ` http://localhost:5000/
+        ` https://car-rental-system-server-beta.vercel.app/
 
 update-booking/${modifyId}`,
         {

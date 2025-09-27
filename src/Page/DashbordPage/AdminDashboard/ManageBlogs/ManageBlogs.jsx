@@ -19,7 +19,7 @@ const ManageBlogs = () => {
     const fetchBlogsData = async () => {
         try {
             setLoading(true)
-            const res = await axios.get(`http://localhost:5000/admin/manage/blogs?page=${currentPage}&limit=${perPage}`);
+            const res = await axios.get(`https://car-rental-system-server-beta.vercel.app/admin/manage/blogs?page=${currentPage}&limit=${perPage}`);
             console.log(res?.data.blogs);
             setBlogs(res?.data?.blogs)
             setCount(res?.data?.count)
@@ -34,35 +34,35 @@ const ManageBlogs = () => {
         fetchBlogsData()
     }, [currentPage, perPage,])
 
- const handleBlogsDeleteById = (id) => {
-  Swal.fire({
-    icon: "warning",
-    title: "Are you sure?",
-    text: "This action cannot be undone!",
-    showCancelButton: true,
-    confirmButtonText: "Yes, delete it!",
-    cancelButtonText: "No, cancel",
-  }).then(async (result) => {
-    if (result.isConfirmed) {
-      try {
-    
-        const response = await axios.delete(
-          `http://localhost:5000/admin/delete/blogs/${id}`
-        );
+    const handleBlogsDeleteById = (id) => {
+        Swal.fire({
+            icon: "warning",
+            title: "Are you sure?",
+            text: "This action cannot be undone!",
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel",
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
 
-        if (response.status===200) {
-          Swal.fire("Deleted!", "Blog has been deleted.", "success");
-            fetchBlogsData()
-        }
-      } catch (error) {
-        console.error("Delete error:", error);
-        Swal.fire("Error!", "Failed to delete blog.", "error");
-      }
-    } else if (result.dismiss === Swal.DismissReason.cancel) {
-      Swal.fire("Cancelled", "Your blog is safe 😊", "info");
-    }
-  });
-};
+                    const response = await axios.delete(
+                        `https://car-rental-system-server-beta.vercel.app/admin/delete/blogs/${id}`
+                    );
+
+                    if (response.status === 200) {
+                        Swal.fire("Deleted!", "Blog has been deleted.", "success");
+                        fetchBlogsData()
+                    }
+                } catch (error) {
+                    console.error("Delete error:", error);
+                    Swal.fire("Error!", "Failed to delete blog.", "error");
+                }
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire("Cancelled", "Your blog is safe 😊", "info");
+            }
+        });
+    };
 
     return (
         <div>

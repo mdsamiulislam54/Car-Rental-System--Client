@@ -34,7 +34,7 @@ const AvailableCars = () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          ` http://localhost:5000/available-cars?search=${search}&sort=${sortOrder}&limit=${perPage}&page=${currentPage + 1
+          ` https://car-rental-system-server-beta.vercel.app/available-cars?search=${search}&sort=${sortOrder}&limit=${perPage}&page=${currentPage + 1
           }&minPrice=${minPrice}&maxPrice=${maxPrice}`
         );
 

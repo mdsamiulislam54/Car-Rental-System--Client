@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router";
 import { RiCloseLine } from "react-icons/ri";
 import { AnimatePresence, motion } from "framer-motion";
 import UserContext from "../../ContextApi/UserContext/UserContext";
-import { TbLogout, TbLogout2 } from "react-icons/tb";
+import { TbLogout } from "react-icons/tb";
 import Swal from "sweetalert2";
 import Button from "../Button/Button";
 
@@ -89,7 +89,7 @@ const Navbar = () => {
           : "bg-white shadow"
         }`}
     >
-      <div className={`navbar w-11/12 mx-auto px-4  rounded-md `}>
+      <div className={`navbar custom-container rounded-md `}>
         {/* Navbar Start */}
         <div className="navbar-start">
           {/* Mobile menu button */}

@@ -5,7 +5,7 @@ import Button from "../../Components/Button/Button";
 
 const CarListingCard = ({ car }) => {
   return (
-    <div className="bg-white font-rubik rounded-2xl shadow-md hover:shadow-lg transition duration-300 overflow-hidden">
+    <div className="bg-white font-rubik rounded-2xl shadow hover:shadow-lg transition duration-300 overflow-hidden">
       <div className="relative p-3 pb-0">
         <img
           src={car.imageUrl}
@@ -30,7 +30,7 @@ const CarListingCard = ({ car }) => {
       
 
         {/* Icons Row */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm text-gray-600 mb-4 text-sm">
+        <div className="grid  grid-cols-3  gap-3 text-sm text-gray-600 mb-4 text-sm">
           <div className="flex items-center gap-2">
             <FaUsers className="text-primary" />
             <span>{car.seatingCapacity} seats</span>

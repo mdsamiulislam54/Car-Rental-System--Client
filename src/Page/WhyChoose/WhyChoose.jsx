@@ -30,14 +30,14 @@ const features = [
 const WhyChoose = () => {
   return (
     <div className="relative my-10">
-      <div className="w-11/12 mx-auto py-2 px-4">
+      <div className="custom-container py-2">
         {/* Booking Form */}
         <motion.div
           initial={{ opacity: 0, y: 120 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, }}
 
-          className="w-11/12 mx-auto bg-white rounded-md shadow z-10 absolute -top-40 left-1/2 -translate-x-1/2 p-5">
+          className="custom-container  bg-white rounded-md shadow z-10 absolute -top-40 left-1/2 -translate-x-1/2 p-4">
           <BookingCar />
         </motion.div>
 
@@ -45,19 +45,19 @@ const WhyChoose = () => {
         <div className="mt-40">
 
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 font-rubik">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 font-rubik">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="text-center p-6 bg-white rounded-lg shadow hover:shadow-lg hover:bg-accent/10 transition-all duration-300"
+                className="text-center p-2 bg-white rounded-lg shadow hover:shadow-lg hover:bg-accent/10 transition-all duration-300"
               >
                 <img
                   src={feature.icon}
                   alt={feature.title}
-                  className="w-14 h-14 mx-auto mb-4"
+                  className="w-12 h-12 mx-auto mb-4"
                 />
-                <h3 className="text-lg font-semibold mb-2 text-text font-rubik tracking-tight">{feature.title}</h3>
-                <p className="text-gray-600 tracking-wide font-rubik text-sm">{feature.description}</p>
+                <h3 className="text-md font-semibold mb-2 text-text font-rubik tracking-tight">{feature.title}</h3>
+                <p className="text-gray-600 tracking-wide font-rubik text-[12px]">{feature.description}</p>
               </div>
             ))}
           </div>

@@ -43,7 +43,7 @@ const BlogsDetails = () => {
             {/* Hero Section */}
             <div className="hero  bg-base-100">
                 <div className="">
-                    <div className="lg:w-8/12 w-11/12 mx-auto ">
+                    <div className="lg:w-8/12 custom-container mx-auto ">
                         <Link className='' to={-1}>
                             <IoIosArrowRoundBack size={24} />
                         </Link>
@@ -92,7 +92,7 @@ const BlogsDetails = () => {
             </div>
 
             {/* Main Content */}
-            <div className="lg:w-8/12 w-11/12 mx-auto  py-0">
+            <div className="lg:w-8/12 custom-container mx-auto  py-0">
                 <div className="flex flex-col lg:flex-row gap-8">
                     {/* Article Content */}
                     <article className="flex-1 font-rubik">
