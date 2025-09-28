@@ -50,7 +50,7 @@ const CarDetailsPage = () => {
   const handleBookNow = async () => {
     if (!user) return navigate('/login')
     if (user?.role === "admin") {
-      alert()
+
       return Swal.fire({
         title: "Access Denied!",
         text: "Admin is not allowed to perform this action.",
@@ -81,7 +81,7 @@ const CarDetailsPage = () => {
     };
   
     setLoading(true)
-    const res = await axios.post(`http://localhost:5000/booking-car`, bookCar);
+    const res = await axios.post(`https://car-rental-system-server-beta.vercel.app/booking-car`, bookCar);
     if (res.data) {
       Swal.fire({
         title: "Your Booking Successful!!",

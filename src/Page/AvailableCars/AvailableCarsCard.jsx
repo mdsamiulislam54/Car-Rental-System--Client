@@ -31,7 +31,7 @@ const AvailableCarsCard = ({ lineView, car }) => {
           {/* Image with status badge */}
           <div className="relative">
             <img
-              src={imageUrl}
+              src={imageUrl || "https://cdn.prod.website-files.com/5b4a3b3971d099f78f362505/641a59927471a380437d59f4_2015-Lamborghini-Aventador-Roadster-Nero-Nemesis%20Exterior-ZHWUR1ZD5FLA03450_012.webp"}
               alt={carModel}
               className="w-full h-40 object-contain p-2 "
             />

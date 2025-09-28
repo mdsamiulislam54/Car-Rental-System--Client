@@ -18,7 +18,7 @@ const ManageUser = () => {
         try {
             setLoading(true);
             const res = await axios.get(
-                ` http://localhost:5000/admin/user?email=${user.email}&limit=${perPage}&page=${currentPage + 1
+                ` https://car-rental-system-server-beta.vercel.app/admin/user?email=${user.email}&limit=${perPage}&page=${currentPage + 1
                 }`,
                 {
                     headers: {
@@ -54,7 +54,7 @@ const ManageUser = () => {
         })
 
         if (result.isConfirmed) {
-            const res = await axios.delete(`http://localhost:5000/admin/user/block?id=${id}`)
+            const res = await axios.delete(`https://car-rental-system-server-beta.vercel.app/admin/user/block?id=${id}`)
             
             console.log(res)
             if (res.status === 200) {

@@ -38,7 +38,7 @@ useEffect(() => {
       let query = `search=${search}&sort=${sortOrder}&limit=${perPage}&page=${currentPage + 1}&minPrice=${minPrice}&maxPrice=${maxPrice}&carModel=${state?.carModel || ""}`;
 
       const res = await axios.get(
-        `http://localhost:5000/available-cars?${query}`
+        `https://car-rental-system-server-beta.vercel.app/available-cars?${query}`
       );
 
       const data = res.data;
