@@ -37,15 +37,15 @@ const AddBlogs = () => {
 
             if (response.data) {
                 Swal.fire({
-                    title:"Blog posted successfully!",
-                    icon:'success'
+                    title: "Blog posted successfully!",
+                    icon: 'success'
                 })
-                reset(); 
+                reset();
             }
         } catch (error) {
             Swal.fire({
-                title:"Failed to post blog. Please try again.",
-                icon:"error"
+                title: "Failed to post blog. Please try again.",
+                icon: "error"
             })
         }
     };
@@ -53,28 +53,30 @@ const AddBlogs = () => {
     return (
         <form
             onSubmit={handleSubmit(onSubmit)}
-            className="md:m-6 m-0 p-5 bg-base-100 shadow-xl rounded-xl space-y-6"
+            className="md:m-6 m-0 p-5 bg-base-100 dark:bg-gray-800 shadow-xl rounded-xl space-y-6"
         >
             <h2 className="text-2xl font-bold text-primary">✍️ Create Blog Post</h2>
 
-            {/* Title */}
-            <div>
-                <input
-                    {...register("title", { required: "Title is required" })}
-                    placeholder="Blog Title"
-                    className="input input-bordered w-full"
-                />
-                {errors.title && <p className="text-red-500 text-sm">{errors.title.message}</p>}
-            </div>
+            <div className="grid grid-cols-2 gap-2">
+                {/* Title */}
+                <div>
+                    <input
+                        {...register("title", { required: "Title is required" })}
+                        placeholder="Blog Title"
+                        className="input input-bordered w-full"
+                    />
+                    {errors.title && <p className="text-red-500 text-sm">{errors.title.message}</p>}
+                </div>
 
-            {/* Slug */}
-            <div>
-                <input
-                    {...register("slug", { required: "Slug is required" })}
-                    placeholder="Slug (url-friendly)"
-                    className="input input-bordered w-full"
-                />
-                {errors.slug && <p className="text-red-500 text-sm">{errors.slug.message}</p>}
+                {/* Slug */}
+                <div>
+                    <input
+                        {...register("slug", { required: "Slug is required" })}
+                        placeholder="Slug (url-friendly)"
+                        className="input input-bordered w-full"
+                    />
+                    {errors.slug && <p className="text-red-500 text-sm">{errors.slug.message}</p>}
+                </div>
             </div>
 
             {/* Excerpt */}
@@ -90,7 +92,7 @@ const AddBlogs = () => {
             {/* Cover Image */}
             <div>
                 <input
-                    {...register("coverImage", { 
+                    {...register("coverImage", {
                         required: "Cover image URL is required",
                         pattern: { value: /^(http|https):\/\/[^ "]+$/, message: "Must be a valid URL" }
                     })}
@@ -166,8 +168,8 @@ const AddBlogs = () => {
                 </div>
                 <div>
                     <input
-                        {...register("author.email", { 
-                            required: "Email is required", 
+                        {...register("author.email", {
+                            required: "Email is required",
                             pattern: { value: /^\S+@\S+$/i, message: "Invalid email format" }
                         })}
                         placeholder="Author Email"

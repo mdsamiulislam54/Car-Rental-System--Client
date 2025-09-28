@@ -3,9 +3,9 @@ import { TrendingUp, TrendingDown } from "lucide-react";
 const StatCard = ({ title, value, icon: Icon, color, change, className = "" }) => {
   const isPositive = change >= 0;
   return (
-    <div className={`bg-white  rounded-lg p-4 flex flex-col gap-2 `}>
+    <div className={`bg-white dark:bg-gray-800 dark:text-white  rounded-lg p-4 flex flex-col gap-2 `}>
       <div className="flex items-center justify-between">
-        <div className="text-gray-500 text-sm">{title}</div>
+        <div className="text-gray-500 dark:text-gray-100 text-sm">{title}</div>
         <div
           className={`flex items-center text-sm font-medium ${
             isPositive ? "text-green-500" : "text-red-500"

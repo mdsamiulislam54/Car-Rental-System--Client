@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Loader from '../../../../Components/Loader/Loader';
-import { FaDeleteLeft } from 'react-icons/fa6';
+import Pagination from '../../../../Components/Pagination/Pagination';
 import { MdDeleteForever } from 'react-icons/md';
 import Swal from 'sweetalert2';
 
@@ -69,16 +69,16 @@ const ManageBlogs = () => {
             <div className='md:p-8'>
                 {
                     loading ? (<Loader />) : (
-                        <div className="overflow-x-auto bg-white font-rubik">
+                        <div className="overflow-x-auto bg-white dark:bg-gray-800 dark:text-white font-rubik">
                             <table className="table">
 
                                 <thead>
                                     <tr className='text-center'>
-                                        <th>Images</th>
-                                        <th>Title</th>
-                                        <th>Author Name </th>
-                                        <th>Published</th>
-                                        <th>Action</th>
+                                        <th className='dark:text-white'>Images</th>
+                                        <th className='dark:text-white'>Title</th>
+                                        <th className='dark:text-white'>Author Name </th>
+                                        <th className='dark:text-white'>Published</th>
+                                        <th className='dark:text-white'>Action</th>
 
                                     </tr>
                                 </thead>
@@ -87,7 +87,7 @@ const ManageBlogs = () => {
                                     {
                                         blogs?.map((blog) => <tr key={blog._id} className=''>
                                             <td>
-                                                <img className='md:w-30 w-20 object-contain' src={blog.coverImage} alt={blog.title} />
+                                                <img className='md:w-10 w-10 object-contain' src={blog.coverImage} alt={blog.title} />
                                             </td>
                                             <td>
                                                 {blog.title}
@@ -116,58 +116,8 @@ const ManageBlogs = () => {
                 }
 
                 {/* Pagination */}
-                <div className="flex justify-center mt-8">
-                    <nav className="flex items-center gap-1 sm:gap-2">
-                        {/* Previous Button */}
-                        <button
-                            className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base"
-                            disabled={currentPage === 0}
-                            onClick={() => setCurrentPage((prev) => prev - 1)}
-                        >
-                            <span className="hidden sm:inline">Previous</span>
-                            <span className="sm:hidden">←</span>
-                        </button>
-
-                        {/* Page Numbers */}
-                        <div className="flex items-center gap-1">
-                            {pageArray?.map((page) => {
-                                // Show only first, last, and nearby pages on mobile
-                                if (window.innerWidth < 640 &&
-                                    page !== 0 &&
-                                    page !== pageArray.length - 1 &&
-                                    Math.abs(page - currentPage) > 1) {
-                                    if (Math.abs(page - currentPage) === 2) {
-                                        return <span key={page} className="px-2">...</span>;
-                                    }
-                                    return null;
-                                }
-
-                                return (
-                                    <button
-                                        key={page}
-                                        className={`w-8 h-8 sm:w-10 sm:h-10 rounded-md text-sm sm:text-base ${currentPage === page
-                                            ? "bg-primary text-white"
-                                            : "border border-gray-300 hover:bg-gray-100"
-                                            }`}
-                                        onClick={() => setCurrentPage(page)}
-                                    >
-                                        {page}
-                                    </button>
-                                );
-                            })}
-                        </div>
-
-                        {/* Next Button */}
-                        <button
-                            className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base"
-                            disabled={pageArray?.length - 1 === currentPage}
-                            onClick={() => setCurrentPage((prev) => prev + 1)}
-                        >
-                            <span className="hidden sm:inline">Next</span>
-                            <span className="sm:hidden">→</span>
-                        </button>
-                    </nav>
-                </div>
+                <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} pageArray={pageArray}/>
+               
             </div>
         </div>
     )

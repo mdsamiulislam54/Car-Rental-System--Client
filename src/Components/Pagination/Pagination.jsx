@@ -6,7 +6,7 @@ const Pagination = ({setCurrentPage,pageArray,currentPage}) => {
             <nav className="flex items-center gap-1 sm:gap-2">
                 {/* Previous Button */}
                 <button
-                    className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base dark:text-white"
+                    className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base dark:text-white text-black"
                     disabled={currentPage === 0}
                     onClick={() => setCurrentPage((prev) => prev - 1)}
                 >
@@ -33,7 +33,7 @@ const Pagination = ({setCurrentPage,pageArray,currentPage}) => {
                                 key={page}
                                 className={`w-8 h-8 sm:w-10 sm:h-10 rounded-md text-sm sm:text-base ${currentPage === page
                                     ? "bg-primary text-white cursor-pointer "
-                                    : "border border-gray-300 dark:text-white hover:bg-primary  hover:text-white cursor-pointer"
+                                    : "border border-gray-300 dark:text-white text-black hover:bg-primary  hover:text-white cursor-pointer"
                                     }`}
                                 onClick={() => setCurrentPage(page)}
                             >
@@ -45,7 +45,7 @@ const Pagination = ({setCurrentPage,pageArray,currentPage}) => {
 
                 {/* Next Button */}
                 <button
-                    className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base dark:text-white"
+                    className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base text-black dark:text-white"
                     disabled={pageArray?.length - 1 === currentPage}
                     onClick={() => setCurrentPage((prev) => prev + 1)}
                 >

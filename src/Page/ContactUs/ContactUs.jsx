@@ -66,7 +66,7 @@ const ContactUs = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-4xl font-bold text-center mb-12 text-gray-900"
+        className="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white"
       >
         Contact Us
       </motion.h1>
@@ -79,15 +79,15 @@ const ContactUs = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: id * 0.2 }}
-            className="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow duration-300"
+            className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6 hover:shadow-xl transition-shadow duration-300"
           >
-            <h3 className="text-xl font-semibold text-primary mb-3">{name}</h3>
-            <p className="text-gray-700 mb-2">{address}</p>
-            <p className="text-gray-700 mb-1">
-              Phone: <a href={`tel:${phone}`} className="text-primary hover:underline">{phone}</a>
+            <h3 className="text-xl font-semibold text-accent mb-3">{name}</h3>
+            <p className="text-gray-700 dark:text-gray-100 mb-2">{address}</p>
+            <p className="text-gray-700 dark:text-gray-100 mb-1 text-sm">
+              Phone: <a href={`tel:${phone}`} className=" hover:underline">{phone}</a>
             </p>
-            <p className="text-gray-700">
-              Email: <a href={`mailto:${email}`} className="text-primary hover:underline">{email}</a>
+            <p className="text-gray-700 dark:text-gray-100 text-sm">
+              Email: <a href={`mailto:${email}`} className=" hover:underline">{email}</a>
             </p>
           </motion.div>
         ))}
@@ -101,10 +101,10 @@ const ContactUs = () => {
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="bg-white p-8 rounded-lg shadow-md"
+          className="bg-white dark:bg-gray-900 dark:text-white p-8 rounded-lg shadow-md"
           onSubmit={handleSubmit}
         >
-          <h2 className="text-2xl font-semibold mb-6 text-gray-900">Send Us a Message</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Send Us a Message</h2>
           <input
             type="text"
             name="name"

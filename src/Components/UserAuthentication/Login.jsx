@@ -78,9 +78,9 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-10 bg-gray-100">
-      <div className=" w-8/12 bg-white rounded-lg shadow-lg overflow-hidden relative p-6 md:p-10">
-        <Link to="/" className="absolute top-5 left-5 text-gray-700">
+    <div className="min-h-screen flex items-center justify-center px-4 py-10 bg-gray-100 dark:bg-gray-900">
+      <div className=" w-8/12 bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden relative p-6 md:p-10">
+        <Link to="/" className="absolute top-5 left-5 text-gray-700 dark:text-white">
           <IoIosArrowRoundBack size={30} />
         </Link>
 
@@ -96,7 +96,7 @@ const Login = () => {
 
           {/* Form section */}
           <div>
-            <h2 className="text-3xl font-bold text-center mb-6">Login</h2>
+            <h2 className="text-3xl font-bold text-center mb-6 dark:text-white">Login</h2>
             <div className="flex items-center justify-end gap-3 mb-2">
                <Button text={"User Login"} onClick={handleUserLogin} />
               <Button text={"Admin Login"} onClick={handleAdminLogin} />
@@ -104,24 +104,26 @@ const Login = () => {
             </div>
             <form className="space-y-5 text-text font-rubik" onSubmit={handleLogin}>
               <div>
-                <label className="block mb-1 font-medium">Email</label>
+                <label className="block mb-1 font-medium  dark:text-white">Email</label>
                 <input
                   type="email"
                   name="email"
+                  placeholder="Enter Your Email..."
                   value={adminLogin.email || ''}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-primary"
+                  className="w-full px-4 py-2 border dark:text-white border-gray-300 rounded-md focus:outline-primary"
                 />
               </div>
 
               <div className="relative">
-                <label className="block mb-1 font-medium">Password</label>
+                <label className="block mb-1 font-medium dark:text-white">Password</label>
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
+                  placeholder="Enter Your Password..."
                   required
                   value={adminLogin.password ||  ''}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-primary"
+                  className="w-full px-4 py-2 border border-gray-300  dark:text-white rounded-md focus:outline-primary"
                 />
                 <span className="absolute right-3 top-10 cursor-pointer">
                   {showPassword ? (
@@ -144,15 +146,15 @@ const Login = () => {
               <button
                 onClick={handleGoogle}
                 type="button"
-                className="w-full flex justify-center items-center gap-2 border border-gray-300 py-2 rounded-md cursor-pointer hover:bg-gray-100 transition-all duration-300"
+                className="w-full flex justify-center items-center gap-2 border dark:text-white border-gray-300 py-2 rounded-md cursor-pointer hover:bg-gray-100 transition-all duration-300"
               >
                 <FcGoogle size={22} />
                 Continue with Google
               </button>
 
-              <p className="mt-4 text-center text-sm text-gray-600">
+              <p className="mt-4 text-center text-sm text-gray-600 dark:text-white">
                 Don’t have an account?{" "}
-                <Link to="/register" className="text-primary font-semibold">
+                <Link to="/register" className="text-accent font-semibold">
                   Register Now
                 </Link>
               </p>

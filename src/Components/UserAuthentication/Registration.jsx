@@ -92,17 +92,17 @@ const Registration = () => {
   };
 
   return (
-    <div className="overflow-hidden relative min-h-screen flex items-center justify-center px-4 py-10 bg-gray-50">
+    <div className="overflow-hidden relative min-h-screen flex items-center justify-center px-4 py-10 bg-gray-50 dark:bg-gray-900">
 
       <motion.div
         initial={{ opacity: 0, y: 80 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="bg-white rounded-md shadow-lg p-6 w-8/12 relative"
+        className="bg-white dark:bg-gray-800 rounded-md shadow-lg p-6 w-8/12 relative"
       >
         <Link
           to={"/"}
-          className="rounded-full shadow p-1 cursor-pointer absolute top-0 m-4"
+          className="rounded-full shadow p-1 cursor-pointer absolute top-0 m-4 dark:text-white"
         >
           <IoIosArrowRoundBack size={30} />
         </Link>
@@ -118,7 +118,7 @@ const Registration = () => {
           </div>
 
           <div>
-            <h2 className="text-3xl font-bold text-center mb-6">
+            <h2 className="text-3xl font-bold text-center mb-6 dark:text-white">
               Register Now
             </h2>
 
@@ -186,19 +186,19 @@ const Registration = () => {
               </button>
             </form>
 
-            <div className="text-center my-4">OR</div>
+            <div className="text-center my-4 dark:text-white">OR</div>
 
             <button
               onClick={handleGoogle}
-              className="w-full flex justify-center items-center gap-2 border border-gray-300 py-2 rounded-md hover:bg-gray-100 transition-all duration-300 cursor-pointer"
+              className="w-full flex justify-center items-center gap-2 border dark:text-white border-gray-300 py-2 rounded-md hover:bg-gray-100 transition-all duration-300 cursor-pointer"
             >
               <FcGoogle size={22} />
               Continue with Google
             </button>
 
-            <p className="mt-5 text-center text-sm">
+            <p className="mt-5 text-center text-sm dark:text-white">
               Already have an account?{" "}
-              <Link to="/login" className="text-primary font-medium">
+              <Link to="/login" className="text-accent font-medium">
                 Login Now
               </Link>
             </p>

@@ -8,13 +8,13 @@ const SpecialOffer = () => {
     <section className="my-10">
       <div
         style={{ backgroundImage: `url("https://img.freepik.com/free-photo/woman-standing-by-her-new-red-car_1303-31810.jpg?t=st=1758948466~exp=1758952066~hmac=15b4c5672fb57c87cd43d86e0b38326f6c41a9af578664e6cd0143d8b1dc71f7&w=1480")` }}
-        className="custom-container bg-cover bg-no-repeat h-[450px] rounded-box flex flex-col-reverse md:flex-row items-center gap-12 px-6 md:px-0  relative">
+        className="custom-container bg-cover bg-no-repeat h-[450px] rounded-box flex flex-col-reverse md:flex-row items-center  px-6 md:px-0  relative">
         {/* Left Content */}
         <motion.div
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="md:w-[70%] space-y-6 max-sm:text-center ml-4 text-white z-[100]"
+          className="md:w-[70%] space-y-4 max-sm:text-center ml-4 text-white z-[100] py-4"
         >
           <h3 className=" font-semibold text-md uppercase tracking-wider text-accent">
             Would you like to
@@ -26,7 +26,7 @@ const SpecialOffer = () => {
             Experience the thrill of premium cars without breaking the bank. Choose your dream ride and enjoy unmatched comfort, safety, and style — starting today.
           </p>
 
-          <Link to="/available-cars" className="max-sm:flex justify-center">
+          <Link to="/available-cars" className="max-sm:flex justify-center ">
             <button className="px-4 py-2 border rounded-box hover:bg-primary transform-all duration-300 cursor-pointer">Book Now</button>
           </Link>
         </motion.div>

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import TotalCarChart from './TotalCarChart';
-import Example from './TotalCarChart';
+
+
 
 const RecentlyBooking = () => {
 
@@ -27,10 +27,10 @@ const RecentlyBooking = () => {
         totalBookinCar()
     }, [perPage, currentPage,])
     return (
-        <div className='grid md:grid-cols-3 gap-4'>
-            <div className='bg-white mt-10 p-4 rounded-md lg:col-span-2 '>
+        <div className=' '>
+            <div className='bg-white dark:bg-gray-900 dark:text-white mt-10 p-4 rounded-md lg:col-span-2 '>
                 <nav className="flex items-center justify-between py-4 border-b border-gray-200 mb-4">
-                    <h2 className="text-lg font-semibold font-rubik text-gray-800">
+                    <h2 className="text-lg font-semibold font-rubik text-gray-800 dark:text-gray-100">
                         Recently Booking Car
                     </h2>
                 </nav>
@@ -38,17 +38,17 @@ const RecentlyBooking = () => {
                     <table className='table'>
                         <thead>
                             <tr>
-                                <th>Images</th>
-                                <th>Car Model</th>
-                                <th>Total Price</th>
-                                <th>Payment Status</th>
+                                <th className='dark:text-gray-100'>Images</th>
+                                <th className='dark:text-gray-100'>Car Model</th>
+                                <th className='dark:text-gray-100'>Total Price</th>
+                                <th className='dark:text-gray-100'>Payment Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
                                 bookingCar.map(car => <tr key={car._id}>
                                     <th>
-                                        <img src={car.carImages} alt="carImages" className='w-20 h-20 object-contain ' />
+                                        <img src={car.carImages} alt="carImages" className='w-10 h-10 object-contain ' />
                                     </th>
                                     <th>{car.carModel}</th>
                                     <th>{car.totalPrice}</th>
@@ -112,11 +112,7 @@ const RecentlyBooking = () => {
                     </div>
                 </div>
             </div>
-            <div className='lg:col-span-1 bg-white mt-10 p-4 rounded-md  '>
-
-                <TotalCarChart />
-
-            </div>
+          
         </div>
     )
 }

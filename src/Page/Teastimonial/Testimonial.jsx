@@ -87,7 +87,7 @@ const Testimonial = () => {
                 <span className="text-sm text-gray-600 dark:text-gray-50">
                   {testimonial.location}
                 </span>
-                <p className="text-sm mt-3 text-gray-600 dark:text-gray-300">
+                <p className="text-sm mt-3 text-gray-600 dark:text-gray-300 line-clamp-3">
                   " {testimonial.message} "
                 </p>
               </div>

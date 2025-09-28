@@ -73,28 +73,28 @@ const ManageUser = () => {
     return (
         <div>
             <div className=' p-0 md:p-8'>
-                <div className="overflow-x-auto bg-white font-rubik">
+                <div className="overflow-x-auto bg-white dark:bg-gray-800 dark:text-white font-rubik">
                     <table className="table">
                         {/* head */}
                         <thead>
-                            <tr className='text-center'>
-                                <th>Name</th>
-                                <th>Role</th>
-                                <th>Email</th>
-                                <th>Action</th>
+                            <tr className=''>
+                                <th className='dark:text-white'>Name</th>
+                                <th className='dark:text-white'>Role</th>
+                                <th className='dark:text-white'>Email</th>
+                                <th className='dark:text-white'>Action</th>
                             </tr>
                         </thead>
                         <tbody>
 
                             {
-                                users?.map((user) => <tr key={user.userEmail} className='text-center'>
+                                users?.map((user) => <tr key={user.userEmail} className=''>
                                     <th>{user.userName}</th>
                                     <td>{user.role}</td>
                                     <td>{user.userEmail}</td>
-                                    <td className='flex justify-center'>
+                                    <td className=''>
                                         <button
                                             onClick={() => manageUser(user._id)}
-                                            className='flex justify-center items-center gap-2 bg-gray-200 p-2 rounded-md text-sm cursor-pointer hover:bg-gray-100 transition-all duration-300'>
+                                            className='flex justify-center items-center gap-2 bg-gray-200 dark:bg-gray-600 p-2 rounded-md text-sm cursor-pointer hover:bg-gray-100  dark:hover:text-gray-500 transition-all duration-300'>
                                             <MdBlock color='red' />
                                             Block
                                         </button>

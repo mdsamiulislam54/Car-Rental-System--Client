@@ -34,6 +34,12 @@ The purpose of **RentRide** is to provide a seamless car rental experience where
 
 ---
 
+Quick Search System in Banner Section
+
+A hassle-free and instant car search tool embedded directly in the homepage banner so you can find your ride in seconds. Just select your pickup location, rental dates, and car type—and our system will show you available options without navigating away from the front page. Get started faster, experience browsing made simple.
+
+Seamlessly switch between light and dark themes for a personalized browsing experience. Whether you prefer a clean bright look or a sleek dark interface, our website adapts instantly to your choice."
+
 ## 📚 Tech Stack
 
 ### 💻 Frontend:

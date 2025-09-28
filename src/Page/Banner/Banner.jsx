@@ -7,7 +7,7 @@ import BookingCar from "../BookingCar/BookingCar";
 const Banner = () => {
   return (
     <div
-      className="relative h-[90vh] bg-white bg-cover "
+      className="relative sm:h-[60vh] lg:h-[90vh] h-[100vh] bg-white bg-cover "
       style={{
         backgroundImage: `url("https://img.freepik.com/free-vector/car-led-lights-realistic-composition-with-dark-silhouette-automobile-with-dimmed-headlights-shadows-illustration_1284-28532.jpg?t=st=1758950120~exp=1758953720~hmac=c622a3b5d27b59c0a3309756e397053f8e61ad5daa7cb4e61200444b95a2c83a&w=1480")`,
       }}
@@ -16,7 +16,7 @@ const Banner = () => {
       <div className="absolute inset-0 bg-black/50 z-0"></div>
 
       {/* Content */}
-      <div className="relative custom-container flex justify-center items-center h-full z-10">
+      <div className="relative custom-container flex justify-center items-center h-full z-10 ">
         <motion.div
           initial={{ opacity: 0, x: -120 }}
           animate={{ opacity: 1, x: 0 }}
@@ -39,7 +39,7 @@ const Banner = () => {
           </Link>
         </motion.div>
       </div>
-      <div className="absolute -bottom-16 left-[50%] translate-x-[-50%] custom-container  ">
+      <div className="absolute md:-bottom-16 -bottom-45 left-[50%] translate-x-[-50%] custom-container  ">
         <BookingCar/>
       </div>
     </div>

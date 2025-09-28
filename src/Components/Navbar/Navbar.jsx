@@ -174,7 +174,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-md dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow space-y-2 font-rubik">
+              className="menu menu-md dropdown-content bg-base-100 text-black dark:text-white dark:bg-black rounded-box z-1 mt-3 w-52 p-2 shadow space-y-2 font-rubik">
               <li>
                 <Link className="justify-between">
                   Profile

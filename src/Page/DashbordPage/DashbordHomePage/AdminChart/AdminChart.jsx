@@ -1,20 +1,20 @@
-import React from "react";
+
 import {
   BarChart,
   Bar,
   XAxis,
   YAxis,
-  CartesianGrid,
+
   Tooltip,
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import Map from '../../../../assets/bangladeshHigh.svg';
+
 
 const AdminChart = ({ revenueChartData }) => {
   return (
     <div className="grid lg:grid-cols-3 gap-4">
-      <div className="lg:col-span-2 bg-white p-2 rounded-md h-full">
+      <div className="lg:col-span-2 bg-white dark:bg-gray-800 p-2 rounded-md h-full">
         <nav className="flex items-center justify-between py-4 border-b border-gray-200 mb-4">
           <h2 className="text-lg font-semibold font-rubik text-gray-800">
             Statistical Report
@@ -24,7 +24,7 @@ const AdminChart = ({ revenueChartData }) => {
         <div className="h-[300px]">
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={revenueChartData}>
-              <CartesianGrid stroke="#f0f0f0" />
+             
               <XAxis dataKey="carModel" />
               <YAxis />
               <Tooltip />
@@ -37,9 +37,9 @@ const AdminChart = ({ revenueChartData }) => {
         </div>
       </div>
 
-      <div className="bg-white p-2 rounded-md lg:col-span-1">
+      <div className="bg-white dark:bg-gray-900 p-2 rounded-md lg:col-span-1">
           <nav className="flex items-center justify-between py-4 border-b border-gray-200 mb-4">
-          <h2 className="text-lg font-semibold font-rubik text-gray-800">
+          <h2 className="text-lg font-semibold font-rubik text-gray-800 dark:text-gray-100">
            Locations
           </h2>
         </nav>

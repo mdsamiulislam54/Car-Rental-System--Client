@@ -19,6 +19,7 @@ import { MdDeleteForever } from "react-icons/md";
 import UserContext from "../../../ContextApi/UserContext/UserContext";
 import Loader from "../../../Components/Loader/Loader";
 import { formatDate } from "../../../Hook/DateFormate";
+import Pagination from "../../../Components/Pagination/Pagination";
 
 const MyCars = () => {
   const [carData, setCarData] = useState([]);
@@ -51,7 +52,7 @@ const MyCars = () => {
       );
 
       const data = res.data;
-     
+
       setCarData(data.cars || []);
       setCount(data.totalCars || 0);
     } catch (err) {
@@ -129,7 +130,7 @@ my-cars/${id}`);
   };
 
   return (
-    <div className="md:p-8 p-0 min-h-screen bg-center relative z-0  text-white">
+    <div className="md:p-8 p-0 min-h-screen bg-center relative z-0  text-white  ">
       {carData?.length === 0 ? (
         <div className="flex justify-center flex-col gap-8 items-center min-h-screen px-4 text-center">
 
@@ -151,92 +152,95 @@ my-cars/${id}`);
           </Link>
         </div>
       ) : (
-        <div className="p-4 bg-white">
+        <>
+          <div className=" flex justify-end text-black bg-white dark:bg-gray-800 mb-4 p-5">
+            <div className=" flex items-center gap-4">
 
-
-          <div className="overflow-x-auto">
-            <div className=" flex justify-end text-black ">
-              <div className="mb-5  flex items-center gap-4">
-
-                <select
-                  onChange={(e) => setSortOrder(e.target.value)}
-                  defaultValue="Default"
-                  className="select w-[400px]"
-                >
-                  <option value="default">Default</option>
-                  <option value="asc">Newest First </option>
-                  <option value="desc">Oldest First</option>
-                </select>
-              </div>
+              <select
+                onChange={(e) => setSortOrder(e.target.value)}
+                defaultValue="Default"
+                className="select w-[400px]"
+              >
+                <option value="default">Default</option>
+                <option value="asc">Newest First </option>
+                <option value="desc">Oldest First</option>
+              </select>
             </div>
-            <table className="w-full text-center border-collapse  overflow-x-scroll">
-              <thead className="text-black bg-white">
-                <tr>
-                  <th className="p-3">Image</th>
-                  <th className="p-3">Car Model</th>
-                  <th className="p-3">Price</th>
-                  <th className="p-3">Booking</th>
-                  <th className="p-3">Availability</th>
-                  <th className="p-3">Added Date </th>
-                  <th className="p-3">Actions</th>
-                </tr>
-              </thead>
-              <tbody className=" text-black">
-                {carData.map((car) => (
-                  <tr
-                    key={car._id}
-                    className="hover:bg-gray-50 transition-all"
-                  >
-                    <td className="p-2 flex justify-center items-center">
-                      <img
-                        src={car.imageUrl}
-                        alt={car.carModel}
-                        className="w-20 h-14 object-contain rounded"
-                      />
-                    </td>
-                    <td className="p-2">{car.carModel}</td>
-                    <td className="p-2">{car.dailyRentalPrice}</td>
-                    <td className="p-2">{car.bookingCount}</td>
-                    <td className="p-2 ">{car.availability}</td>
-                    <td className="p-2">
-                      {new Date(car.updatedAt || car.createdAt).toLocaleDateString()}
-                    </td>
-                    <td className="p-2 flex items-center justify-center gap-4  ">
-                      <button onClick={() => setSelectedCar(car)} className=" ">
-                        <FaEdit size={20} color="blue" />
-                      </button>
-                      <button
-                        onClick={() => handleDeleteCar(car._id)}
-                        className=""
-                      >
-                        <MdDeleteForever size={24} color="red" />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
           </div>
-        </div>
+          <div className="p-4 bg-white dark:bg-gray-900 dark:text-white">
+
+
+            <div className="overflow-x-auto">
+
+              <table className="w-full text-center border-collapse  overflow-x-scroll">
+                <thead className="text-black bg-white dark:bg-gray-800 dark:text-white">
+                  <tr>
+                    <th className="p-3">Image</th>
+                    <th className="p-3">Car Model</th>
+                    <th className="p-3">Price</th>
+                    <th className="p-3">Booking</th>
+                    <th className="p-3">Availability</th>
+                    <th className="p-3">Added Date </th>
+                    <th className="p-3">Actions</th>
+                  </tr>
+                </thead>
+                <tbody className=" text-black">
+                  {carData.map((car) => (
+                    <tr
+                      key={car._id}
+                      className="hover:bg-gray-50 dark:hover:bg-gray-800 dark:text-white transition-all"
+                    >
+                      <td className="p-2 flex justify-center items-center">
+                        <img
+                          src={car.imageUrl}
+                          alt={car.carModel}
+                          className="w-10 h-10 object-contain rounded"
+                        />
+                      </td>
+                      <td className="p-2">{car.carModel}</td>
+                      <td className="p-2">{car.dailyRentalPrice}</td>
+                      <td className="p-2">{car.bookingCount}</td>
+                      <td className="p-2 ">{car.availability}</td>
+                      <td className="p-2">
+                        {new Date(car.updatedAt || car.createdAt).toLocaleDateString()}
+                      </td>
+                      <td className="p-2 flex items-center justify-center gap-4  ">
+                        <button onClick={() => setSelectedCar(car)} className=" ">
+                          <FaEdit size={20} className="dark:text-white text-primary" />
+                        </button>
+                        <button
+                          onClick={() => handleDeleteCar(car._id)}
+                          className=""
+                        >
+                          <MdDeleteForever size={24} color="red" />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </>
       )}
 
       {/* Update Modal */}
       {selectedCar && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-100">
-          <div className="bg-white p-6 mt-14 rounded-lg w-11/12 md:w-2/3 lg:w-1/2 relative  text-black">
-            <h2 className="text-xl font-bold mb-4">Update Car</h2>
+          <div className="bg-white dark:bg-gray-800 p-6 mt-14 rounded-lg w-11/12 md:w-2/3 lg:w-1/2 relative  text-black">
+            <h2 className="text-xl font-bold mb-4 dark:text-white">Update Car</h2>
             <form onSubmit={handleUpdate} className="space-y-3">
               <div className="flex gap-3 ">
                 <input
                   name="carModel"
                   defaultValue={selectedCar.carModel}
-                  className="input"
+                  className="input dark:bg-gray-500 dark:text-white"
                   placeholder="Car Model"
                 />
                 <input
                   name="dailyRentalPrice"
                   defaultValue={selectedCar.dailyRentalPrice}
-                  className="input "
+                  className="input dark:bg-gray-500 dark:text-white "
                   placeholder="Daily Rental Price"
                 />
               </div>
@@ -244,7 +248,7 @@ my-cars/${id}`);
               <select
                 name="availability"
                 id=""
-                className="select "
+                className="select dark:bg-gray-500 dark:text-white "
               >
                 <option value={selectedCar.availability}>
                   {selectedCar.availability}
@@ -256,13 +260,13 @@ my-cars/${id}`);
                 <input
                   name="registrationNumber"
                   defaultValue={selectedCar.registrationNumber}
-                  className="input "
+                  className="input dark:bg-gray-500 dark:text-white "
                   placeholder="Registration Number"
                 />
                 <input
                   name="features"
                   defaultValue={selectedCar.features}
-                  className="input "
+                  className="input dark:bg-gray-500 dark:text-white "
                   placeholder="Features"
                 />
               </div>
@@ -271,13 +275,13 @@ my-cars/${id}`);
                 <input
                   name="image"
                   defaultValue={selectedCar.imageUrl}
-                  className="input "
+                  className="input dark:bg-gray-500 dark:text-white "
                   placeholder="Image URL"
                 />
                 <input
                   name="location"
                   defaultValue={selectedCar.location.city}
-                  className="input "
+                  className="input  dark:bg-gray-500 dark:text-white"
                   placeholder="Location"
                 />
               </div>
@@ -285,7 +289,7 @@ my-cars/${id}`);
                 <textarea
                   name="description"
                   defaultValue={selectedCar.description}
-                  className="textarea w-full"
+                  className="textarea w-full dark:bg-gray-500 dark:text-white"
                   placeholder="Description"
                 />
               </div>
@@ -310,36 +314,7 @@ my-cars/${id}`);
         </div>
       )}
 
-      <div className="flex justify-center items-center mt-10">
-        <button
-          className="btn mx-4"
-          disabled={currentPage === 0}
-          onClick={() => setCurrentPage((prev) => prev - 1)}
-        >
-          Prev
-        </button>
-        <ul className="flex gap-4">
-          {pageArray?.map((page) => {
-            return (
-              <li
-                key={page}
-                className={`btn bg-gray-200 ${currentPage === page ? "bg-primary text-white" : ""
-                  }`}
-                onClick={() => setCurrentPage(page)}
-              >
-                {page + 1}
-              </li>
-            );
-          })}
-          <button
-            className="btn mx-4"
-            disabled={pageArray?.length - 1 === currentPage ? true : false}
-            onClick={() => setCurrentPage((prev) => prev + 1)}
-          >
-            Next
-          </button>
-        </ul>
-      </div>
+      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} pageArray={pageArray}/>
     </div>
   );
 };

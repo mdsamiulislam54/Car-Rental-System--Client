@@ -54,10 +54,10 @@ function BookingCar() {
           <label className="block mb-2 font-medium font-rubik text-text">🚗 Select Your Car Type</label>
           <select 
             {...register("carModel", { required: true })} 
-            className="w-full border px-3 py-2 rounded dark:text-gray-300 text-gray-600"
+            className="select text-black"
           >
             <option value="">-- Choose Car Type --</option>
-            {carType?.map(type => <option key={type}>{type}</option>)}
+            {carType?.map(type => <option  className='text-gray-800' key={type}>{type}</option>)}
           </select>
           {errors.carModel && <span className="text-red-500 text-sm">Car type is required</span>}
         </div>
@@ -67,10 +67,10 @@ function BookingCar() {
           <label className="block mb-2 font-medium font-rubik text-text">📍 Pick-Up Location</label>
           <select 
             {...register("pickupLocation", { required: true })} 
-            className="w-full border px-3 py-2 rounded dark:text-gray-300 text-gray-600"
+            className="select text-black"
           >
             <option value="">-- Choose Pick-Up --</option>
-            {unickPicupLocation?.map(type => <option key={type}>{type}</option>)}
+            {unickPicupLocation?.map(type => <option  className='text-gray-800' key={type}>{type}</option>)}
           </select>
           {errors.pickupLocation && <span className="text-red-500 text-sm">Pick-up location is required</span>}
         </div>
@@ -80,10 +80,10 @@ function BookingCar() {
           <label className="block mb-2 font-medium font-rubik text-text">📍 Drop-Off Location</label>
           <select 
             {...register("dropLocation", { required: true })} 
-            className="w-full border px-3 py-2 rounded dark:text-gray-300 text-gray-600"
+            className="select text-black "
           >
             <option value="">-- Choose Drop-Off --</option>
-            {unickPicupLocation?.map(type => <option key={type}>{type}</option>)}
+            {unickPicupLocation?.map(type => <option className='text-gray-800'  key={type}>{type}</option>)}
           </select>
           {errors.dropLocation && <span className="text-red-500 text-sm">Drop-off location is required</span>}
         </div>

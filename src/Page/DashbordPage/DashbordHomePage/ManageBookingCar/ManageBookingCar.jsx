@@ -95,10 +95,10 @@ const ManageBookingCar = () => {
                     <p>No Pending Booking Car</p>
                 </div>
             ) : (
-                <div className="overflow-x-auto rounded-box border border-base-content/5 bg-white">
+                <div className="overflow-x-auto rounded-box border border-base-content/5 bg-white dark:bg-gray-800 dark:text-white">
                     <table className="table ">
                         {/* Table Head */}
-                        <thead className="bg-white text-gray-700">
+                        <thead className="bg-white text-gray-700 dark:bg-gray-800 dark:text-white">
                             <tr>
                                 <th>Image</th>
                                 <th>Car Model</th>
@@ -119,11 +119,11 @@ const ManageBookingCar = () => {
                                         <img
                                             src={car?.carImages || 'https://via.placeholder.com/100'}
                                             alt="car"
-                                            className="w-20 object-cover rounded"
+                                            className="w-10 object-cover rounded"
                                         />
                                     </td>
                                     <td>{car?.carModel || "N/A"}</td>
-                                    <td>৳ {car?.totalPrice || 0}</td>
+                                    <td>৳ {(car?.totalPrice).toFixed(2) || 0}</td>
                                     <td>
                                         <span className={`badge ${car.bookingStatus === 'pending' ? 'badge-warning' : 'badge-success'}`}>
                                             {car.bookingStatus}
@@ -139,7 +139,7 @@ const ManageBookingCar = () => {
                                     <td>
                                         <div className="flex gap-2">
                                             <button className="btn btn-sm btn-success" onClick={() => handleConfirm(car._id)}>Confirm</button>
-                                            <button onClick={() => handleCancelBooking(car._id)} className="btn btn-sm btn-error">Cancel</button>
+                                            <button onClick={() => handleCancelBooking(car._id)} className="btn btn-sm btn-error text-white">Cancel</button>
                                         </div>
                                     </td>
                                 </tr>

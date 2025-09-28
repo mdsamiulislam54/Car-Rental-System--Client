@@ -1,37 +1,21 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-
+import React, { useContext,  useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { SlCalender } from "react-icons/sl";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
 import Swal from "sweetalert2";
-
 import { Link } from "react-router";
-
 import { formatDate } from "../../../../Hook/DateFormate";
-import UserContext from "../../../../ContextApi/UserContext/UserContext";
-import Loader from "../../../../Components/Loader/Loader";
 import BookingContext from "../../../../ContextApi/myBookingContext/BookingContext";
 import ModifyBookingModal from "./ModifyBookingModal";
 
 const MyBooking = () => {
 
-  const [loading, setLoading] = useState(false);
   const [modifyDate, setModifyDate] = useState(false);
   const [modifyId, setModifyId] = useState("");
-  const [error, setError] = useState("");
+
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndtDate] = useState(null);
-  const { user } = useContext(UserContext)
+
   const { booking, pageArray, currentPage, setCurrentPage,bookingDataFatch } = useContext(BookingContext);
 
 
@@ -86,6 +70,10 @@ const MyBooking = () => {
     setModifyDate(!modifyDate);
     setModifyId(id);
   };
+
+  const handleClose =()=>{
+    setModifyDate(!modifyDate)
+  }
 
   const handleConfirmModifyDate = async () => {
     if (!startDate || !endDate) {
@@ -145,25 +133,25 @@ update-booking/${modifyId}`,
 
           <div className="overflow-x-auto  rounded-lg  p-2">
             {/* Desktop Table */}
-            <table className="hidden sm:table w-full text-center border-collapse relative bg-white">
+            <table className="hidden sm:table w-full text-center border-collapse relative bg-white dark:bg-gray-900 dark:text-white">
               <thead className="font-rubik">
                 <tr className="text-center">
-                  <th className="p-2 md:p-3 text-xs md:text-sm font-bold">Car Image</th>
-                  <th className="p-2 md:p-3 text-xs md:text-sm font-bold">Car Model</th>
-                  <th className="p-2 md:p-3 text-xs md:text-sm font-bold">Booking Date</th>
-                  <th className="p-2 md:p-3 text-xs md:text-sm font-bold">Total Price</th>
-                  <th className="p-2 md:p-3 text-xs md:text-sm font-bold">Status</th>
-                  <th className="p-2 md:p-3 text-xs md:text-sm font-bold">Actions</th>
+                  <th className="p-2 md:p-3 text-xs md:text-sm font-bold dark:text-white">Car Image</th>
+                  <th className="p-2 md:p-3 text-xs md:text-sm font-bold dark:text-white">Car Model</th>
+                  <th className="p-2 md:p-3 text-xs md:text-sm font-bold dark:text-white">Booking Date</th>
+                  <th className="p-2 md:p-3 text-xs md:text-sm font-bold dark:text-white">Total Price</th>
+                  <th className="p-2 md:p-3 text-xs md:text-sm font-bold dark:text-white">Status</th>
+                  <th className="p-2 md:p-3 text-xs md:text-sm font-bold dark:text-white">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {booking.map((car) => (
-                  <tr key={car._id} className="hover:bg-gray-50 transition text-center">
+                  <tr key={car._id} className="hover:bg-gray-50 dark:hover:bg-gray-800 transition text-center">
                     <td className="p-2">
                       <img
                         src={car.carImages}
                         alt={car.carModel}
-                        className="w-14 h-14 md:w-20 md:h-20 object-contain mx-auto rounded"
+                        className="w-10 h-10 md:w-20 md:h-20 object-contain mx-auto rounded"
                       />
                     </td>
                     <td className="p-2 text-xs md:text-sm">{car.carModel}</td>
@@ -258,7 +246,7 @@ update-booking/${modifyId}`,
       )}
 
     {
-      modifyDate && <ModifyBookingModal setEndtDate={setEndtDate} setStartDate={setStartDate} startDate={startDate} endDate={endDate} handleConfirmModifyDate={handleConfirmModifyDate}/>
+      modifyDate && <ModifyBookingModal setEndtDate={setEndtDate} setStartDate={setStartDate} startDate={startDate} endDate={endDate} handleConfirmModifyDate={handleConfirmModifyDate} onClose={handleClose}/>
     }
 
       {/* Pagination */}
