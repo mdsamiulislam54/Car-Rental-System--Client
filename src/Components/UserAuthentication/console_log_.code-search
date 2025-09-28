@@ -1,0 +1,65 @@
+# Query: console.log()
+# Flags: CaseSensitive WordMatch RegExp
+# ContextLines: 1
+
+13 results - 9 files
+
+src\Components\UserAuthentication\Registration.jsx:
+  34        }).then(async () => {
+  35:         
+  36          // ✅ Backend user insert
+
+src\ContextApi\myBookingContext\BookingProvider.jsx:
+  30              );
+  31:             
+  32              setBookingData(res?.data?.result);
+
+src\Hook\dashboardApi\dashbordApi.js:
+  37      try {
+  38:        
+  39          const res= await axios.get(` https://car-rental-system-server-beta.vercel.app/dashboard/user/booking/car?userId=${userId}`)
+  40          const data = res?.data;
+  41:         
+  42          return data
+
+src\Page\Blogs\Blogs.jsx:
+  24              const res = await axios.get(`https://car-rental-system-server-beta.vercel.app/blogs?page=${currentPage}&limit=${perPage}&category=${category}&search=${search}`);
+  25:            
+  26              setBlogs(res?.data?.blogs)
+
+src\Page\BookingCar\BookingCar.jsx:
+  13    const onSubmit = async (data) => {
+  14: 
+  15      try {
+
+  22      } catch (error) {
+  23:       console.log(error.message)
+  24      }
+
+src\Page\DashbordPage\AdminDashboard\ManageBlogs\ManageBlogs.jsx:
+  22              const res = await axios.get(`https://car-rental-system-server-beta.vercel.app/admin/manage/blogs?page=${currentPage}&limit=${perPage}`);
+  23:             console.log(res?.data.blogs);
+  24              setBlogs(res?.data?.blogs)
+
+src\Page\DashbordPage\DashbordHomePage\AddCars\AddCars.jsx:
+  36    const onSubmit = async (data) => {
+  37:   
+  38      const featuresArray = data.features.map((item) => item.value);
+
+  83      } catch (error) {
+  84:       console.log(error)
+  85        Swal.fire({
+
+src\Page\DashbordPage\DashbordHomePage\ManageUser\ManageUser.jsx:
+  34          } catch (err) {
+  35:             console.log(err)
+  36          } finally {
+
+  58              
+  59:             
+  60              if (res.status === 200) {
+
+src\Page\DashbordPage\DashbordHomePage\RecentlyBooking\RecentlyBooking.jsx:
+  18              const data = res?.data.bookings;
+  19:           
+  20              setBookingCar(data)

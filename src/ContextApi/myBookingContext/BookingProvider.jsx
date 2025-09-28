@@ -28,7 +28,7 @@ const BookingProvider = ({ children }) => {
                     },
                 }
             );
-            console.log(res)
+            (res)
             setBookingData(res?.data?.result);
             setCount(res?.data?.count)
 

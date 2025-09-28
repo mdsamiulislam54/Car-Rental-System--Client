@@ -11,7 +11,7 @@ function BookingCar() {
   const navigate = useNavigate()
 
   const onSubmit = async (data) => {
-    console.log(data)
+    (data)
     try {
       navigate('/available-cars', {
         state: {
@@ -20,7 +20,7 @@ function BookingCar() {
         }
       });
     } catch (error) {
-      console.log(error.message)
+      (error.message)
     }
   };
 

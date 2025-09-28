@@ -32,7 +32,7 @@ const ManageUser = () => {
             setUser(data?.user)
             setCount(data?.count)
         } catch (err) {
-            console.log(err)
+            (err)
         } finally {
             setLoading(false);
         }
@@ -56,7 +56,7 @@ const ManageUser = () => {
         if (result.isConfirmed) {
             const res = await axios.delete(`https://car-rental-system-server-beta.vercel.app/admin/user/block?id=${id}`)
             
-            console.log(res)
+            (res)
             if (res.status === 200) {
                 Swal.fire(
                     'Cancelled!',

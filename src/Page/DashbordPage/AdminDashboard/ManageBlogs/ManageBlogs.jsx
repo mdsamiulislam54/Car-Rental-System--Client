@@ -20,7 +20,7 @@ const ManageBlogs = () => {
         try {
             setLoading(true)
             const res = await axios.get(`https://car-rental-system-server-beta.vercel.app/admin/manage/blogs?page=${currentPage}&limit=${perPage}`);
-            console.log(res?.data.blogs);
+            (res?.data.blogs);
             setBlogs(res?.data?.blogs)
             setCount(res?.data?.count)
             setLoading(false)

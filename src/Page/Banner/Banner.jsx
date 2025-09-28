@@ -9,11 +9,11 @@ const Banner = () => {
     <div
       className="relative sm:h-[60vh] lg:h-[90vh] h-[100vh] bg-white bg-cover "
       style={{
-        backgroundImage: `url("https://img.freepik.com/free-vector/car-led-lights-realistic-composition-with-dark-silhouette-automobile-with-dimmed-headlights-shadows-illustration_1284-28532.jpg?t=st=1758950120~exp=1758953720~hmac=c622a3b5d27b59c0a3309756e397053f8e61ad5daa7cb4e61200444b95a2c83a&w=1480")`,
+        backgroundImage: `url("https://i.postimg.cc/QCb7vDK8/28531.jpg")`,
       }}
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/50 z-0"></div>
+      <div className="absolute inset-0 bg-black/70 z-0"></div>
 
       {/* Content */}
       <div className="relative custom-container flex justify-center items-center h-full z-10 ">

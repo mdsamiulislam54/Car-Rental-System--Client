@@ -16,7 +16,7 @@ const RecentlyBooking = () => {
         try {
             const res = await axios.get(`https://car-rental-system-server-beta.vercel.app/admin/recently/added/car?limit=${perPage}&page=${currentPage + 1}`)
             const data = res?.data.bookings;
-            console.log(data)
+            (data)
             setBookingCar(data)
             setCount(res?.data.total)
         } catch (error) {

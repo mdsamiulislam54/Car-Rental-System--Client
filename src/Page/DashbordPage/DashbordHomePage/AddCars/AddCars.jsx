@@ -34,7 +34,7 @@ const AddCars = () => {
   const Navigate = useNavigate();
   const { user } = useContext(UserContext);
   const onSubmit = async (data) => {
-    console.log(data);
+    (data);
     const featuresArray = data.features.map((item) => item.value);
 
     const pickupPointsArray = data.pickupPoints.split(",").map((item) => item.trim());
@@ -81,7 +81,7 @@ const AddCars = () => {
         Navigate("/");
       }
     } catch (error) {
-      console.log(error)
+      (error)
       Swal.fire({
         title: `Your Cars Added Failed ${error.message} `,
         icon: "error",

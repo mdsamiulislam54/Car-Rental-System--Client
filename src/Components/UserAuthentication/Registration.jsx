@@ -32,7 +32,7 @@ const Registration = () => {
         displayName: name,
         photoURL: photo,
       }).then(async () => {
-          console.log(createdUser.email)
+          (createdUser.email)
         // ✅ Backend user insert
         const userData = {
           userName: createdUser.displayName,
