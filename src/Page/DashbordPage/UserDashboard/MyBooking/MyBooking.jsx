@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext,  useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { SlCalender } from "react-icons/sl";
 import Swal from "sweetalert2";
@@ -7,6 +7,7 @@ import { Link } from "react-router";
 import { formatDate } from "../../../../Hook/DateFormate";
 import BookingContext from "../../../../ContextApi/myBookingContext/BookingContext";
 import ModifyBookingModal from "./ModifyBookingModal";
+import { toast } from "react-toastify";
 
 const MyBooking = () => {
 
@@ -16,7 +17,7 @@ const MyBooking = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndtDate] = useState(null);
 
-  const { booking, pageArray, currentPage, setCurrentPage,bookingDataFatch } = useContext(BookingContext);
+  const { booking, pageArray, currentPage, setCurrentPage, bookingDataFatch } = useContext(BookingContext);
 
 
 
@@ -71,7 +72,7 @@ const MyBooking = () => {
     setModifyId(id);
   };
 
-  const handleClose =()=>{
+  const handleClose = () => {
     setModifyDate(!modifyDate)
   }
 
@@ -90,10 +91,7 @@ update-booking/${modifyId}`,
         }
       );
       if (res.data.modifiedCount > 0) {
-        Swal.fire({
-          title: "Booking date updated successfully!",
-          icon: "success",
-        });
+        toast.success("Booking date updated successfully!")
 
         setModifyDate(false);
         bookingDataFatch();
@@ -101,7 +99,7 @@ update-booking/${modifyId}`,
         Swal.fire("No changes made!", "", "info");
       }
     } catch (err) {
-      Swal.fire("Failed to update booking date!", err.message, "error");
+      toast.error("Failed to update booking date!")
     }
   };
 
@@ -245,9 +243,9 @@ update-booking/${modifyId}`,
         </div>
       )}
 
-    {
-      modifyDate && <ModifyBookingModal setEndtDate={setEndtDate} setStartDate={setStartDate} startDate={startDate} endDate={endDate} handleConfirmModifyDate={handleConfirmModifyDate} onClose={handleClose}/>
-    }
+      {
+        modifyDate && <ModifyBookingModal setEndtDate={setEndtDate} setStartDate={setStartDate} startDate={startDate} endDate={endDate} handleConfirmModifyDate={handleConfirmModifyDate} onClose={handleClose} />
+      }
 
       {/* Pagination */}
       <div className="flex justify-center mt-8">

@@ -4,6 +4,7 @@ import { totalBookinCarPending } from '../../../../Hook/dashboardApi/dashbordApi
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { formatDate } from '../../../../Hook/DateFormate';
+import { toast } from 'react-toastify';
 
 
 
@@ -33,22 +34,12 @@ const ManageBookingCar = () => {
             const res = await axios.patch(` https://car-rental-system-server-beta.vercel.app/admin/booking/confirm/${id}`);
 
             if (res.data) {
-                Swal.fire({
-                    title: "Success!",
-                    text: "Booking confirmed successfully",
-                    icon: "success",
-                    confirmButtonText: "OK"
-                });
+                toast.success("Booking confirmed successfully")
             }
             fetchData()
         } catch (error) {
             console.error("Confirm error:", error);
-            Swal.fire({
-                title: "Error!",
-                text: "Failed to confirm booking",
-                icon: "error",
-                confirmButtonText: "OK"
-            });
+            toast.error("Failed to confirm booking")
         }
     };
 
@@ -70,16 +61,12 @@ const ManageBookingCar = () => {
                 const res = await axios.patch(` https://car-rental-system-server-beta.vercel.app/admin/booking/cencel/${id}`);
 
                 if (res.data?.message === 'Booking canceled successfully') {
-                    Swal.fire(
-                        'Cancelled!',
-                        'The booking has been canceled.',
-                        'success'
-                    );
+                    toast.success('The booking has been canceled.')
                     fetchData()
                 }
             }
         } catch (error) {
-            Swal.fire('Error!', 'Failed to cancel the booking.', 'error');
+            toast.error('Failed to cancel the booking.')
             console.error("Cancel error:", error);
         }
     };

@@ -36,7 +36,7 @@ const {user} = UseAuth()
         animate={isOpen ? "visible" : "hidden"}
         variants={sidebarVariants}
         transition={{ type: "tween", duration: 0.3 }}
-        className="fixed lg:hidden top-0 left-0 w-56 bg-white shadow h-full z-50"
+        className="fixed lg:hidden top-0 left-0 w-56 bg-white dark:bg-gray-800 dark:text-white shadow h-full z-50"
       >
         <SidebarContent user={user} isAdmin={isAdmin} onClose={() => setIsOpen(false)} />
       </motion.aside>

@@ -10,6 +10,7 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import axios from "axios";
 import LoginAvatar from '../../assets/login-avater.png'
+import { toast } from "react-toastify";
 
 const Registration = () => {
   const { createUser, user, googleLogin } = useContext(UserContext);
@@ -33,17 +34,14 @@ const Registration = () => {
         photoURL: photo,
       }).then(async () => {
           (createdUser.email)
-        // ✅ Backend user insert
+      
         const userData = {
           userName: createdUser.displayName,
           userEmail: createdUser.email
         }
        
           await axios.post(` https://car-rental-system-server-beta.vercel.app/user-create`,userData );
-        Swal.fire({
-          title: "Registration Successful",
-          icon: "success",
-        });
+        toast.success("Registration successfully")
         navigate("/login");
       
 
@@ -55,11 +53,7 @@ const Registration = () => {
 
     } catch (err) {
       console.error(err);
-      Swal.fire({
-        title: "Registration Failed!",
-        text: err.message,
-        icon: "error",
-      });
+      toast.error("Register failed!");
     }
   };
 

@@ -4,6 +4,7 @@ import Loader from '../../../../Components/Loader/Loader';
 import Pagination from '../../../../Components/Pagination/Pagination';
 import { MdDeleteForever } from 'react-icons/md';
 import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
 
 const ManageBlogs = () => {
     const [blogs, setBlogs] = useState([]);
@@ -13,8 +14,7 @@ const ManageBlogs = () => {
     const [perPage, setPerPage] = useState(10);
     const pageNumber = Math.ceil(count / perPage) || 0
     const pageArray = [...Array(pageNumber).keys().map(i => i + 1)];
-    const [category, setCategory] = useState('');
-    const [search, setSearch] = useState('')
+
 
     const fetchBlogsData = async () => {
         try {
@@ -51,15 +51,15 @@ const ManageBlogs = () => {
                     );
 
                     if (response.status === 200) {
-                        Swal.fire("Deleted!", "Blog has been deleted.", "success");
+                        toast.success("Blog has been deleted.")
                         fetchBlogsData()
                     }
                 } catch (error) {
                     console.error("Delete error:", error);
-                    Swal.fire("Error!", "Failed to delete blog.", "error");
+                    toast.error("Failed to delete blog.")
                 }
             } else if (result.dismiss === Swal.DismissReason.cancel) {
-                Swal.fire("Cancelled", "Your blog is safe 😊", "info");
+                toast.success("Your blog is safe")
             }
         });
     };

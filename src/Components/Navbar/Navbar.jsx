@@ -4,10 +4,13 @@ import { RiCloseLine } from "react-icons/ri";
 import { AnimatePresence, motion } from "framer-motion";
 import UserContext from "../../ContextApi/UserContext/UserContext";
 import { TbLogout } from "react-icons/tb";
-import Swal from "sweetalert2";
 import Button from "../Button/Button";
 import { TiWeatherSunny } from "react-icons/ti";
 import { DarkModetoggle } from "../../Hook/DarkMode/DarkMode";
+import { toast } from "react-toastify";
+import Logo from '../../assets/logo.png'
+import Logo2 from '../../assets/logo2.png'
+import BrandLogo from '../Logo/BrandLogo'
 
 const Navbar = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -27,20 +30,14 @@ const Navbar = () => {
   const handleLogOut = () => {
     logOut()
       .then(() => {
-        Swal.fire({
-          icon: "success",
-          title: "LogOut Successful!",
-        });
+        toast.success("Logout successfully")
       })
       .catch(() => {
-        Swal.fire({
-          icon: "error",
-          title: "LogOut Failed!",
-        });
+        toast.error("Logout failed!")
       });
   };
 
-  
+
   const navItem = <>
     <Link
       to="/"
@@ -145,8 +142,40 @@ const Navbar = () => {
 
           {/* Logo */}
           <Link className="text-xl font-bold flex items-center gap-1">
-            <img src="https://cdn-icons-png.flaticon.com/512/445/445005.png" alt="" className="w-12 h-12" />
-            <span className="font-rubik font-bold leading-4 tracking-wide text-2xl">RentRide</span>
+
+            <BrandLogo />
+            {/*         
+            {
+              scrollY > 50 ? (
+                <div className="flex items-center">
+                  <img
+                    src={Logo2}
+                    alt="Logo Scroll"
+                    className="w-32 h-10 sm:w-40 sm:h-12 md:w-50 md:h-14 object-cover dark:hidden"
+                  />
+                  <img
+                    src={Logo}
+                    alt="Logo Default"
+                    className="w-32 h-10 sm:w-40 sm:h-12 md:w-50 md:h-14 object-cover hidden dark:block"
+                  />
+                </div>
+              ) : (
+                <div className="flex items-center">
+                  <img
+                    src={Logo}
+                    alt="Logo Default"
+                    className="w-32 h-10 sm:w-40 sm:h-12 md:w-50 md:h-14 object-cover hidden dark:block"
+                  />
+                  <img
+                    src={Logo2}
+                    alt="Logo Default"
+                    className="w-32 h-10 sm:w-40 sm:h-12 md:w-50 md:h-14 object-cover block dark:hidden"
+                  />
+                </div>
+              )
+            } */}
+
+
           </Link>
         </div>
 
@@ -160,7 +189,7 @@ const Navbar = () => {
         {/* Navbar End */}
         <div className="navbar-end">
           <button className="mx-4 cursor-pointer" onClick={DarkModetoggle}>
-            <TiWeatherSunny size={30}/>
+            <TiWeatherSunny size={30} />
           </button>
           <div className="dropdown dropdown-end ">
 
@@ -169,7 +198,7 @@ const Navbar = () => {
               <div className="w-10 rounded-full cursor-pointer">
                 <img
                   alt="Profile img"
-                  src={user?.photoURL || 'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp'} />
+                  src={'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN3-b6hE_5K-l4bv_gBuFtF5zWoPEhSkLsuw&s'} />
               </div>
             </div>
             <ul

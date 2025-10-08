@@ -6,6 +6,7 @@ import axios from "axios";
 import Button from "../../Components/Button/Button";
 import { FaCar, FaLine } from "react-icons/fa";
 import { IoArrowBack } from "react-icons/io5";
+import { toast } from "react-toastify";
 
 
 const CarDetailsPage = () => {
@@ -51,12 +52,7 @@ const CarDetailsPage = () => {
     if (!user) return navigate('/login')
     if (user?.role === "admin") {
 
-      return Swal.fire({
-        title: "Access Denied!",
-        text: "Admin is not allowed to perform this action.",
-        icon: "warning",
-        confirmButtonText: "Okay",
-      });
+      return toast.error("Admin is not allowed to perform this action")
 
     }
     if (!startDate || !endDate) {
@@ -96,20 +92,20 @@ const CarDetailsPage = () => {
       setLoading(false)
 
     } else {
-      Swal.fire({ title: "Your Booking UnSuccessful!!", icon: "error" });
+      toast.error("Your Booking UnSuccessful!!")
     }
   };
 
 
   return (
     <div className="custom-container py-8 font-rubik space-y-10 relative">
-      <div className="absolute top-0 left-0 p-1 m-3 bg-gray-100 rounded-full font-rubik hover:bg-gray-200 transition-all duration-300">
+      <div className="absolute top-0 left-0 p-2 m-3 bg-gray-100 dark:bg-gray-600 dark:text-white rounded-full font-rubik hover:bg-gray-200 transition-all duration-300">
         <Link to={-1}>
           <IoArrowBack />
         </Link>
       </div>
       {/* Top Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-white  rounded-2xl  p-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 text-white  rounded-2xl mt-4 ">
         {/* Left - Car Image */}
         <div className="flex justify-center items-center relative">
 
@@ -153,7 +149,7 @@ const CarDetailsPage = () => {
             <p><strong>Color:</strong> {car.color}</p>
             <p><strong>Mileage:</strong> {car.mileage}</p>
             <p><strong>Location:</strong> {car.location.city}</p>
-            <p className="flex gap-2"><strong>pickupPoints:</strong> <ul className="flex gap-2">
+            <p className=""><strong></strong> <ul className="flex gap-2">
               {car.location.pickupPoints?.map(point => <li key={point}>{point}</li>)}</ul></p>
 
           </div>
@@ -175,7 +171,7 @@ const CarDetailsPage = () => {
       {/* Features */}
       <section>
         <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">Key Features</h3>
-        <ul className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 pl-6 ">
+        <ul className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 sm:pl-6 ">
           {car.features?.map((feature, i) => (
             <li
               key={i}
@@ -191,7 +187,7 @@ const CarDetailsPage = () => {
       {car.whyChoose && (
         <section>
           <h3 className="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">Why Choose This Car</h3>
-          <ul className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 pl-6">
+          <ul className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 sm:pl-6">
             {car.whyChoose.map((point, i) => (
               <li key={i} className="bg-gray-100 dark:bg-gray-900 dark:text-white text-center p-2 rounded-md text-sm font-medium text-text">{point}</li>
             ))}
@@ -203,8 +199,8 @@ const CarDetailsPage = () => {
 
       {/* Booking Modal */}
       {bookigModal && (
-        <div className="fixed inset-0 flex justify-center items-center bg-black/40 z-50">
-          <div className="bg-white w-full max-w-md rounded-lg shadow-lg p-6">
+        <div className="fixed sm:inset-0 inset-2 flex justify-center items-center bg-black/40 z-50">
+          <div className="bg-white dark:bg-gray-800 dark:text-white w-full max-w-md rounded-lg shadow-lg p-6">
             <h2 className="text-xl font-bold mb-4">Booking Confirmation</h2>
 
 
@@ -230,7 +226,7 @@ const CarDetailsPage = () => {
             <label className="block mb-1">End Date & Time:</label>
             <input
               type="datetime-local"
-              className="w-full border p-2 rounded mb-4"
+              className="w-full border p-2 rounded mb-4 dark:text-white"
               onChange={(e) => setEndtDate(e.target.value)}
             />
 

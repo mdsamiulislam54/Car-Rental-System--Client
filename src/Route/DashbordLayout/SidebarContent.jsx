@@ -4,6 +4,7 @@ import { IoClose } from "react-icons/io5";
 import { Link } from "react-router";
 import { RiAddBoxFill,RiStickyNoteAddFill  } from "react-icons/ri";
 import { BsFillHouseAddFill } from "react-icons/bs";
+import BrandLogo from "../../Components/Logo/BrandLogo";
 
 const SidebarContent = ({ user, isAdmin, collapsed, onClose }) => {
     const menuItems = [
@@ -32,17 +33,17 @@ const SidebarContent = ({ user, isAdmin, collapsed, onClose }) => {
 
     return (
         <div className="h-full flex flex-col relative">
-              <div className="absolute top-4 right-2 md:hidden ">
-                    <button onClick={onClose} className="hover:bg-gray-100 p-2 rounded-full font-bold cursor-pointer">
+              <div className="absolute top-1 right-2 md:hidden ">
+                    <button onClick={onClose} className="hover:bg-gray-100 dark:hover:bg-gray-600 p-2 rounded-full font-bold cursor-pointer">
                         <IoClose size={20}/>
                     </button>
                 </div>
-            <div className="flex justify-center items-center my-12 ">
+            <div className="flex px-4 items-center mt-12 mb-4">
               
                 <Link className="text-xl font-bold flex items-center gap-1">
-                    <img src="https://cdn-icons-png.flaticon.com/512/445/445005.png" alt="" className="w-6 h-6" />
+                   
                     
-                    {!collapsed && <span className="font-rubik font-bold leading-4 tracking-wide text-2xl">RentRide</span> }
+                    {!collapsed && <span className="font-rubik font-bold leading-4 tracking-wide text-2xl"><BrandLogo/></span> }
                 </Link>
             </div>
             <nav className="flex-1 overflow-y-auto">
@@ -52,7 +53,7 @@ const SidebarContent = ({ user, isAdmin, collapsed, onClose }) => {
                             <Link
                                 to={item.to}
                                 onClick={onClose}
-                                className="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-accent font-rubik text-sm text-gray-800 dark:text-gray-100"
+                                className="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 hover:text-primary font-rubik text-sm text-gray-800 dark:text-gray-100"
                             >
                                 {item.icon}
                                 {!collapsed && <span>{item.label}</span>}

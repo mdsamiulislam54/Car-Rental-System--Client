@@ -52,7 +52,7 @@ const Testimonial = () => {
 
   return (
     <div className="py-10">
-      <div className="w-11/12 mx-auto ">
+      <div className="custom-container ">
         {/* heading */}
         <h2 className="text-3xl font-bold text-center mb-12 text-text font-rubik dark:text-white">
           Whispers from the Heart

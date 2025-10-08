@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { MdEmail, MdPhone, MdHeadset } from "react-icons/md";
-import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+
 
 const locations = [
   {
@@ -43,21 +43,11 @@ const ContactUs = () => {
     const email = form.email.value;
 
     if (!name || !email) {
-      return Swal.fire({
-        title: "Error!",
-        text: "Please fill all required fields.",
-        icon: "error",
-        confirmButtonText: "OK",
-      });
+      return toast.error("Please fill all required fields.")
     }
-    Swal.fire({
-      title: "Form Submitted!",
-      text: `Thanks, ${name}. Your email: ${email}`,
-      icon: "success",
-      confirmButtonText: "OK",
-    });
+    toast.success(`Thanks, ${name}. Your email: ${email}`)
 
-    form.reset(); 
+    form.reset();
   };
 
   return (

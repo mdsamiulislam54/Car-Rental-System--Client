@@ -32,6 +32,7 @@ import Blogs from "./Page/Blogs/Blogs.jsx";
 import ContactUs from "./Page/ContactUs/ContactUs.jsx";
 import BlogsDetails from "./Page/Blogs/BlogsDetails.jsx";
 import ManageBlogs from "./Page/DashbordPage/AdminDashboard/ManageBlogs/ManageBlogs.jsx";
+import { ToastContainer } from "react-toastify";
 
 const router = createBrowserRouter([
   {
@@ -128,7 +129,9 @@ createRoot(document.getElementById("root")).render(
     <UserProvider>
       <BookingProvider>
         <Suspense fallback={<Loading />}>
+          <ToastContainer />
           <RouterProvider router={router}></RouterProvider>
+
         </Suspense>
       </BookingProvider>
     </UserProvider>

@@ -1,20 +1,20 @@
-import { motion } from "framer-motion";
+
 import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router";
 import UserContext from "../../ContextApi/UserContext/UserContext";
-import Swal from "sweetalert2";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import axios from "axios";
 import LoginAvatar from '../../assets/login-avater.png'
 import Button from "../Button/Button";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { loginWithEmailAndPassword, googleLogin, user } = useContext(UserContext);
   const [showPassword, setShowPassword] = useState(false);
   const [adminLogin, setAdminLogin] = useState({})
-  
+
   const navigate = useNavigate();
   const { state } = useLocation();
 
@@ -28,13 +28,13 @@ const Login = () => {
       const currentUser = userCredential.user;
 
       if (currentUser) {
-        Swal.fire({ icon: "success", title: "Login Successful!" });
+        toast.success("Login successfully!",{delay:2000})
         navigate(state?.pathname || "/");
         navigate('/')
       }
     } catch (error) {
       console.error(error);
-      Swal.fire({ icon: "error", title: "Login Failed!" });
+      toast.error("Logon failed", {delay:2000});
     }
   };
 
@@ -79,28 +79,21 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-10 bg-gray-100 dark:bg-gray-900">
-      <div className=" w-8/12 bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden relative p-6 md:p-10">
+      <div className=" md:w-8/12 w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden relative p-6 md:p-10">
         <Link to="/" className="absolute top-5 left-5 text-gray-700 dark:text-white">
           <IoIosArrowRoundBack size={30} />
         </Link>
 
-        <div className="grid md:grid-cols-2 gap-8 items-center">
-          {/* Image section */}
-          <div className="hidden md:block">
-            <img
-              src={LoginAvatar}
-              alt="login visual"
-              className="rounded-lg w-full h-auto"
-            />
-          </div>
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
+
 
           {/* Form section */}
           <div>
             <h2 className="text-3xl font-bold text-center mb-6 dark:text-white">Login</h2>
             <div className="flex items-center justify-end gap-3 mb-2">
-               <Button text={"User Login"} onClick={handleUserLogin} />
+              <Button text={"User Login "} onClick={handleUserLogin} />
               <Button text={"Admin Login"} onClick={handleAdminLogin} />
-             
+
             </div>
             <form className="space-y-5 text-text font-rubik" onSubmit={handleLogin}>
               <div>
@@ -122,7 +115,7 @@ const Login = () => {
                   name="password"
                   placeholder="Enter Your Password..."
                   required
-                  value={adminLogin.password ||  ''}
+                  value={adminLogin.password || ''}
                   className="w-full px-4 py-2 border border-gray-300  dark:text-white rounded-md focus:outline-primary"
                 />
                 <span className="absolute right-3 top-10 cursor-pointer">
@@ -159,6 +152,14 @@ const Login = () => {
                 </Link>
               </p>
             </form>
+          </div>
+          {/* Image section */}
+          <div className="">
+            <img
+              src={LoginAvatar}
+              alt="login visual"
+              className="rounded-lg w-full h-auto"
+            />
           </div>
         </div>
       </div>

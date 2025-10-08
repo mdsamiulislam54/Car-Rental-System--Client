@@ -34,8 +34,8 @@ const RecentlyBooking = () => {
                         Recently Booking Car
                     </h2>
                 </nav>
-                <div>
-                    <table className='table'>
+                <div className='overflow-x-auto bg-white dark:bg-gray-800 dark:text-white font-rubik'>
+                    <table className='table '>
                         <thead>
                             <tr>
                                 <th className='dark:text-gray-100'>Images</th>
@@ -57,62 +57,63 @@ const RecentlyBooking = () => {
                             }
                         </tbody>
                     </table>
-                    {/* Pagination */}
-                    <div className="flex justify-center mt-8">
-                        <nav className="flex items-center gap-1 sm:gap-2">
-                            {/* Previous Button */}
-                            <button
-                                className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base"
-                                disabled={currentPage === 0}
-                                onClick={() => setCurrentPage((prev) => prev - 1)}
-                            >
-                                <span className="hidden sm:inline">Previous</span>
-                                <span className="sm:hidden">←</span>
-                            </button>
 
-                            {/* Page Numbers */}
-                            <div className="flex items-center gap-1">
-                                {pageArray?.map((page) => {
-                                    // Show only first, last, and nearby pages on mobile
-                                    if (window.innerWidth < 640 &&
-                                        page !== 0 &&
-                                        page !== pageArray.length - 1 &&
-                                        Math.abs(page - currentPage) > 1) {
-                                        if (Math.abs(page - currentPage) === 2) {
-                                            return <span key={page} className="px-2">...</span>;
-                                        }
-                                        return null;
+                </div>
+                {/* Pagination */}
+                <div className="flex justify-center mt-8">
+                    <nav className="flex items-center gap-1 sm:gap-2">
+                        {/* Previous Button */}
+                        <button
+                            className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base"
+                            disabled={currentPage === 0}
+                            onClick={() => setCurrentPage((prev) => prev - 1)}
+                        >
+                            <span className="hidden sm:inline">Previous</span>
+                            <span className="sm:hidden">←</span>
+                        </button>
+
+                        {/* Page Numbers */}
+                        <div className="flex items-center gap-1">
+                            {pageArray?.map((page) => {
+                                // Show only first, last, and nearby pages on mobile
+                                if (window.innerWidth < 640 &&
+                                    page !== 0 &&
+                                    page !== pageArray.length - 1 &&
+                                    Math.abs(page - currentPage) > 1) {
+                                    if (Math.abs(page - currentPage) === 2) {
+                                        return <span key={page} className="px-2">...</span>;
                                     }
+                                    return null;
+                                }
 
-                                    return (
-                                        <button
-                                            key={page}
-                                            className={`w-8 h-8 sm:w-10 sm:h-10 rounded-md text-sm sm:text-base ${currentPage === page
-                                                ? "bg-primary text-white"
-                                                : "border border-gray-300 hover:bg-gray-100"
-                                                }`}
-                                            onClick={() => setCurrentPage(page)}
-                                        >
-                                            {page + 1}
-                                        </button>
-                                    );
-                                })}
-                            </div>
+                                return (
+                                    <button
+                                        key={page}
+                                        className={`w-8 h-8 sm:w-10 sm:h-10 rounded-md text-sm sm:text-base ${currentPage === page
+                                            ? "bg-primary text-white"
+                                            : "border border-gray-300 hover:bg-gray-100"
+                                            }`}
+                                        onClick={() => setCurrentPage(page)}
+                                    >
+                                        {page + 1}
+                                    </button>
+                                );
+                            })}
+                        </div>
 
-                            {/* Next Button */}
-                            <button
-                                className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base"
-                                disabled={pageArray?.length - 1 === currentPage}
-                                onClick={() => setCurrentPage((prev) => prev + 1)}
-                            >
-                                <span className="hidden sm:inline">Next</span>
-                                <span className="sm:hidden">→</span>
-                            </button>
-                        </nav>
-                    </div>
+                        {/* Next Button */}
+                        <button
+                            className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-md disabled:opacity-50 text-sm sm:text-base"
+                            disabled={pageArray?.length - 1 === currentPage}
+                            onClick={() => setCurrentPage((prev) => prev + 1)}
+                        >
+                            <span className="hidden sm:inline">Next</span>
+                            <span className="sm:hidden">→</span>
+                        </button>
+                    </nav>
                 </div>
             </div>
-          
+
         </div>
     )
 }

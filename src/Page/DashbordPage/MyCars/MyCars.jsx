@@ -20,6 +20,7 @@ import UserContext from "../../../ContextApi/UserContext/UserContext";
 import Loader from "../../../Components/Loader/Loader";
 import { formatDate } from "../../../Hook/DateFormate";
 import Pagination from "../../../Components/Pagination/Pagination";
+import { toast } from "react-toastify";
 
 const MyCars = () => {
   const [carData, setCarData] = useState([]);
@@ -78,20 +79,14 @@ update-car/${selectedCar._id}`,
       )
       .then((res) => {
         if (res.data.modifiedCount === 1) {
-          Swal.fire({
-            title: "Your Car Updated Successful!",
-            icon: "success",
-          });
+          toast.success("Your Car Updated Successful!")
           form.reset();
           setSelectedCar(null);
           fetchData();
         }
       })
       .catch(() => {
-        Swal.fire({
-          title: "Your Car Updated Successful!",
-          icon: "error",
-        });
+        toast.error("Your Car Updated Successful!")
       });
   };
   if (loading) {
@@ -101,11 +96,7 @@ update-car/${selectedCar._id}`,
     return <div>{error.message}</div>;
   }
 
-  const chartData = carData.map((car) => ({
-    name: car.carModel,
-    price: car.dailyRentalPrice,
-    bookingCount: car.bookingCount,
-  }));
+
 
   const handleDeleteCar = (id) => {
     Swal.fire({
@@ -122,7 +113,7 @@ update-car/${selectedCar._id}`,
 
 my-cars/${id}`);
         if (res.data.deletedCount > 0) {
-          Swal.fire("Deleted!", "Your car has been deleted.", "success");
+          toast.error("Your car has been deleted.")
           fetchData();
         }
       }
@@ -314,7 +305,7 @@ my-cars/${id}`);
         </div>
       )}
 
-      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} pageArray={pageArray}/>
+      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} pageArray={pageArray} />
     </div>
   );
 };

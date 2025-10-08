@@ -11,7 +11,7 @@ const Navbar = ({setIsOpen,setIsCollapsed,user,isCollapsed, isOpen}) => {
             <div className="flex items-center gap-3">
                 {/* Hamburger (Mobile) */}
                 <button
-                    className="p-2 rounded-md hover:bg-gray-200  lg:hidden"
+                    className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer  lg:hidden"
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     <Menu size={22} />
@@ -53,7 +53,7 @@ const Navbar = ({setIsOpen,setIsCollapsed,user,isCollapsed, isOpen}) => {
                 {/* Profile */}
                 <div className="flex items-center gap-2">
                     <img
-                        src={user?.photoURL}
+                        src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN3-b6hE_5K-l4bv_gBuFtF5zWoPEhSkLsuw&s"}
                         alt="Profile"
                         className="md:w-8 md:h-8 w-5 h-5 rounded-full border"
                     />

@@ -10,7 +10,9 @@ import {
 import { BsFillSendCheckFill } from "react-icons/bs";
 import Button from "../Button/Button";
 import BackgroundImage from "../../assets/footer-banner.png";
-
+import Logo from '../../assets/logo.png'
+import Logo2 from '../../assets/logo2.png'
+import BrandLogo from "../Logo/BrandLogo";
 const Footer = () => {
   return (
     <div
@@ -22,17 +24,13 @@ const Footer = () => {
       }}
     >
       <div className="bg-white/70 dark:bg-black/90 dark:text-white shadow border-t dark:border-gray-700 border-gray-200">
-        <div className="w-11/12 mx-auto">
+        <div className="custom-container">
           <footer className="footer lg:footer-horizontal py-14">
             {/* Logo & Contact */}
             <aside>
-              <Link className="text-xl font-bold flex items-center gap-2">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/445/445005.png"
-                  alt="Logo"
-                  className="w-6 h-6"
-                />
-                <span className="text-2xl font-bold">RentRide</span>
+              <Link className=" ">
+                <BrandLogo size="12px"/>
+               
               </Link>
               <div className="mt-4">
                 <h2 className="text-lg font-semibold mb-4">Contact Info</h2>

@@ -36,7 +36,7 @@ const Faq = () => {
 
   return (
     <div className="my-10">
-      <div className="w-11/12 mx-auto py-10">
+      <div className="custom-container py-10">
         <div>
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold dark:text-white  mb-4 text-text font-rubik ">

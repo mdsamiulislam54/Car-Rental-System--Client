@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router';
 import Button from '../../Components/Button/Button';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-
+import { VscLocation } from "react-icons/vsc";
+import { FaCarSide } from 'react-icons/fa';
 function BookingCar() {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const [carType, setCarType] = useState([]);
@@ -44,17 +45,17 @@ function BookingCar() {
   const unickPicupLocation = [...new Set(pickupLocation)];
 
   return (
-    <div className="bg-white dark:bg-black p-6 shadow rounded-xl dark:shadow-white dark:text-white">
+    <div className="bg-white dark:bg-black p-6 shadow rounded-xl dark:shadow-white dark:text- overflow-visible">
       <form 
         onSubmit={handleSubmit(onSubmit)} 
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-end"
       >
         {/* Car Type */}
         <div>
-          <label className="block mb-2 font-medium font-rubik text-text">🚗 Select Your Car Type</label>
+          <label className="flex items-center gap-2 mb-2 font-medium font-rubik text-text"><FaCarSide color='blue'/> Select Your Car Type</label>
           <select 
             {...register("carModel", { required: true })} 
-            className="select text-black"
+            className="select text-black w-full"
           >
             <option value="">-- Choose Car Type --</option>
             {carType?.map(type => <option  className='text-gray-800' key={type}>{type}</option>)}
@@ -64,10 +65,10 @@ function BookingCar() {
 
         {/* Pick Up */}
         <div>
-          <label className="block mb-2 font-medium font-rubik text-text">📍 Pick-Up Location</label>
+          <label className=" mb-2 font-medium font-rubik text-text dark:text-white flex items-center gap-2"> <VscLocation color='blue' /> Pick-Up Location</label>
           <select 
             {...register("pickupLocation", { required: true })} 
-            className="select text-black"
+            className="select text-black w-full "
           >
             <option value="">-- Choose Pick-Up --</option>
             {unickPicupLocation?.map(type => <option  className='text-gray-800' key={type}>{type}</option>)}
@@ -77,10 +78,10 @@ function BookingCar() {
 
         {/* Drop Off */}
         <div>
-          <label className="block mb-2 font-medium font-rubik text-text">📍 Drop-Off Location</label>
+          <label className="flex items-center gap-2 mb-2 font-medium font-rubik text-text dark:text-white "> <VscLocation color='blue' /> Drop-Off Location</label>
           <select 
             {...register("dropLocation", { required: true })} 
-            className="select text-black "
+            className="select text-black  w-full "
           >
             <option value="">-- Choose Drop-Off --</option>
             {unickPicupLocation?.map(type => <option className='text-gray-800'  key={type}>{type}</option>)}
